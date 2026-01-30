@@ -97,9 +97,46 @@
     </footer>
 
     <script src="dynamic-bg.js"></script> 
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+<script type="text/javascript">
+  (function() {
+    // Reemplaza esto con tu Public Key real
+    emailjs.init("TU_PUBLIC_KEY_AQUI"); 
+  })();
+
+  window.onload = function() {
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      const btn = document.getElementById('button-send');
+      btn.innerText = 'CIFRANDO...';
+
+      // Estos nombres deben ser IGUALES a los que pusiste en tu plantilla de EmailJS {{user_name}}, etc.
+      const templateParams = {
+        user_name: document.getElementById('user_name').value,
+        user_email: document.getElementById('user_email').value,
+        message: document.getElementById('message').value
+      };
+
+      // Usamos tus IDs que ya confirmaste que funcionan
+      emailjs.send('service_u6go4bg', 'template_qnoyf82', templateParams)
+        .then(function() {
+          btn.innerText = '¡ENVIADO!';
+          alert('Confirmación enviada con éxito.');
+          document.getElementById('contact-form').reset();
+        }, function(error) {
+          btn.innerText = 'ERROR';
+          console.log('FAILED...', error);
+          alert('Error: ' + JSON.stringify(error));
+        });
+    });
+  }
+</script>
 </body>
 
 </html>
+
 
 
 
