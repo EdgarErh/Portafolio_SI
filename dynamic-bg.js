@@ -48,29 +48,29 @@ window.onscroll = function() {
 
 };
 
-const btn = document.getElementById('button-send');
+document.getElementById('contact-form').addEventListener('submit', function(event) {
+    event.preventDefault();
 
-document.getElementById('contact-form')
- .addEventListener('submit', function(event) {
-   event.preventDefault(); 
+    const btn = document.getElementById('button-send');
+    btn.innerText = 'ENVIANDO...';
 
-   btn.innerText = 'CIFRANDO...';
+    // Capturamos los valores reales del formulario
+    const params = {
+        user_name: document.getElementById('user_name').value,
+        user_email: document.getElementById('user_email').value,
+        message: document.getElementById('message').value
+    };
 
-   const serviceID = 'default_service';
-   const templateID = 'template_1s6ay6o'; 
-
-   emailjs.sendForm(serviceID, templateID, this)
-    .then(() => {
-      // AQUÍ MANDAMOS EL SEGUNDO CORREO (EL DE RESPUESTA)
-      const autoReplyID = 'template_qnoyf82'; 
-      emailjs.sendForm(serviceID, autoReplyID, this);
-
-      btn.innerText = 'MENSAJE ENVIADO';
-      alert('Respuesta automática generada. Revisa tu bandeja de entrada.');
-      this.reset();
-    }, (err) => {
-      btn.innerText = 'ERROR';
-      alert(JSON.stringify(err));
+    // Usamos tus IDs que ya probaste y funcionaron
+    emailjs.send("service_u6go4bg", "template_qnoyf82", params)
+    .then(function() {
+        btn.innerText = 'MENSAJE ENVIADO';
+        alert('¡Confirmación enviada! Revisa tu correo.');
+        document.getElementById('contact-form').reset();
+    }, function(error) {
+        btn.innerText = 'ERROR';
+        alert('Fallo en el envío: ' + JSON.stringify(error));
     });
 });
+
 
