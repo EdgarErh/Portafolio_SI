@@ -57,7 +57,7 @@ document.getElementById('contact-form')
    btn.innerText = 'CIFRANDO...';
 
    const serviceID = 'default_service';
-   const templateID = 'template_h9kn4er'; 
+   const templateID = 'template_1s6ay6o'; 
 
    emailjs.sendForm(serviceID, templateID, this)
     .then(() => {
@@ -73,3 +73,4 @@ document.getElementById('contact-form')
       alert(JSON.stringify(err));
     });
 });
+
