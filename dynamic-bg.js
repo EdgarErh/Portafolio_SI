@@ -45,4 +45,31 @@ window.onscroll = function() {
         header.classList.remove("scrolled");
         header.style.padding = "30px 5%"; 
     }
+
 };
+
+const btn = document.getElementById('button-send');
+
+document.getElementById('contact-form')
+ .addEventListener('submit', function(event) {
+   event.preventDefault(); 
+
+   btn.innerText = 'CIFRANDO...';
+
+   const serviceID = 'default_service';
+   const templateID = 'template_h9kn4er'; 
+
+   emailjs.sendForm(serviceID, templateID, this)
+    .then(() => {
+      // AQUÍ MANDAMOS EL SEGUNDO CORREO (EL DE RESPUESTA)
+      const autoReplyID = 'template_qnoyf82'; 
+      emailjs.sendForm(serviceID, autoReplyID, this);
+
+      btn.innerText = 'MENSAJE ENVIADO';
+      alert('Respuesta automática generada. Revisa tu bandeja de entrada.');
+      this.reset();
+    }, (err) => {
+      btn.innerText = 'ERROR';
+      alert(JSON.stringify(err));
+    });
+});
