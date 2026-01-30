@@ -1,0 +1,272 @@
+:root {
+    --primary: #00ff41; /* Verde neón */
+    --bg: #0d0d0d;
+    --surface: #1a1a1a;
+    --text: #f0f0f0;
+}
+.dynamic-background {
+    position: fixed; /* Fija el fondo a la ventana de visualización */
+    top: 0;
+    left: 0;
+    width: 100vw; /* Ancho del 100% del viewport */
+    height: 100vh; /* Alto del 100% del viewport */
+    overflow: hidden; /* Oculta cualquier cosa que se salga de los límites */
+    z-index: -1; /* Envía el fondo detrás de todo lo demás */
+    pointer-events: none; /* Ignora clics e interacciones de ratón */
+    background-color: #0d0d0d; /* Asegura el color de fondo base */
+}
+
+/* Estilos para las partículas que aparecerán */
+.particle {
+    position: absolute;
+    color: var(--primary); /* El color verde neón */
+    font-size: 14px; /* Tamaño de las partículas */
+    opacity: 0; /* Empiezan invisibles */
+    animation: fadeAndMove 10s infinite; /* Animación de 10 segundos */
+}
+
+@keyframes fadeAndMove {
+    0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8; /* Se hacen visibles */
+    }
+    90% {
+        opacity: 0.1; /* Se desvanecen lentamente */
+    }
+    100% {
+        transform: translateY(100vh) translateX(50px); /* Se mueven hacia abajo */
+        opacity: 0;
+    }
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+}
+
+/* Header con estilo técnico */
+header {
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 2px solid var(--primary);
+    padding: 30px 5%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.4s ease-in-out;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    transition: all 0.4s ease;
+}
+
+/* INFO A LA IZQUIERDA */
+.branding {
+    text-align: left; /* Alineamos el texto a la izquierda */
+    order: 1;         /* Primer elemento */
+}
+
+/* BOTONES A LA DERECHA */
+nav {
+    order: 2;         /* Segundo elemento */
+}
+
+nav ul {
+    display: flex;
+    gap: 15px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* EFECTO AL BAJAR (SCROLL) */
+header.scrolled .header-container {
+    justify-content: center; /* Centra los botones al desaparecer la info */
+}
+
+header.scrolled .branding {
+    display: none; /* Oculta la info al bajar */
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text);
+    padding: 8px 15px;             /* Tamaño del botón */
+    border: 1px solid transparent;
+    font-size: 0.9rem;
+    transition: 0.3s;
+    border-radius: 4px;            /* Bordes ligeramente redondeados */
+}
+
+/* Efecto Hover y Estado Activo */
+nav a.active, nav a:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: rgba(0, 255, 65, 0.05); /* Un fondo verde muy sutil */
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
+}
+
+.branding h1 {
+    color: var(--primary);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.alias { font-style: italic; color: #888; }
+
+nav ul {
+    display: flex;
+    gap: 15px;
+    list-style: none;
+    padding: 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text);
+    padding: 5px 10px;
+    border: 1px solid transparent;
+}
+
+nav a.active, nav a:hover {
+    border: 1px solid var(--primary);
+    color: var(--primary);
+}
+
+/* Secciones */
+.section-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background: var(--surface);
+    border-left: 4px solid var(--primary);
+}
+
+h2 {
+    color: var(--primary);
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* Formulario */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input, textarea {
+    background: #222;
+    border: 1px solid #444;
+    color: white;
+    padding: 10px;
+}
+
+input:focus, textarea:focus {
+    border-color: var(--primary);
+    outline: none;
+}
+
+button {
+    background: var(--primary);
+    color: black;
+    font-weight: bold;
+    padding: 12px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #00cc33;
+    box-shadow: 0 0 15px var(--primary);
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.8rem;
+    color: #666;
+}
+/* --- RESPONSIVIDAD PARA TABLETS Y MÓVILES --- */
+
+/* Tablets y pantallas medianas (Horizontal y Vertical) */
+@media (max-width: 992px) {
+    header {
+        padding: 20px 3%;
+    }
+    
+    .branding h1 {
+        font-size: 1.2rem; /* Texto más pequeño para que quepa */
+    }
+
+    .header-container {
+        gap: 10px;
+    }
+}
+
+/* Teléfonos (Vertical) */
+@media (max-width: 600px) {
+    .header-container {
+        flex-direction: column; /* Apilamos nombre y botones */
+        text-align: center;
+    }
+
+    .branding {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    nav ul {
+        flex-wrap: wrap; /* Si no caben, los botones saltan de línea */
+        justify-content: center;
+        gap: 8px;
+    }
+
+    nav a {
+        padding: 6px 10px;
+        font-size: 0.8rem; /* Botones más compactos */
+    }
+
+    /* En móvil, el efecto de "centrar" al bajar ya está implícito */
+    header.scrolled .branding {
+        display: none; 
+    }
+}
+
+/* Ajuste para orientación Horizontal en móviles (Landscape) */
+@media (max-height: 500px) and (orientation: landscape) {
+    header {
+        padding: 5px 5%; /* Muy delgado para no robar pantalla */
+    }
+    .branding h1 {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Cambiamos el texto de los botones para que sean más cortos en móviles */
+    nav a[href="Parcial1.html"]::after { content: "P1"; }
+    nav a[href="Parcial2.html"]::after { content: "P2"; }
+    nav a[href="Parcial3.html"]::after { content: "P3"; }
+    
+    /* Escondemos el texto largo */
+    nav a {
+        font-size: 0; /* Esconde el texto original */
+    }
+    nav a::after {
+        font-size: 0.8rem; /* Muestra solo la abreviación */
+    }
+    /* El de Inicio lo dejamos igual para que se entienda */
+    nav a[href="index.html"] { font-size: 0.8rem; } 
+}
