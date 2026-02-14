@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACTIVIDAD 03 - Interpretación y traducción de políticas de filtrado en iptables</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="KB.png">
+</head>
+<body>
+    <div class="dynamic-background"></div>
+
+    <header>
+        <div class="header-container">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="Parcial1.html" class="active">Regresar a Parcial 1</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="activity-detail">
+        <section class="section-container terminal-theme">
+            <div class="activity-header">
+                <div>
+                    <h1>ACTIVIDAD 03</h1>
+                    <p class="subtitle">Interpretación y traducción de políticas de filtrado en iptables</p>
+                </div>
+                <a href="177888_act03.pdf" download="177888_act03.pdf" class="btn-pdf" style="text-decoration:none;">
+                    📄 Descargar PDF Original
+                </a>
+            </div>
+
+            <div class="content-block">
+                <h3>1. INTRODUCCIÓN CONTEXTUAL</h3>
+                <p>
+                    El filtrado de paquetes es la piedra angular de la seguridad perimetral en sistemas Linux. 
+                    Esta actividad se centra en la comprensión profunda de <strong>iptables</strong>, analizando el flujo de los paquetes a través 
+                    de las distintas tablas y cadenas, así como la construcción de reglas sintácticas para permitir o denegar tráfico específico.
+                </p>
+            </div>
+
+            <div class="content-block">
+                <h3>2. DESARROLLO TÉCNICO</h3>
+                <p>
+                    Se estudió la anatomía de un comando <code>iptables</code> y el ciclo de vida de un paquete: 
+                    primero pasa por una <strong>Tabla</strong> (Filter, NAT, Mangle), luego por una <strong>Cadena</strong> (INPUT, OUTPUT, FORWARD) 
+                    y finalmente se ejecuta una <strong>Acción</strong> (ACCEPT, DROP).
+                </p>
+                
+                <p><strong>Tablas Analizadas:</strong></p>
+                <ul class="tech-list">
+                    <li><strong>FILTER:</strong> Tabla por defecto para el filtrado de paquetes.</li>
+                    <li><strong>NAT:</strong> Usada para la traducción de direcciones de red (Network Address Translation).</li>
+                    <li><strong>MANGLE:</strong> Para la alteración de paquetes (TOS, TTL).</li>
+                    <li><strong>RAW:</strong> Configuración de excepciones de rastreo de conexiones.</li>
+                </ul>
+            </div>
+
+            <div class="content-block">
+                <h3>3. MATERIAL MULTIMEDIA</h3>
+                <div class="media-placeholder">
+                    <p><em>Análisis de Regla Compleja (Ejercicio 6):</em></p>
+                    <div class="code-snippet">
+iptables -A INPUT -i eth0 -p tcp -m multiport --dports 22,80,443 \
+-m state --state NEW,ESTABLISHED -j ACCEPT
+                    </div>
+                    <p class="caption">
+                        <strong>Interpretación:</strong> Se añade una regla a la cadena INPUT que permite tráfico entrante por la interfaz <strong>eth0</strong>. 
+                        Usa el protocolo <strong>TCP</strong> y el módulo <em>multiport</em> para los puertos 22 (SSH), 80 (HTTP) y 443 (HTTPS). 
+                        Crucialmente, define que el estado de la conexión debe ser <strong>NUEVA</strong> o <strong>ESTABLECIDA</strong>.
+                    </p>
+
+                    <br>
+                    <p><em>Traducción de Políticas a Comandos (Ejercicios 9 y 10):</em></p>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Política Solicitada</th>
+                                <th>Comando Resultante</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Permitir SSH solo desde IP 192.168.1.50</td>
+                                <td style="font-family: monospace; color: var(--primary);">iptables -A INPUT -p tcp -s 192.168.1.50 --dport 22 -j ACCEPT</td>
+                            </tr>
+                            <tr>
+                                <td>Permitir tráfico Web solo si es conexión establecida</td>
+                                <td style="font-family: monospace; color: var(--primary);">iptables -A INPUT -m multiport --dports 80,443 -m state --state ESTABLISHED,RELATED -j ACCEPT</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="content-block">
+                <h3>4. OPINIÓN O REFLEXIÓN TÉCNICA</h3>
+                <p>
+                    La granularidad que ofrece <strong>iptables</strong> permite implementar el principio de "mínimo privilegio" en la red. 
+                    Entender conceptos como <em>Stateful Packet Inspection</em> (inspección de estado) es vital, ya que no basta con abrir puertos; 
+                    es necesario validar el origen y el estado de la conexión (NEW vs ESTABLISHED) para prevenir ataques de spoofing o conexiones no solicitadas 
+                    que podrían comprometer la integridad del servidor.
+                </p>
+            </div>
+
+            <div class="content-block">
+                <h3>5. REFERENCIAS TÉCNICAS</h3>
+                <ul class="refs-list">
+                    <li>Netfilter Project. (2024). iptables(8) man page.</li>
+                    <li>RFC 4949. Internet Security Glossary (Conceptos de Firewalling).</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 | Edgar Omar Rodriguez Hernandez | Actividad 03</p>
+    </footer>
+
+    <script src="dynamic-bg.js"></script>
+</body>
+</html>
