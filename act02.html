@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACTIVIDAD 02 - Análisis de servicios de seguridad (X.800 y RFC 4949)</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="KB.png">
+</head>
+<body>
+    <div class="dynamic-background"></div>
+
+    <header>
+        <div class="header-container">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="Parcial1.html" class="active">Regresar a Parcial 1</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="activity-detail">
+        <section class="section-container terminal-theme">
+            <div class="activity-header">
+                <div>
+                    <h1>ACTIVIDAD 02</h1>
+                    <p class="subtitle">Análisis de servicios de seguridad (X.800 y RFC 4949)</p>
+                </div>
+                <a href="177888-act02" download="Act02_Analisis_X800_RFC4949.pdf" class="btn-pdf" style="text-decoration:none;">
+                    📄 Descargar PDF Original
+                </a>
+            </div>
+
+            <div class="content-block">
+                <h3>1. INTRODUCCIÓN CONTEXTUAL</h3>
+                <p>
+                    La seguridad informática requiere un lenguaje técnico preciso y marcos de referencia estandarizados. 
+                    En esta actividad se realiza un análisis comparativo utilizando dos estándares fundamentales: 
+                    la recomendación <strong>ITU-T X.800</strong>, que define la arquitectura de seguridad para sistemas de comunicaciones, 
+                    y el <strong>RFC 4949</strong>, que provee el glosario de terminología de seguridad en Internet.
+                </p>
+            </div>
+
+            <div class="content-block">
+                <h3>2. DESARROLLO TÉCNICO</h3>
+                <p>
+                    Se analizaron <strong>10 escenarios de ciberseguridad</strong> distintos, identificando en cada uno los servicios X.800 comprometidos 
+                    (Confidencialidad, Integridad, Disponibilidad, Autenticación, Control de Acceso) y correlacionándolos con definiciones técnicas 
+                    específicas del RFC 4949 como <em>Data Breach</em>, <em>Supply Chain Attack</em>, <em>Ransomware</em> e <em>Insider Threat</em>.
+                </p>
+                <p><strong>Metodología aplicada:</strong></p>
+                <ul>
+                    <li>Identificación del <strong>Vector de Ataque</strong> (e.g., Ingeniería Social, Escalada de Privilegios).</li>
+                    <li>Clasificación de la Amenaza (Interna/Externa, Intencionada/Accidental).</li>
+                    <li>Propuesta de Medidas de Control (e.g., Zero Trust, MFA, Regla de respaldo 3-2-1).</li>
+                </ul>
+            </div>
+
+            <div class="content-block">
+                <h3>3. MATERIAL MULTIMEDIA</h3>
+                <div class="media-placeholder">
+                    <p><em>Síntesis de escenarios analizados (Extracto de la Evidencia):</em></p>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Escenario</th>
+                                <th>Servicio X.800 Afectado</th>
+                                <th>Definición RFC 4949</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Ataque a Cadena de Suministro</td>
+                                <td>Integridad y Autenticación</td>
+                                <td><strong>Supply Chain Attack:</strong> Vulneración en el ciclo de vida del producto para comprometer usuarios finales[cite: 147].</td>
+                            </tr>
+                            <tr>
+                                <td>Ransomware</td>
+                                <td>Disponibilidad</td>
+                                <td><strong>Data Destruction:</strong> Alteración o eliminación deliberada de datos para impedir su recuperación[cite: 158].</td>
+                            </tr>
+                            <tr>
+                                <td>Amenaza Interna (Insider)</td>
+                                <td>Confidencialidad y Control de Acceso</td>
+                                <td><strong>Privilege Abuse:</strong> Uso deliberado de privilegios legítimos para fines no autorizados[cite: 163].</td>
+                            </tr>
+                             <tr>
+                                <td>Wiper (Borrado Masivo)</td>
+                                <td>Disponibilidad total</td>
+                                <td><strong>Destructive Attack:</strong> Ataque diseñado para destruir recursos, a menudo usando técnicas anti-forenses[cite: 180].</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="content-block">
+                <h3>4. OPINIÓN O REFLEXIÓN TÉCNICA</h3>
+                <p>
+                    Tras analizar estos escenarios, se concluye que la Seguridad de la Información requiere un doble enfoque: 
+                    el <strong>ITU-T X.800</strong> sirve de mapa para identificar qué reglas de seguridad han sido violentadas, 
+                    mientras que el <strong>RFC 4949</strong> proporciona el lenguaje técnico exacto para explicar la mecánica del ataque[cite: 182].
+                    Al combinar ambos, se logra una documentación profesional y precisa, evitando generalidades y mejorando la capacidad de respuesta ante incidentes[cite: 183].
+                </p>
+            </div>
+
+            <div class="content-block">
+                <h3>5. REFERENCIAS TÉCNICAS</h3>
+                <ul class="refs-list">
+                    <li>Shirey, R. (2007). Internet Security Glossary, Version 2 (RFC 4949). IETF. Disponible en: <a href="https://datatracker.ietf.org/doc/html/rfc4949" target="_blank" style="color:var(--primary);">datatracker.ietf.org</a>[cite: 185].</li>
+                    <li>ITU-T. (1991). Security Architecture for Open Systems Interconnection for CCITT Applications (Recommendation X.800).</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 | Edgar Omar Rodriguez Hernandez | Actividad 02</p>
+    </footer>
+
+    <script src="dynamic-bg.js"></script>
+</body>
+</html>
