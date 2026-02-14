@@ -37,8 +37,7 @@
                 <h3>1. INTRODUCCIÓN CONTEXTUAL</h3>
                 <p>
                     La configuración de mecanismos de defensa perimetral es esencial para proteger una red interna (LAN) de amenazas externas. 
-                    En esta práctica se implementa un firewall de filtrado de paquetes utilizando la cadena <strong>FORWARD</strong> de <code>iptables</code>. 
-                    A diferencia de la cadena INPUT (que protege al propio servidor), FORWARD controla el tráfico que atraviesa el dispositivo, actuando como un verdadero guardián entre la red local e Internet.
+                    En esta práctica se implementa un firewall de filtrado de paquetes utilizando la cadena <strong>FORWARD</strong> de <code>iptables</code>.
                 </p>
             </div>
 
@@ -48,12 +47,6 @@
                     Se estableció una arquitectura de seguridad basada en el principio de <strong>"Denegar por defecto"</strong> (<em>Default Deny</em>). 
                     Esto significa que se bloquea todo el tráfico de paso y solo se habilitan explícitamente los servicios necesarios.
                 </p>
-                <p><strong>Servicios Habilitados:</strong></p>
-                <ul class="tech-list">
-                    [cite_start]<li><strong>DNS (Puerto 53):</strong> Resolución de nombres para la red local <code>192.1.2.0/24</code>[cite: 251].</li>
-                    [cite_start]<li><strong>SMTP (Puerto 25):</strong> Flujo de correo entrante y saliente para el servidor <code>192.1.2.10</code>[cite: 253, 255].</li>
-                    [cite_start]<li><strong>HTTP (Puerto 80):</strong> Acceso al servidor web <code>192.1.2.11</code> y navegación para usuarios locales[cite: 256, 257].</li>
-                </ul>
             </div>
 
             <div class="content-block">
@@ -61,22 +54,26 @@
                 <div class="media-placeholder">
                     <p><em>Implementación de Reglas de Filtrado (Script de Configuración):</em></p>
                     
-                    <div class="code-snippet">
-# 1. POLÍTICA BASE: RESTRICTIVA (Muro de Fuego)
-iptables -P FORWARD DROP
+                    <div class="code-snippet" style="background-color: #000; color: #0f0; padding: 15px; border-radius: 5px; font-family: monospace; white-space: pre-wrap;">
+# 1. POLÍTICA BASE: RESTRICTIVA<br>
+iptables -P FORWARD DROP<br><br>
 
-# 2. STATEFUL INSPECTION: Permitir respuestas legítimas
-iptables -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT
+# 2. STATEFUL INSPECTION<br>
+iptables -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT<br><br>
 
-# 3. REGLAS DE SERVICIOS (Ejemplos clave)
-# Permitir correo entrante al servidor interno
-iptables -A FORWARD -p tcp -d 192.1.2.10 --dport 25 -m state --state NEW -j ACCEPT
+# 3. REGLAS DE SERVICIOS<br>
+# DNS Saliente<br>
+iptables -A FORWARD -p tcp -s 192.1.2.0/24 --dport 53 -m state --state NEW -j ACCEPT<br><br>
 
-# Permitir tráfico Web hacia el servidor público (DMZ)
+# SMTP Entrante (Servidor 10)<br>
+iptables -A FORWARD -p tcp -d 192.1.2.10 --dport 25 -m state --state NEW -j ACCEPT<br><br>
+
+# HTTP Entrante (Servidor 11)<br>
 iptables -A FORWARD -p tcp -d 192.1.2.11 --dport 80 -m state --state NEW -j ACCEPT
                     </div>
+                    
                     <p class="caption">
-                        [cite_start]<strong>Análisis:</strong> El uso de <code>-m state --state ESTABLISHED,RELATED</code> [cite: 250] es crítico; permite que el firewall reconozca automáticamente las respuestas a las peticiones que él mismo autorizó, reduciendo la complejidad de las reglas.
+                        <strong>Análisis:</strong> El uso de <code>ESTABLISHED,RELATED</code> permite que el firewall reconozca automáticamente las respuestas, reduciendo la complejidad de las reglas.
                     </p>
                 </div>
             </div>
@@ -84,17 +81,16 @@ iptables -A FORWARD -p tcp -d 192.1.2.11 --dport 80 -m state --state NEW -j ACCE
             <div class="content-block">
                 <h3>4. OPINIÓN O REFLEXIÓN TÉCNICA</h3>
                 <p>
-                    [cite_start]La implementación de una política <strong>DROP</strong> por defecto en la cadena FORWARD es la medida de seguridad más robusta para un firewall perimetral. 
-                    Si se usara ACCEPT por defecto, tendríamos que conocer y bloquear cada amenaza existente, lo cual es imposible. 
-                    Al denegar todo y solo abrir lo necesario (DNS, SMTP, HTTP), reducimos drásticamente la superficie de ataque, garantizando que solo el tráfico de negocio legítimo pueda cruzar nuestra red.
+                    La implementación de una política <strong>DROP</strong> por defecto es la medida de seguridad más robusta. 
+                    Al denegar todo y solo abrir lo necesario, reducimos la superficie de ataque, garantizando que solo el tráfico legítimo pueda cruzar nuestra red.
                 </p>
             </div>
 
             <div class="content-block">
                 <h3>5. REFERENCIAS TÉCNICAS</h3>
                 <ul class="refs-list">
-                    <li>Netfilter Project. iptables(8) man page (Packet Filtering and NAT).</li>
-                    [cite_start]<li>Apuntes de clase: Seguridad Informática - UPSLP[cite: 242, 243].</li>
+                    <li>Netfilter Project. iptables(8) man page.</li>
+                    <li>Apuntes de clase: Seguridad Informática - UPSLP.</li>
                 </ul>
             </div>
         </section>
