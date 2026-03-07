@@ -1,4 +1,4 @@
-/* --- VARIABLES Y BASE --- */
+/* --- VARIABLES Y RESET --- */
 :root {
     --primary: #00ff41; /* Verde neón KortexBr3ach */
     --bg: #0d0d0d;
@@ -6,22 +6,25 @@
     --text: #f0f0f0;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     background-color: var(--bg);
     color: var(--text);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
-    overflow-x: hidden; /* Evita scroll horizontal */
+    overflow-x: hidden;
 }
 
-/* --- FONDO DINÁMICO (PARTÍCULAS) --- */
+/* --- FONDO DINÁMICO --- */
 .dynamic-background {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    overflow: hidden;
     z-index: -1;
     pointer-events: none;
     background-color: #0d0d0d;
@@ -47,7 +50,7 @@ header {
     background: rgba(10, 10, 10, 0.95);
     backdrop-filter: blur(8px);
     border-bottom: 2px solid var(--primary);
-    padding: 15px 3%; /* Espaciado optimizado */
+    padding: 20px 2%; /* Padding reducido para ganar espacio horizontal */
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -57,14 +60,15 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1500px; /* Ancho ampliado para que todo quepa en una línea */
+    max-width: 1600px; /* Ancho máximo aumentado para que todo quepa en una línea */
     margin: 0 auto;
-    width: 95%;
+    width: 100%;
+    gap: 20px;
 }
 
 .branding {
     text-align: left;
-    flex-shrink: 0; /* Evita que el nombre se achique */
+    flex-shrink: 0; /* Evita que los datos personales se compriman */
 }
 
 .branding h1 {
@@ -75,23 +79,83 @@ header {
     font-size: 1.1rem;
 }
 
-.alias { font-style: italic; color: #888; font-size: 0.8rem; margin: 2px 0; }
-.course, .institution, .period { font-size: 0.7rem; color: #666; margin: 0; }
+.alias { font-style: italic; color: #888; font-size: 0.85rem; margin: 2px 0; }
+.alias span { color: var(--primary); font-weight: bold; }
+.course, .institution, .period { font-size: 0.75rem; color: #666; margin: 0; }
 
 nav {
-    margin-left: 20px;
+    flex-grow: 1; /* Permite que el nav ocupe el espacio restante */
 }
 
 nav ul {
     display: flex;
-    gap: 8px; /* Espacio reducido entre botones */
+    justify-content: flex-end; /* Alinea los botones a la derecha */
+    gap: 8px; /* Espaciado ajustado entre botones */
     list-style: none;
     padding: 0;
     margin: 0;
-    flex-wrap: nowrap; /* Prohibido saltar de línea */
+    flex-wrap: nowrap; /* PROHIBE que los botones salten de línea */
 }
 
 nav a {
     text-decoration: none;
     color: var(--text);
-    padding: 6px 1
+    padding: 10px 14px;
+    border: 1px solid transparent;
+    font-size: 0.8rem; /* Fuente optimizada para el largo del menú */
+    transition: 0.3s;
+    border-radius: 4px;
+    white-space: nowrap; /* FUERZA que ROAD TO HALL OF FAME sea una sola línea */
+    display: inline-block;
+}
+
+/* Estado Activo y Hover */
+nav a.active, nav a:hover {
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    background: rgba(0, 255, 65, 0.05);
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
+}
+
+/* --- SECCIONES --- */
+.section-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 30px;
+    background: var(--surface);
+    border-left: 4px solid var(--primary);
+}
+
+h2 {
+    color: var(--primary);
+    font-family: 'Courier New', Courier, monospace;
+    text-transform: uppercase;
+    margin-top: 0;
+}
+
+.enphasized-text p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* --- FORMULARIO --- */
+form { display: flex; flex-direction: column; gap: 15px; }
+input, textarea { background: #222; border: 1px solid #444; color: white; padding: 12px; }
+input:focus, textarea:focus { border-color: var(--primary); outline: none; }
+button { background: var(--primary); color: black; font-weight: bold; padding: 15px; border: none; cursor: pointer; transition: 0.3s; text-transform: uppercase; }
+button:hover { background: #00cc33; box-shadow: 0 0 15px var(--primary); }
+
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 0.8rem;
+    color: #666;
+    background: rgba(10, 10, 10, 0.5);
+}
+
+/* --- RESPONSIVIDAD (MÓVIL) --- */
+@media (max-width: 1100px) {
+    .header-container { flex-direction: column; gap: 15px; text-align: center; }
+    .branding { text-align: center; }
+    nav ul { justify-content: center; flex-wrap: wrap; }
+}
