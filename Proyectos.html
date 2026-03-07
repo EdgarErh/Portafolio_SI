@@ -6,6 +6,33 @@
     <title>Proyectos | KortexBr3ach Security</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="KB.png">
+    <style>
+        /* Estilo específico para los contenedores transparentes del portafolio */
+        .glass-container {
+            background: rgba(26, 26, 26, 0.6) !important; /* Fondo semi-transparente */
+            backdrop-filter: blur(10px); /* Efecto de desenfoque */
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 65, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+            transition: transform 0.3s ease;
+        }
+
+        .glass-container:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .project-badge {
+            background: var(--primary);
+            color: black;
+            padding: 2px 10px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+    </style>
 </head>
 <body>
     <div class="dynamic-background"></div>
@@ -24,103 +51,50 @@
                     <li><a href="Parcial1.html">Parcial 1</a></li>
                     <li><a href="Parcial2.html">Parcial 2</a></li>
                     <li><a href="Parcial3.html">Parcial 3</a></li>
-                    <li><a href="Final.html">Final</a></li>
                     <li><a href="Proyectos.html" class="active">Proyectos</a></li>
+                    <li><a href="Final.html">Final</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main>
-        <section class="section-container terminal-theme">
-            <h2>[PROJECT_ID: PR02] INVESTIGACIÓN DE PLATAFORMAS HRM</h2>
+        <section class="section-container glass-container">
+            <span class="project-badge">Proyecto 01</span>
+            <h2>ANÁLISIS DE VULNERABILIDADES DE RED</h2>
+            <p>Documentación técnica sobre el escaneo y detección de fallos en arquitecturas locales mediante herramientas de auditoría.</p>
+            <button style="margin-top: 15px; padding: 5px 15px; font-size: 0.8rem;">Ver Detalles</button>
+        </section>
+
+        <section class="section-container glass-container">
+            <span class="project-badge">Proyecto 02 - PR02</span>
+            <h2>INVESTIGACIÓN COMPARATIVA: PLATAFORMAS HRM</h2>
             <div class="enphasized-text">
-                <p>Análisis comparativo de soluciones profesionales para la gestión del riesgo humano (Human Risk Management) y simulación de ataques de ingeniería social.</p>
+                <p>Análisis profundo de las 8 plataformas líderes en simulación de phishing (Hoxhunt, Proofpoint, KnowBe4, etc.).</p>
+            </div>
+            
+            <div style="margin-top: 20px; border-top: 1px solid rgba(0, 255, 65, 0.2); padding-top: 15px;">
+                <h3 style="color: var(--primary); font-size: 1rem;">Resumen Ejecutivo:</h3>
+                <p style="font-size: 0.9rem;">Se evaluaron capacidades técnicas, métricas (Click Rate, Reporting Rate) y enfoques éticos en la gestión del riesgo humano.</p>
+                
+                <div style="display: flex; gap: 10px; margin-top: 15px;">
+                    <button onclick="window.location.href='#detalles-pr02'" style="padding: 8px 20px;">Explorar Análisis</button>
+                    <button style="background: transparent; color: var(--primary); border: 1px solid var(--primary); padding: 8px 20px;">PDF (APA 7)</button>
+                </div>
             </div>
         </section>
 
-        <section class="section-container">
-            <h2>01. MARCO TEÓRICO Y FUNDAMENTACIÓN</h2>
-            <p>La seguridad moderna ha evolucionado del blindaje perimetral al <strong>Human Risk Management (HRM)</strong>, reconociendo al usuario como el vector principal de ataque.</p>
-            <ul style="list-style: square; margin-left: 20px; color: #888;">
-                <li><strong>Click Rate (PPP):</strong> Medición de vulnerabilidad bruta ante el engaño.</li>
-                <li><strong>Reporting Rate:</strong> La "métrica estrella"; capacidad de respuesta del firewall humano.</li>
-                <li><strong>Risk Score:</strong> Evaluación predictiva basada en comportamiento histórico.</li>
-            </ul>
+        <section class="section-container glass-container">
+            <span class="project-badge">Proyecto 03</span>
+            <h2>PENTESTING ÉTICO Y AUDITORÍA FINAL</h2>
+            <p>Repositorio de pruebas de penetración controladas y reportes de remediación bajo estándares profesionales.</p>
+            <button style="margin-top: 15px; padding: 5px 15px; font-size: 0.8rem;">Ver Detalles</button>
         </section>
 
-        <section class="section-container">
-            <h2>02. TABLA TÉCNICA COMPARATIVA</h2>
-            <div style="overflow-x: auto;">
-                <table style="width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.9rem;">
-                    <thead>
-                        <tr style="border-bottom: 2px solid var(--primary); color: var(--primary);">
-                            <th style="padding: 10px; text-align: left;">Plataforma</th>
-                            <th style="padding: 10px; text-align: left;">Arquitectura</th>
-                            <th style="padding: 10px; text-align: left;">Ética/Privacidad</th>
-                            <th style="padding: 10px; text-align: left;">Limitación</th>
-                        </tr>
-                    </thead>
-                    <tbody style="color: #ccc;">
-                        <tr style="border-bottom: 1px solid #333;">
-                            <td style="padding: 10px;">Hoxhunt</td>
-                            <td>IA Adaptativa</td>
-                            <td>Refuerzo Positivo</td>
-                            <td>Curva de aprendizaje</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #333;">
-                            <td style="padding: 10px;">Proofpoint</td>
-                            <td>Threat Intel</td>
-                            <td>Protección a VAPs</td>
-                            <td>Costo elevado</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #333;">
-                            <td style="padding: 10px;">KnowBe4</td>
-                            <td>Biblioteca</td>
-                            <td>Transparencia</td>
-                            <td>Carga operativa</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #333;">
-                            <td style="padding: 10px;">Phished</td>
-                            <td>IA Autónoma</td>
-                            <td>Privacy-by-Design</td>
-                            <td>Menor control manual</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <section class="section-container">
-            <h2>04. FICHAS DESCRIPTIVAS (ANÁLISIS INDIVIDUAL)</h2>
-            <div class="tech-grid">
-                <div style="border: 1px solid #333; padding: 15px; margin-bottom: 10px;">
-                    <h3 style="color: var(--primary);">Proofpoint (Security Awareness)</h3>
-                    <p>Utiliza inteligencia de amenazas real para identificar a los individuos más atacados (VAPs), personalizando el entrenamiento basado en vectores de ataque vigentes.</p>
-                </div>
-                <div style="border: 1px solid #333; padding: 15px; margin-bottom: 10px;">
-                    <h3 style="color: var(--primary);">NINJIO</h3>
-                    <p>Enfoque en storytelling cinematográfico para generar retención emocional. Sus episodios de 3 minutos atacan sesgos psicológicos específicos.</p>
-                </div>
-                </div>
-        </section>
-
-        <section class="section-container terminal-theme" style="background: rgba(0, 255, 65, 0.02);">
-            <h2>03. ANÁLISIS CRÍTICO Y CONCLUSIONES</h2>
-            <p>Para el sector industrial de <strong>San Luis Potosí</strong>, se concluye que la efectividad no reside en la simulación técnica, sino en la <strong>resiliencia cultural</strong>. Se recomiendan soluciones autónomas (Hoxhunt/Phished) para optimizar recursos de TI sin sacrificar la profundidad ética del entrenamiento.</p>
-        </section>
-
-        <section class="section-container">
-            <h2>05. REFERENCIAS (APA 7)</h2>
-            <p style="font-size: 0.8rem; color: #666; font-family: 'Courier New', monospace;">
-                KnowBe4. (2026). Security Awareness Training & Simulated Phishing Platform. https://www.knowbe4.com/<br>
-                SANS Institute. (2025). Managing Human Risk Report. https://www.sans.org/
-            </p>
-        </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 | KortexBr3ach | Seguridad Informática | PR02 Finalizado</p>
+        <p>&copy; 2026 | Diseñado por Edgar Rodriguez (KortexBr3ach) | EVIDENCIAS PR02</p>
     </footer>
 
     <script src="dynamic-bg.js"></script> 
