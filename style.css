@@ -275,31 +275,55 @@ footer {
 }
 
 /* Ajuste para que el menú soporte textos largos como ROAD TO HALL OF FAME */
-.header-container {
-    max-width: 1400px; /* Ampliamos un poco el ancho máximo */
-    gap: 20px;
-}
-
-nav ul {
-    display: flex;
-    flex-wrap: nowrap; /* Evita que los botones salten de línea */
-    align-items: center;
-}
-
+/* 1. Evitar que el texto se rompa en dos líneas */
 nav a {
-    white-space: nowrap; /* Evita que el texto se parta en dos líneas */
-    font-size: 0.85rem; /* Reducimos ligeramente el tamaño para que quepa todo */
+    white-space: nowrap !important; /* Fuerza una sola línea */
+    font-size: 0.8rem !important;  /* Reducimos un poco el tamaño para que quepa */
+    padding: 8px 12px !important;
 }
 
-/* Ajuste específico para pantallas medianas (Laptops) */
-@media (max-width: 1100px) {
-    .branding h1 {
-        font-size: 1rem; /* Reducimos el nombre para dar espacio al menú */
-    }
-    nav a {
-        padding: 5px 8px;
-        font-size: 0.75rem;
-    }
+/* 2. Ajustar el contenedor para que sea más ancho */
+.header-container {
+    max-width: 1400px !important; 
+    width: 95% !important;
 }
+
+/* 3. FIX DEFINITIVO PARA EL DROPDOWN (Estilo KortexBr3ach) */
+.dropdown {
+    position: relative; /* Base para el submenú */
+}
+
+.submenu {
+    display: none;
+    position: absolute; /* Esto hace que "flote" y no mueva nada */
+    top: 100%; 
+    left: 0;
+    background: rgba(13, 13, 13, 0.95); 
+    border: 1px solid var(--primary);
+    backdrop-filter: blur(10px);
+    min-width: 160px;
+    z-index: 9999; /* Siempre al frente */
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+/* Mostrar al pasar el mouse */
+.dropdown:hover .submenu {
+    display: block;
+}
+
+/* Estilo de los links del submenú */
+.submenu li a {
+    border: none !important;
+    padding: 12px 15px !important;
+    display: block !important;
+    width: 100%;
+}
+
+.submenu li a:hover {
+    background: rgba(0, 255, 65, 0.1);
+}
+
 
 
