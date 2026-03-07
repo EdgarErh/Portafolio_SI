@@ -273,3 +273,66 @@ footer {
     }
 
 }
+/* --- FIX PARA ROAD TO HALL OF FAME (DROPDOWN) --- */
+
+/* 1. Posicionamiento del contenedor del menú */
+.dropdown {
+    position: relative; /* Indispensable para que el submenú no flote por cualquier lado */
+}
+
+/* 2. Estilo del Submenú (Invisible por defecto) */
+.submenu {
+    display: none; /* Se oculta hasta que pasemos el mouse */
+    position: absolute;
+    top: 100%; /* Aparece justo debajo del texto */
+    left: 0;
+    background: rgba(13, 13, 13, 0.95); /* Fondo oscuro para que se lea bien */
+    border: 1px solid var(--primary);
+    backdrop-filter: blur(10px);
+    list-style: none;
+    padding: 10px 0;
+    min-width: 180px;
+    z-index: 1000;
+    box-shadow: 0 10px 20px rgba(0, 255, 65, 0.3);
+}
+
+/* 3. Mostrar el submenú al hacer Hover */
+.dropdown:hover .submenu {
+    display: block;
+}
+
+/* 4. Estilo de los links dentro del submenú */
+.submenu li a {
+    display: block;
+    padding: 10px 20px;
+    font-size: 0.8rem;
+    color: var(--text);
+    text-decoration: none;
+    border: none !important; /* Quitamos bordes para que no se vea saturado */
+    transition: 0.3s;
+}
+
+.submenu li a:hover {
+    background: rgba(0, 255, 65, 0.1);
+    color: var(--primary);
+}
+
+/* --- AJUSTES DE RESPONSIVIDAD EXTRA --- */
+
+@media (max-width: 480px) {
+    /* Abreviación para el nuevo menú largo en móviles */
+    nav a[href="#"]::after { 
+        content: "HALL"; /* O "HF" para Hall of Fame */
+    }
+
+    /* Aseguramos que el submenú en móvil no rompa el ancho de pantalla */
+    .submenu {
+        position: static;
+        width: 100%;
+        background: transparent;
+        border: none;
+        border-left: 2px solid var(--primary);
+        padding-left: 10px;
+    }
+}
+
