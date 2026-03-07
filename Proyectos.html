@@ -7,46 +7,55 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="KB.png">
     <style>
-        /* Fusión Perfecta: Terminal + Glassmorphism */
+        /* Fusión de Estilos: Terminal + Glassmorphism */
         .glass-terminal {
-            background: rgba(26, 26, 26, 0.65) !important; /* Transparencia solicitada */
-            backdrop-filter: blur(12px); 
+            background: rgba(26, 26, 26, 0.80) !important; /* Transparencia */
+            backdrop-filter: blur(12px); /* Desenfoque de fondo */
             -webkit-backdrop-filter: blur(12px);
-            border-left: 4px solid var(--primary) !important; /* Línea verde original */
+            border-left: 4px solid var(--primary) !important; /* Franja verde original */
             border-top: 1px solid rgba(0, 255, 65, 0.1);
             border-right: 1px solid rgba(0, 255, 65, 0.1);
             border-bottom: 1px solid rgba(0, 255, 65, 0.1);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            margin-bottom: 40px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-bottom: 30px;
         }
 
-        /* Reacción al pasar el mouse (Hover Effect) */
+        /* Reacción al pasar el mouse */
         .glass-terminal:hover {
-            transform: translateY(-10px) scale(1.02); /* Movimiento y escala */
+            transform: translateY(-8px) scale(1.01);
             background: rgba(30, 30, 30, 0.8) !important;
-            box-shadow: 0 20px 50px rgba(0, 255, 65, 0.2);
-            border-left: 8px solid var(--primary) !important; /* La línea reacciona */
+            box-shadow: 0 15px 40px rgba(0, 255, 65, 0.15);
+            border-left: 6px solid var(--primary) !important; /* Se ensancha un poco la línea */
         }
 
-        /* Badge Estilo Imagen 531762.png */
-        .badge-pr02 {
-            background-color: var(--primary); /* Verde Neón */
-            color: #000; /* Texto Negro */
-            display: inline-block;
-            padding: 5px 15px;
-            font-weight: bold;
+        .project-id {
+            font-family: 'Courier New', monospace;
+            color: var(--primary);
+            font-size: 0.8rem;
+            display: block;
+            margin-bottom: 5px;
+            opacity: 0.8;
+        }
+
+        .btn-terminal {
+            background: var(--primary);
+            color: #000;
             font-family: 'Segoe UI', sans-serif;
-            margin-bottom: 15px;
+            font-weight: bold;
+            border: none;
+            padding: 10px 25px;
+            cursor: pointer;
+            transition: 0.3s;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        /* Tipografía Original */
-        h2 { font-family: 'Courier New', Courier, monospace !important; }
-        p, td, th { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important; }
-        
-        .tech-table th { color: var(--primary); border-bottom: 2px solid var(--primary); padding: 10px; }
-        .tech-table td { padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .btn-terminal:hover {
+            background: #00cc33;
+            box-shadow: 0 0 20px var(--primary);
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
@@ -58,7 +67,7 @@
                 <h1>Edgar Omar Rodriguez Hernandez</h1>
                 <p class="alias">Alias: <span>KortexBr3ach</span></p>
                 <p class="course">CNO V – Seguridad Informática</p>
-                <p class="institution">UPSLP | Periodo: Enero - Junio 2026</p>
+                <p class="institution">UPSLP | San Luis Potosí</p>
             </div>
             <nav>
                 <ul>
@@ -75,81 +84,39 @@
 
     <main>
         <section class="section-container glass-terminal">
-            <h2>PROYECTO 01 - PR01</h2>
-            <p>Repositorio técnico de evidencias para el análisis de vulnerabilidades iniciales y reconocimiento de red.</p>
-            <button style="margin-top: 15px;">PRÓXIMAMENTE</button>
-        </section>
-
-        <section class="section-container glass-terminal" id="pr02-content">
-            <div class="badge-pr02">PROYECTO 02 - PR02</div> <h2>INVESTIGACIÓN: PLATAFORMAS DE SIMULACIÓN DE PHISHING</h2>
-            
-            <div class="enphasized-text" style="margin-top: 20px;">
-                <p>Este apartado integra la investigación comparativa de las 8 plataformas líderes: Hoxhunt, Proofpoint, KnowBe4, Cofense, Phished, Ninjio, Mimecast e Infosec IQ.</p>
-            </div>
-
-            <h3 style="color: var(--primary); margin-top: 30px;">01. MARCO TEÓRICO Y FUNDAMENTACIÓN</h3>
-            <p>Se analizan métricas críticas como <strong>Click Rate</strong>, <strong>Reporting Rate</strong> y <strong>Risk Score</strong>, además de las diferencias técnicas reales entre arquitecturas.</p>
-
-            <h3 style="color: var(--primary); margin-top: 30px;">02. TABLA TÉCNICA COMPARATIVA</h3>
-            <div style="overflow-x: auto;">
-                <table class="tech-table" style="width: 100%; text-align: left; background: rgba(0,0,0,0.2);">
-                    <thead>
-                        <tr>
-                            <th>Criterio</th>
-                            <th>Analítica</th>
-                            <th>Integración</th>
-                            <th>Ética</th>
-                            <th>Limitaciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>IA-Driven</strong></td>
-                            <td>Predictiva</td>
-                            <td>Nativa Cloud</td>
-                            <td>Refuerzo (+)</td>
-                            <td>Configuración</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Legacy</strong></td>
-                            <td>Estadística</td>
-                            <td>API / AD</td>
-                            <td>Transparencia</td>
-                            <td>Carga Manual</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <h3 style="color: var(--primary); margin-top: 30px;">04. FICHAS DESCRIPTIVAS</h3>
-            <div class="fichas-container" style="display: grid; gap: 15px; margin-top: 10px;">
-                <div style="border: 1px solid #333; padding: 15px; background: rgba(0,0,0,0.3);">
-                    <h4 style="color: var(--primary);">Proofpoint (Security Awareness)</h4>
-                    <p style="font-size: 0.9rem;">Utiliza inteligencia de amenazas real para identificar a los individuos más atacados (VAPs).</p>
-                </div>
-                <div style="border: 1px solid #333; padding: 15px; background: rgba(0,0,0,0.3);">
-                    <h4 style="color: var(--primary);">NINJIO</h4>
-                    <p style="font-size: 0.9rem;">Enfoque en storytelling cinematográfico para generar retención emocional mediante episodios de 3 minutos.</p>
-                </div>
-            </div>
-
-            <div style="background: rgba(0, 255, 65, 0.05); padding: 20px; border: 1px solid var(--primary); margin-top: 30px;">
-                <h3 style="color: var(--primary);">03. ANÁLISIS CRÍTICO Y CONCLUSIONES</h3>
-                <p>Identificación de ventajas y limitaciones operativas, con enfoque en el contexto de uso para la industria en San Luis Potosí.</p>
-            </div>
-            
-            <p style="margin-top: 20px; font-size: 0.8rem; color: #666;">Referencias en formato APA 7 incluidas en el reporte técnico.</p>
+            <span class="project-id"># STATUS: PENDING // ID: PR01</span>
+            <h2>ANÁLISIS DE VULNERABILIDADES DE RED</h2>
+            <p>Repositorio técnico enfocado en el escaneo, enumeración y detección de fallos críticos en infraestructuras locales bajo entornos controlados.</p>
+            <button class="btn-terminal" style="margin-top: 15px;">Acceder al Módulo</button>
         </section>
 
         <section class="section-container glass-terminal">
-            <h2>PROYECTO 03 - PR03</h2>
-            <p>Auditoría final y Pentesting ético sobre activos digitales críticos.</p>
-            <button style="margin-top: 15px;">EN DESARROLLO</button>
+            <span class="project-id"># STATUS: COMPLETED // ID: PR02</span>
+            <h2>INVESTIGACIÓN COMPARATIVA: PLATAFORMAS HRM</h2>
+            <div class="enphasized-text">
+                <p>Investigación profunda de las 8 plataformas líderes en simulación de phishing (Hoxhunt, Proofpoint, KnowBe4, Cofense, Phished, Ninjio, Mimecast e Infosec IQ).</p>
+            </div>
+            
+            <div style="margin-top: 20px; border-top: 1px solid rgba(0, 255, 65, 0.1); padding-top: 15px;">
+                <p>Análisis enfocado en capacidades técnicas, métricas (click rate, reporting rate, risk score) y controles éticos en la gestión del riesgo humano.</p>
+                
+                <div style="display: flex; gap: 15px; margin-top: 20px;">
+                    <button class="btn-terminal" onclick="window.location.href='#detalles-pr02'">Explorar Análisis</button>
+                    <button style="background: transparent; color: var(--primary); border: 2px solid var(--primary); padding: 8px 25px; font-weight: bold; cursor: pointer;">PDF (APA 7)</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-container glass-terminal">
+            <span class="project-id"># STATUS: IN_PROGRESS // ID: PR03</span>
+            <h2>AUDITORÍA FINAL Y PENTESTING ÉTICO</h2>
+            <p>Compendio de pruebas de intrusión y reportes de remediación final para activos digitales críticos bajo estándares profesionales.</p>
+            <button class="btn-terminal" style="margin-top: 15px;">Acceder al Módulo</button>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 | KortexBr3ach | Calidad Profesional: Portafolio Industria</p>
+        <p>&copy; 2026 | Edgar Rodriguez (KortexBr3ach) | Seguridad Informática | PR02</p>
     </footer>
 
     <script src="dynamic-bg.js"></script> 
