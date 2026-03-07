@@ -274,56 +274,72 @@ footer {
 
 }
 
-/* Ajuste para que el menú soporte textos largos como ROAD TO HALL OF FAME */
-/* 1. Evitar que el texto se rompa en dos líneas */
-nav a {
-    white-space: nowrap !important; /* Fuerza una sola línea */
-    font-size: 0.8rem !important;  /* Reducimos un poco el tamaño para que quepa */
-    padding: 8px 12px !important;
-}
+/* --- FIX FINAL PARA EL MENÚ KORTEXBR3ACH --- */
 
-/* 2. Ajustar el contenedor para que sea más ancho */
+/* 1. Ajuste del contenedor principal para dar más espacio */
 .header-container {
     max-width: 1400px !important; 
     width: 95% !important;
+    gap: 20px !important;
 }
 
-/* 3. FIX DEFINITIVO PARA EL DROPDOWN (Estilo KortexBr3ach) */
+/* 2. Fuerza que el texto largo no se rompa en dos líneas */
+nav a {
+    white-space: nowrap !important;
+    font-size: 0.8rem !important; /* Un poco más pequeño para que quepa todo */
+    padding: 8px 12px !important;
+}
+
+/* 3. LOGICA DEL DROPDOWN (Esto evita que se mueva todo) */
 .dropdown {
     position: relative; /* Base para el submenú */
 }
 
 .submenu {
     display: none;
-    position: absolute; /* Esto hace que "flote" y no mueva nada */
+    position: absolute; /* CLAVE: Esto hace que el menú flote y no ocupe espacio físico */
     top: 100%; 
     left: 0;
-    background: rgba(13, 13, 13, 0.95); 
+    background: rgba(13, 13, 13, 0.98); 
     border: 1px solid var(--primary);
     backdrop-filter: blur(10px);
-    min-width: 160px;
-    z-index: 9999; /* Siempre al frente */
-    padding: 0;
+    min-width: 180px;
+    z-index: 9999; /* Siempre por encima de todo */
+    padding: 5px 0;
     margin: 0;
     list-style: none;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.8);
 }
 
 /* Mostrar al pasar el mouse */
 .dropdown:hover .submenu {
-    display: block;
+    display: block !important;
 }
 
 /* Estilo de los links del submenú */
-.submenu li a {
-    border: none !important;
-    padding: 12px 15px !important;
-    display: block !important;
+.submenu li {
     width: 100%;
+}
+
+.submenu li a {
+    display: block !important;
+    padding: 12px 20px !important;
+    border: none !important; /* Limpia bordes de botones anteriores */
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .submenu li a:hover {
     background: rgba(0, 255, 65, 0.1);
+    color: var(--primary);
 }
+
+/* Ajuste para que el nombre (branding) no robe tanto espacio */
+.branding h1 {
+    font-size: 1.1rem !important;
+    flex-shrink: 0;
+}
+
 
 
 
