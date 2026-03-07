@@ -163,22 +163,42 @@
 
     <script src="dynamic-bg.js"></script>
     <script>
-function exportToPDF() {
+function generarReporte() {
     const btn = document.getElementById('export-pdf');
     const originalText = btn.innerText;
-
-    btn.innerText = 'GENERANDO REPORTE...'; // Efecto visual
+    
+    // Fase 1: Simulación de Terminal (KortexBr3ach Style)
+    btn.innerText = '>>> CIFRANDO REPORTE...';
+    btn.style.backgroundColor = 'rgba(0, 255, 65, 0.1)';
 
     setTimeout(() => {
-        const link = document.createElement('a');
-        link.href = 'PR02-01.pdf'; // Debe ser el nombre exacto de tu archivo 
-        link.download = 'PR02_Edgar_Hernandez.pdf'; 
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+        btn.innerText = '>>> GENERANDO PDF...';
+        
+        setTimeout(() => {
+            // Fase 2: Ejecución de la descarga
+            // El nombre del archivo debe ser EXACTO al que subiste: PR02-01.pdf
+            const fileUrl = 'PR02-01.pdf'; 
+            const fileName = 'PR02_Edgar_Hernandez.pdf';
 
-        btn.innerText = originalText;
-    }, 1500);
+            const link = document.createElement('a');
+            link.href = fileUrl;
+            link.setAttribute('download', fileName);
+            link.style.display = 'none';
+
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            // Fase 3: Restauración del sistema
+            btn.innerText = '¡REPORTE EXPORTADO!';
+            btn.style.backgroundColor = 'transparent';
+            
+            setTimeout(() => {
+                btn.innerText = originalText;
+            }, 2000);
+
+        }, 1500);
+    }, 1000);
 }
 </script>
 </body>
