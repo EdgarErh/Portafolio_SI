@@ -114,9 +114,9 @@
                     <li><a href="Parcial1.html">P1</a></li>
                     <li><a href="Parcial2.html">P2</a></li>
                     <li><a href="Parcial3.html">P3</a></li>
+                    <li><a href="Final.html">Final</a></li>
                     <li><a href="Proyectos.html">Proyectos</a></li>
                     <li><a href="sql-injection.html" class="active">ROAD TO HALL OF FAME</a></li>
-                    <li><a href="Final.html">Final</a></li>
                 </ul>
             </nav>
         </div>
@@ -128,13 +128,16 @@
             <p>Documentación técnica de 16 laboratorios críticos de PortSwigger Web Security Academy.</p>
         </div>
 
-        <div class="download-banner">
-            <h3>REPORTE DE ACTIVIDAD 08</h3>
-            <p>Accede al documento completo con análisis forense y mitigaciones detalladas.</p>
-            <a href="act08-Equipo2.pdf" download="Actividad08_SQLi_KortexBr3ach.pdf" class="btn-terminal" style="display:inline-block; margin-top:15px; text-decoration:none;">
-                DESCARGAR PDF COMPLETO
-            </a>
-        </div>
+        <div class="download-box" style="text-align: center; margin: 50px 0; padding: 30px; border: 2px solid var(--primary); background: rgba(0, 255, 65, 0.02);">
+    <h3>REPORTE TÉCNICO COMPLETO</h3>
+    <p>Descarga la documentación detallada de los 16 laboratorios (Actividad 08).</p>
+    <button id="btn-descarga-act08" 
+            class="btn-terminal" 
+            onclick="ejecutarDescargaSegura()" 
+            style="background: transparent; color: var(--primary); border: 2px solid var(--primary); padding: 15px 30px; font-weight: bold; cursor: pointer; transition: 0.3s; margin-top: 15px;">
+        >>> DESCARGAR ACTIVIDAD 08 (PDF)
+    </button>
+</div>
 
       <div class="roadmap-container">
 
@@ -372,5 +375,44 @@
     </main>
 
     <script src="dynamic-bg.js"></script>
+    <script>
+function ejecutarDescargaSegura() {
+    const btn = document.getElementById('btn-descarga-act08');
+    const originalText = btn.innerText;
+    
+    // Fase 1: Simulación de acceso y cifrado
+    btn.innerText = '>>> ACCEDIENDO A REPOSITORIO...';
+    btn.style.backgroundColor = 'rgba(0, 255, 65, 0.1)';
+
+    setTimeout(() => {
+        btn.innerText = '>>> COMPRIMIENDO EVIDENCIAS...';
+        
+        setTimeout(() => {
+            // Fase 2: Ejecución de la descarga del archivo real
+            // El nombre del archivo DEBE ser: act08-Equipo2.pdf
+            const fileUrl = 'act08-Equipo2.pdf'; 
+            const fileName = 'act08-Equipo2';
+
+            const link = document.createElement('a');
+            link.href = fileUrl;
+            link.setAttribute('download', fileName);
+            link.style.display = 'none';
+
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            // Fase 3: Feedback de éxito
+            btn.innerText = '¡TRANSFERENCIA COMPLETA!';
+            btn.style.backgroundColor = 'transparent';
+            
+            setTimeout(() => {
+                btn.innerText = originalText;
+            }, 3000);
+
+        }, 1500);
+    }, 1000);
+}
+</script>
 </body>
 </html>
