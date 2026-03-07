@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Injection Roadmap | KortexBr3ach</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="KB.png">
+    <style>
+        /* Estilo específico para la Ruta de Progreso */
+        .roadmap-header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(0, 255, 65, 0.05);
+            border-bottom: 1px dashed var(--primary);
+            margin-bottom: 50px;
+        }
+
+        .roadmap-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Línea vertical del Roadmap */
+        .roadmap-container::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), transparent);
+            transform: translateX(-50%);
+        }
+
+        .lab-node {
+            position: relative;
+            width: 100%;
+            margin-bottom: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .lab-content {
+            width: 45%;
+            padding: 20px;
+            background: rgba(26, 26, 26, 0.8);
+            border: 1px solid rgba(0, 255, 65, 0.2);
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .lab-node:nth-child(even) { flex-direction: row-reverse; }
+
+        .lab-content::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--primary);
+        }
+
+        .lab-node:nth-child(odd) .lab-content::after { right: -60px; }
+        .lab-node:nth-child(even) .lab-content::after { left: -60px; }
+
+        .lab-content h3 { color: var(--primary); margin-top: 0; font-family: 'Courier New', monospace; }
+        .lab-image { width: 100%; margin: 15px 0; border: 1px solid #333; }
+        
+        .download-box {
+            text-align: center;
+            margin: 50px 0;
+            padding: 30px;
+            border: 2px solid var(--primary);
+            background: rgba(0, 255, 65, 0.02);
+        }
+    </style>
+</head>
+<body>
+    <div class="dynamic-background"></div>
+
+    <header>
+        <div class="header-container">
+            <div class="branding">
+                <h1>Edgar Hernandez</h1>
+                <p class="alias">Alias: <span>KortexBr3ach</span></p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="Parcial1.html">P1</a></li>
+                    <li><a href="Parcial2.html">P2</a></li>
+                    <li><a href="Parcial3.html">P3</a></li>
+                    <li><a href="Proyectos.html">Proyectos</a></li>
+                    <li><a href="sql-injection.html" class="active">ROAD TO HALL OF FAME</a></li>
+                    <li><a href="Final.html">Final</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="roadmap-header">
+            <h2>ROAD TO HALL OF FAME</h2>
+            <p>Ruta técnica de aprendizaje: Explotación y mitigación de vulnerabilidades SQL Injection</p>
+            
+            <div class="download-box">
+                <h3>REPORTE TÉCNICO COMPLETO</h3>
+                <p>Descarga la documentación detallada de la Actividad 08 (18 Laboratorios).</p>
+                <a href="Actividad08_SQL_Injection.pdf" download class="btn-terminal" style="text-decoration: none; display: inline-block; padding: 12px 25px; border: 2px solid var(--primary); color: var(--primary); font-weight: bold;">
+                    DESCARGAR ACTIVIDAD 08 (PDF)
+                </a>
+            </div>
+        </section>
+
+        <div class="roadmap-container">
+            <article class="lab-node">
+                <div class="lab-content">
+                    <h3>LAB 01: SQL Injection en WHERE</h3>
+                    <p>Vulnerabilidad detectada en el parámetro de filtrado de productos. Se utilizó ' OR 1=1-- para evadir la lógica de consulta.</p>
+                    <img src="evidencia01.png" alt="Laboratorio 01" class="lab-image">
+                </div>
+                <div style="width: 45%;"></div>
+            </article>
+
+            <article class="lab-node">
+                <div class="lab-content">
+                    <h3>LAB 02: Login Bypass</h3>
+                    <p>Acceso administrativo mediante inyección en el campo de contraseña. Impacto: Compromiso total de la cuenta de usuario.</p>
+                    <img src="evidencia02.png" alt="Laboratorio 02" class="lab-image">
+                </div>
+                <div style="width: 45%;"></div>
+            </article>
+
+            <div style="text-align: center; color: #666; padding: 40px;">
+                <p>[ + LABORATORIOS EN PROCESO DE CARGA + ]</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 | KortexBr3ach | Seguridad Informática UPSLP</p>
+    </footer>
+
+    <script src="dynamic-bg.js"></script>
+</body>
+</html>
