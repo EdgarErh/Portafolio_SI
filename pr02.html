@@ -161,5 +161,24 @@
     </main>
 
     <script src="dynamic-bg.js"></script>
+    <script>
+function exportToPDF() {
+    const btn = document.getElementById('export-pdf');
+    const originalText = btn.innerText;
+
+    btn.innerText = 'GENERANDO REPORTE...'; // Efecto visual
+
+    setTimeout(() => {
+        const link = document.createElement('a');
+        link.href = 'PR02-01.pdf'; // Debe ser el nombre exacto de tu archivo 
+        link.download = 'PR02_Edgar_Hernandez.pdf'; 
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        btn.innerText = originalText;
+    }, 1500);
+}
+</script>
 </body>
 </html>
