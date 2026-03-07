@@ -1,6 +1,6 @@
-/* --- VARIABLES Y BASE KORTEXBR3ACH --- */
+/* --- VARIABLES Y CONFIGURACIÓN BASE --- */
 :root {
-    --primary: #00ff41; /* Verde neón */
+    --primary: #00ff41; /* Verde neón KortexBr3ach */
     --bg: #0d0d0d;
     --surface: #1a1a1a;
     --text: #f0f0f0;
@@ -8,17 +8,18 @@
 
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
     background-color: var(--bg);
     color: var(--text);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
     overflow-x: hidden;
 }
 
-/* --- FONDO DE PARTÍCULAS --- */
+/* --- FONDO DINÁMICO DE PARTÍCULAS --- */
 .dynamic-background {
     position: fixed;
     top: 0;
@@ -45,84 +46,91 @@ body {
     100% { transform: translateY(100vh) translateX(50px); opacity: 0; }
 }
 
-/* --- HEADER Y NAVEGACIÓN PROFESIONAL --- */
+/* --- HEADER CENTRADO Y PROFESIONAL --- */
 header {
     background: rgba(10, 10, 10, 0.95);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
     border-bottom: 2px solid var(--primary);
-    padding: 20px 0;
+    padding: 30px 0;
     position: sticky;
     top: 0;
     z-index: 1000;
+    width: 100%;
 }
 
 .header-container {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column; /* Apilamos Branding y Nav para centrar todo */
+    justify-content: center;
     align-items: center;
     max-width: 95%; 
     margin: 0 auto;
-    gap: 20px;
+    gap: 25px; /* Espacio entre el nombre y los botones */
 }
 
-/* LADO IZQUIERDO: BRANDING (Aumentado) */
+/* LADO SUPERIOR: BRANDING (GRANDE Y CENTRADO) */
 .branding {
-    flex: 0 1 auto;
-    min-width: 450px; /* Espacio reservado para que no se achique */
+    text-align: center;
+    width: 100%;
 }
 
 .branding h1 {
     color: var(--primary);
-    margin: 0;
     text-transform: uppercase;
-    letter-spacing: 3px;
-    font-size: 1.8rem; /* Tamaño grande solicitado */
-    white-space: nowrap;
+    letter-spacing: 4px;
+    font-size: 1.8rem; /* Tamaño solicitado para destacar */
+    margin-bottom: 5px;
 }
 
 .alias { 
-    font-size: 1rem; 
+    font-size: 1.1rem; 
     color: #888; 
-    margin-top: 5px;
+    font-style: italic;
 }
 
 .alias span { color: var(--primary); font-weight: bold; }
-.course { font-size: 0.85rem; color: #666; margin: 2px 0; }
 
-/* LADO DERECHO: MENÚ Y DROPDOWN */
+/* Información académica centrada */
+.course, .institution, .period {
+    font-size: 0.85rem;
+    color: #666;
+    margin: 2px 0;
+}
+
+/* LADO INFERIOR: NAVEGACIÓN CENTRADA */
 nav {
-    flex: 1 0 auto;
+    width: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
 }
 
 nav ul {
     display: flex;
-    gap: 10px;
+    gap: 12px;
     list-style: none;
-    padding: 0;
-    margin: 0;
     align-items: center;
 }
 
 nav a {
     text-decoration: none;
     color: var(--text);
-    padding: 8px 12px;
-    font-size: 0.85rem;
+    padding: 10px 15px;
+    font-size: 0.9rem;
     border: 1px solid transparent;
     border-radius: 4px;
     transition: 0.3s ease;
     white-space: nowrap;
 }
 
+/* Hover y Activo */
 nav a:hover, nav a.active {
     border-color: var(--primary);
     color: var(--primary);
     background: rgba(0, 255, 65, 0.05);
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
 }
 
-/* LÓGICA DEL MENÚ PLEGABLE */
+/* --- MENÚ PLEGABLE (DROPDOWN) --- */
 .dropdown {
     position: relative;
 }
@@ -131,18 +139,18 @@ nav a:hover, nav a.active {
     display: none;
     position: absolute;
     top: 100%;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%); /* Centra el submenú respecto al botón */
     background: rgba(13, 13, 13, 0.98);
     border: 1px solid var(--primary);
     min-width: 200px;
     z-index: 9999;
     padding: 10px 0;
-    margin: 0;
+    margin-top: 5px;
     list-style: none;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
 }
 
-/* El truco para que aparezca al pasar el mouse */
 .dropdown:hover .submenu {
     display: block;
 }
@@ -150,33 +158,50 @@ nav a:hover, nav a.active {
 .submenu li a {
     display: block;
     width: 100%;
-    padding: 10px 20px;
+    padding: 12px 20px;
     border: none !important;
-    font-size: 0.8rem;
+    text-align: center; /* Texto del submenú también centrado */
 }
 
 .submenu li a:hover {
     background: rgba(0, 255, 65, 0.1);
 }
 
-/* --- SECCIONES --- */
+/* --- SECCIONES DE CONTENIDO --- */
 .section-container {
     max-width: 1000px;
-    margin: 40px auto;
-    padding: 30px;
+    margin: 50px auto;
+    padding: 35px;
     background: var(--surface);
     border-left: 4px solid var(--primary);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 h2 {
     color: var(--primary);
-    font-family: 'Courier New', monospace;
+    font-family: 'Courier New', Courier, monospace;
     text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+/* --- FORMULARIO DE CONTACTO --- */
+form { display: flex; flex-direction: column; gap: 20px; }
+input, textarea { background: #222; border: 1px solid #444; color: white; padding: 15px; font-size: 1rem; }
+input:focus, textarea:focus { border-color: var(--primary); outline: none; }
+button { background: var(--primary); color: black; font-weight: bold; padding: 15px; border: none; cursor: pointer; transition: 0.4s; text-transform: uppercase; letter-spacing: 2px; }
+button:hover { background: #00cc33; box-shadow: 0 0 20px var(--primary); }
+
+footer {
+    text-align: center;
+    padding: 50px 20px;
+    font-size: 0.85rem;
+    color: #666;
+    border-top: 1px solid rgba(255,255,255,0.05);
 }
 
 /* --- RESPONSIVIDAD MÓVIL --- */
-@media (max-width: 1100px) {
-    .header-container { flex-direction: column; text-align: center; }
-    .branding { min-width: 100%; }
-    nav ul { flex-wrap: wrap; justify-content: center; margin-top: 15px; }
+@media (max-width: 768px) {
+    .branding h1 { font-size: 1.4rem; }
+    nav ul { flex-wrap: wrap; justify-content: center; gap: 8px; }
+    nav a { padding: 8px 10px; font-size: 0.8rem; }
 }
