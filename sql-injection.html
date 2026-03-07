@@ -3,27 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SQL Injection Roadmap | KortexBr3ach</title>
+    <title>SQL Injection Roadmap | KortexBr3ach Labs</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="KB.png">
     <style>
-        /* Estilo específico para la Ruta de Progreso */
-        .roadmap-header {
-            text-align: center;
-            padding: 40px 20px;
-            background: rgba(0, 255, 65, 0.05);
-            border-bottom: 1px dashed var(--primary);
-            margin-bottom: 50px;
+        /* Fusión de Estilo Proyectos + Roadmap */
+        .glass-terminal {
+            background: rgba(26, 26, 26, 0.3) !important;
+            backdrop-filter: blur(12px);
+            border-left: 4px solid var(--primary) !important;
+            padding: 25px;
+            margin-bottom: 30px;
+            transition: 0.4s ease;
         }
 
         .roadmap-container {
             position: relative;
-            max-width: 1000px;
-            margin: 0 auto;
+            max-width: 1100px;
+            margin: 50px auto;
             padding: 20px;
         }
 
-        /* Línea vertical del Roadmap */
+        /* Línea central neón */
         .roadmap-container::before {
             content: '';
             position: absolute;
@@ -32,51 +33,69 @@
             height: 100%;
             background: linear-gradient(to bottom, var(--primary), transparent);
             transform: translateX(-50%);
+            z-index: 0;
         }
 
         .lab-node {
             position: relative;
             width: 100%;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            z-index: 1;
         }
 
-        .lab-content {
+        .lab-card {
             width: 45%;
-            padding: 20px;
-            background: rgba(26, 26, 26, 0.8);
-            border: 1px solid rgba(0, 255, 65, 0.2);
-            backdrop-filter: blur(10px);
             position: relative;
         }
 
+        /* Alternancia de tarjetas */
         .lab-node:nth-child(even) { flex-direction: row-reverse; }
 
-        .lab-content::after {
+        /* Punto de conexión en la línea */
+        .lab-card::after {
             content: '';
             position: absolute;
-            top: 20px;
-            width: 20px;
-            height: 20px;
+            top: 30px;
+            width: 16px;
+            height: 16px;
             background: var(--primary);
             border-radius: 50%;
             box-shadow: 0 0 15px var(--primary);
         }
 
-        .lab-node:nth-child(odd) .lab-content::after { right: -60px; }
-        .lab-node:nth-child(even) .lab-content::after { left: -60px; }
+        .lab-node:nth-child(odd) .lab-card::after { right: -11.5%; }
+        .lab-node:nth-child(even) .lab-card::after { left: -11.5%; }
 
-        .lab-content h3 { color: var(--primary); margin-top: 0; font-family: 'Courier New', monospace; }
-        .lab-image { width: 100%; margin: 15px 0; border: 1px solid #333; }
-        
-        .download-box {
+        .lab-badge {
+            background: var(--primary);
+            color: #000;
+            padding: 2px 10px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .payload-box {
+            background: rgba(0,0,0,0.5);
+            padding: 10px;
+            border: 1px dashed var(--primary);
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            color: #fff;
+        }
+
+        .download-banner {
             text-align: center;
-            margin: 50px 0;
             padding: 30px;
-            border: 2px solid var(--primary);
-            background: rgba(0, 255, 65, 0.02);
+            background: rgba(0, 255, 65, 0.05);
+            border: 1px solid var(--primary);
+            margin: 40px auto;
+            max-width: 900px;
         }
     </style>
 </head>
@@ -95,56 +114,129 @@
                     <li><a href="Parcial1.html">P1</a></li>
                     <li><a href="Parcial2.html">P2</a></li>
                     <li><a href="Parcial3.html">P3</a></li>
-                    <li><a href="Final.html">Final</a></li>
                     <li><a href="Proyectos.html">Proyectos</a></li>
                     <li><a href="sql-injection.html" class="active">ROAD TO HALL OF FAME</a></li>
+                    <li><a href="Final.html">Final</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main>
-        <section class="roadmap-header">
-            <h2>ROAD TO HALL OF FAME</h2>
-            <p>Ruta técnica de aprendizaje: Explotación y mitigación de vulnerabilidades SQL Injection</p>
-            
-            <div class="download-box">
-                <h3>REPORTE TÉCNICO COMPLETO</h3>
-                <p>Descarga la documentación detallada de la Actividad 08 (18 Laboratorios).</p>
-                <a href="Actividad08_SQL_Injection.pdf" download class="btn-terminal" style="text-decoration: none; display: inline-block; padding: 12px 25px; border: 2px solid var(--primary); color: var(--primary); font-weight: bold;">
-                    DESCARGAR ACTIVIDAD 08 (PDF)
-                </a>
-            </div>
-        </section>
+        <div class="section-container" style="background: transparent; border: none; text-align: center;">
+            <h2 style="font-size: 2.5rem; letter-spacing: 5px;">SQL INJECTION ROADMAP</h2>
+            <p>Documentación técnica de 16 laboratorios críticos de PortSwigger Web Security Academy.</p>
+        </div>
+
+        <div class="download-banner">
+            <h3>REPORTE DE ACTIVIDAD 08</h3>
+            <p>Accede al documento completo con análisis forense y mitigaciones detalladas.</p>
+            <a href="act08-Equipo2.pdf" download="Actividad08_SQLi_KortexBr3ach.pdf" class="btn-terminal" style="display:inline-block; margin-top:15px; text-decoration:none;">
+                DESCARGAR PDF COMPLETO
+            </a>
+        </div>
 
         <div class="roadmap-container">
-            <article class="lab-node">
-                <div class="lab-content">
-                    <h3>LAB 01: SQL Injection en WHERE</h3>
-                    <p>Vulnerabilidad detectada en el parámetro de filtrado de productos. Se utilizó ' OR 1=1-- para evadir la lógica de consulta.</p>
-                    <img src="evidencia01.png" alt="Laboratorio 01" class="lab-image">
-                </div>
+            
+            <div class="lab-node">
+                <article class="lab-card glass-terminal">
+                    <div class="lab-badge">LAB 01 - APPRENTICE</div>
+                    <h3>Hidden Data Retrieval</h3>
+                    <p>Explotación de vulnerabilidad en el parámetro <code>category</code> para visualizar artículos no publicados.</p>
+                    <div class="payload-box">' OR 1=1--</div>
+                    <p style="font-size: 0.8rem; margin-top:10px; color: #888;">Técnica: In-band (Boolean-based logic).</p>
+                </article>
                 <div style="width: 45%;"></div>
-            </article>
-
-            <article class="lab-node">
-                <div class="lab-content">
-                    <h3>LAB 02: Login Bypass</h3>
-                    <p>Acceso administrativo mediante inyección en el campo de contraseña. Impacto: Compromiso total de la cuenta de usuario.</p>
-                    <img src="evidencia02.png" alt="Laboratorio 02" class="lab-image">
-                </div>
-                <div style="width: 45%;"></div>
-            </article>
-
-            <div style="text-align: center; color: #666; padding: 40px;">
-                <p>[ + LABORATORIOS EN PROCESO DE CARGA + ]</p>
             </div>
-        </div>
-    </main>
 
-    <footer>
-        <p>&copy; 2026 | KortexBr3ach | Seguridad Informática UPSLP</p>
-    </footer>
+            <div class="lab-node">
+                <article class="lab-card glass-terminal">
+                    <div class="lab-badge">LAB 02 - APPRENTICE</div>
+                    <h3>Login Bypass</h3>
+                    <p>Evasión del mecanismo de validación de contraseñas mediante la truncación de la consulta SQL en el campo <code>username</code>.</p>
+                    <div class="payload-box">administrator'--</div>
+                </article>
+                <div style="width: 45%;"></div>
+            </div>
+
+            <div class="lab-node">
+                <article class="lab-card glass-terminal">
+                    <div class="lab-badge">LAB 03 - PRACTITIONER</div>
+                    <h3>Database Version (Oracle)</h3>
+                    <p>Uso de <code>UNION SELECT</code> y la tabla <code>v$version</code> para extraer metadatos de infraestructura.</p>
+                    <div class="payload-box">' UNION SELECT banner, NULL FROM v$version--</div>
+                </article>
+                <div style="width: 45%;"></div>
+            </div>
+
+            <div class="lab-node">
+                <article class="lab-card glass-terminal">
+                    <div class="lab-badge">LAB 04 - PRACTITIONER</div>
+                    <h3>Database Version (MySQL/MS)</h3>
+                    <p>Identificación del motor de base de datos mediante la variable de sistema <code>@@version</code>.</p>
+                    <div class="payload-box">'+UNION+SELECT+@@version,+NULL--</div>
+                </article>
+                <div style="width: 45%;"></div>
+            </div>
+
+            <div class="lab-node">
+                <article class="lab-card glass-terminal">
+                    <div class="lab-badge">LAB 05 - PRACTITIONER</div>
+                    <h3>Listing Contents (Non-Oracle)</h3>
+                    <p>Enumeración de esquemas mediante <code>information_schema.tables</code> y extracción de credenciales administrativas.</p>
+                    <div class="payload-box">UNION SELECT username_XXX, password_XXX FROM users_XXX--</div>
+                </article>
+                <div style="width: 45%;"></div>
+            </div>
+
+            <div class="lab-node">
+                <article class="lab-card glass-terminal">
+                    <div class="lab-badge">LAB 09 - PRACTITIONER</div>
+                    <h3>Data Exfiltration via UNION</h3>
+                    <p>Fusión de resultados legítimos con la tabla <code>users</code> para obtener la contraseña del administrador en texto plano.</p>
+                    <div class="payload-box">'+UNION+SELECT+username,+password+FROM+users--</div>
+                </article>
+                <div style="width: 45%;"></div>
+            </div>
+
+            <div class="lab-node">
+                <article class="lab-card glass-terminal">
+                    <div class="lab-badge">LAB 11 - PRACTITIONER</div>
+                    <h3>Blind SQLi (Conditional Responses)</h3>
+                    <p>Inferencia de caracteres mediante el análisis del mensaje "Welcome back" en la cookie <code>TrackingId</code>.</p>
+                    <div class="payload-box">' AND (SELECT SUBSTRING(password,1,1)...) > 'm</div>
+                </article>
+                <div style="width: 45%;"></div>
+            </div>
+
+            <div class="lab-node">
+                <article class="lab-card glass-terminal">
+                    <div class="lab-badge">LAB 14 - PRACTITIONER</div>
+                    <h3>Blind SQLi (Time Delays)</h3>
+                    <p>Confirmación de vulnerabilidad mediante la suspensión del hilo de consulta en PostgreSQL durante 10 segundos.</p>
+                    <div class="payload-box">x'||pg_sleep(10)--</div>
+                </article>
+                <div style="width: 45%;"></div>
+            </div>
+
+            <div class="lab-node">
+                <article class="lab-card glass-terminal" style="border-left-color: #ff4141 !important;">
+                    <div class="lab-badge" style="background: #ff4141;">LAB 16 - INCOMPLETO</div>
+                    <h3>Out-of-band Interaction</h3>
+                    <p>Intento de exfiltración vía OAST. Actividad restringida por bloqueos perimetrales del firewall hacia dominios externos.</p>
+                    <div class="payload-box">UNION SELECT EXTRACTVALUE(xmltype(...)) FROM dual</div>
+                </article>
+                <div style="width: 45%;"></div>
+            </div>
+
+        </div>
+
+        <section class="section-container glass-terminal" style="margin-top: 50px;">
+            <h2>CONCLUSIONES DEL ROADMAP</h2>
+            <p>El análisis sistemático demostró que las inyecciones SQL (In-band, Blind y OOB) comprometen severamente la confidencialidad e integridad de la información al evadir mecanismos de autenticación y extraer credenciales administrativas.</p>
+            <p style="margin-top: 15px;"><strong>Mitigación Principal:</strong> Implementación obligatoria de Consultas Parametrizadas (Prepared Statements) para neutralizar la ejecución de código malicioso en el motor SQL.</p>
+        </section>
+    </main>
 
     <script src="dynamic-bg.js"></script>
 </body>
