@@ -8,13 +8,12 @@
     <link rel="icon" type="image/png" href="KB.png">
     <style>
         .glass-deep {
-            background: rgba(26, 26, 26, 0.3) !important; /* Transparencia ajustada */
+            background: rgba(26, 26, 26, 0.3) !important;
             backdrop-filter: blur(15px);
             border-left: 4px solid var(--primary);
             padding: 40px;
             margin: 40px auto;
             max-width: 1000px;
-            transition: all 0.4s ease;
         }
         .badge-header {
             background-color: var(--primary);
@@ -25,14 +24,15 @@
             margin-bottom: 25px;
             font-family: 'Segoe UI', sans-serif;
         }
-        h2 { font-family: 'Courier New', monospace; color: var(--primary); margin-top: 40px; }
-        h3 { color: var(--primary); font-size: 1.1rem; margin-top: 25px; }
+        h2 { font-family: 'Courier New', monospace; color: var(--primary); margin-top: 40px; border-bottom: 1px solid rgba(0, 255, 65, 0.2); padding-bottom: 10px; }
+        h3 { color: var(--primary); font-size: 1.2rem; margin-top: 30px; }
         .tech-table { width: 100%; border-collapse: collapse; margin: 20px 0; background: rgba(0,0,0,0.4); font-size: 0.85rem; }
         .tech-table th, .tech-table td { padding: 12px; border: 1px solid rgba(0, 255, 65, 0.2); text-align: left; vertical-align: top; }
         .tech-table th { color: var(--primary); text-transform: uppercase; }
         .fichas-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
         .ficha-card { border: 1px solid rgba(0, 255, 65, 0.3); padding: 20px; background: rgba(0,0,0,0.2); transition: 0.3s; }
-        .ficha-card:hover { border-color: var(--primary); background: rgba(0, 255, 65, 0.05); }
+        .ficha-card:hover { border-color: var(--primary); background: rgba(0, 255, 65, 0.05); transform: translateY(-5px); }
+        .ref-box { font-size: 0.85rem; color: #aaa; line-height: 1.6; margin-top: 20px; font-family: 'Courier New', monospace; }
     </style>
 </head>
 <body>
@@ -56,19 +56,26 @@
         <article class="glass-deep">
             <div class="badge-header">DOCUMENTO TÉCNICO - PR02</div>
 
-            <h2>01. MARCO TEÓRICO Y FUNDAMENTACIÓN TÉCNICA</h2>
-            <p>La seguridad informática ha evolucionado del blindaje perimetral al <strong>Human Risk Management (HRM)</strong>, reconociendo que los ataques actuales explotan la heurística del juicio humano[cite: 11, 13].</p>
+            <h2>01. MARCO TEÓRICO Y FUNDAMENTACIÓN</h2>
+            <p>Durante mucho tiempo, la seguridad informática se enfocó principalmente en proteger el perímetro de los sistemas mediante firewalls, antivirus o sistemas de prevención de intrusiones (IPS). Sin embargo, se ha demostrado que muchos ataques no entran por fallas técnicas, sino a través de las personas. Por ello surge el concepto de <strong>Human Risk Management (HRM)</strong>, centrado en entender que los usuarios son el objetivo principal de los atacantes actuales.</p>
+            <p>La ingeniería social aprovecha la forma en que las personas toman decisiones, utilizando estímulos psicológicos como la <strong>urgencia</strong>, la <strong>autoridad</strong> o el <strong>miedo</strong> para provocar reacciones rápidas. Para mitigar esto, las organizaciones emplean simulaciones de phishing que utilizan <strong>spoofing</strong> y <strong>beacons</strong> (balizas) para registrar interacciones sin afectar el equipo, permitiendo generar "momentos de aprendizaje" inmediatos.</p>
             
-            <h3>Métricas de Medición Proactiva:</h3>
+            <h3>Métricas Técnicas de Medición</h3>
             <ul>
-                <li><strong>Click Rate (PPP):</strong> Mide la vulnerabilidad bruta; los ataques con IA han elevado esta cifra hasta el 54%[cite: 27, 28].</li>
-                <li><strong>Reporting Rate:</strong> Condición de victoria que mide cuántos usuarios utilizan el botón de alerta; un programa maduro aspira a >30%[cite: 29, 30].</li>
-                <li><strong>Time-to-Report (Dwell Time):</strong> Velocidad de respuesta ante la amenaza; vital para que el SOC pueda contener ataques en segundos[cite: 31, 32].</li>
-                <li><strong>Risk Score:</strong> Ponderación del comportamiento histórico para identificar perfiles de alto riesgo[cite: 35].</li>
+                <li><strong>Click Rate (PPP):</strong> Mide la vulnerabilidad bruta. Aunque el promedio global ronda el 34%, ataques sofisticados con IA han elevado el riesgo hasta el 54% en sectores vulnerables.</li>
+                <li><strong>Reporting Rate (Tasa de Reporte):</strong> La "métrica estrella". Mide cuántos usuarios utilizan el botón de alerta. Un programa maduro debe aspirar a superar el 30% de reportes.</li>
+                <li><strong>Time-to-Report (Dwell Time):</strong> Cuantifica la velocidad de respuesta. Con tiempos de clic promedio de 21 segundos, un reporte rápido es vital para que el SOC contenga la amenaza.</li>
+                <li><strong>Risk Score:</strong> Métrica compuesta que pondera el comportamiento histórico (clics, reportes y cursos) para identificar departamentos o individuos que requieren mayor protección.</li>
             </ul>
 
-            <h3>Enfoques y Diferencias Técnicas:</h3>
-            <p>Se identifican arquitecturas **IA-Native** (automatización total), **Gateway-Integrated** (basado en amenazas reales) y **Legacy/Librerías** (gestión manual de contenido)[cite: 53, 60, 64].</p>
+            <h3>Enfoques de Entrenamiento</h3>
+            <p>Las plataformas modernas utilizan diversas estrategias para el cambio de comportamiento:</p>
+            <ul>
+                <li><strong>Adaptativo/IA:</strong> Ajusta la dificultad de los ejercicios basándose en el desempeño individual del usuario (Hoxhunt, Phished).</li>
+                <li><strong>Storytelling:</strong> Utiliza episodios cinematográficos para conectar conceptos de seguridad con situaciones cotidianas (NINJIO).</li>
+                <li><strong>Cumplimiento y Bibliotecas:</strong> Ofrece catálogos masivos para capacitación técnica y cumplimiento de estándares como ISO o NIST (KnowBe4, Infosec IQ).</li>
+                <li><strong>Basado en Roles:</strong> Adapta el contenido al trabajo específico, como simulaciones de código seguro para desarrolladores (Infosec IQ).</li>
+            </ul>
 
             <h2>02. TABLA TÉCNICA COMPARATIVA</h2>
             <div style="overflow-x: auto;">
@@ -76,21 +83,21 @@
                     <thead>
                         <tr>
                             <th>Plataforma</th>
-                            <th>Analítica</th>
+                            <th>Métricas</th>
                             <th>Integración</th>
                             <th>Enfoque Ético</th>
                             <th>Limitaciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td><strong>Hoxhunt</strong></td><td>Dwell Time & Resiliencia IA</td><td>Nativa SaaS (O365/Google)</td><td>Refuerzo (+) / Gamificación</td><td>Compromiso inicial del usuario [cite: 134]</td></tr>
-                        <tr><td><strong>Proofpoint</strong></td><td>VAP Score (Very Attacked People)</td><td>Ecosistema Cerrado (TAP)</td><td>Blindaje al usuario crítico</td><td>Dependencia de suite Proofpoint [cite: 134]</td></tr>
-                        <tr><td><strong>KnowBe4</strong></td><td>PPP Benchmarking masivo</td><td>APIs Abiertas / AD Sync</td><td>Transparencia y Privacidad</td><td>Alta carga administrativa manual [cite: 134]</td></tr>
-                        <tr><td><strong>Cofense</strong></td><td>Tasa de Resiliencia / Triaje</td><td>SOC Pipeline (Vision)</td><td>Inteligencia Colectiva</td><td>Requiere equipo SOC interno [cite: 134]</td></tr>
-                        <tr><td><strong>Phished</strong></td><td>Risk Score IA Predictivo</td><td>API-First / Zero-Touch</td><td>Privacidad por Diseño</td><td>Menor control manual detallado [cite: 134]</td></tr>
-                        <tr><td><strong>NINJIO</strong></td><td>Retención Cognitiva Narrativa</td><td>LMS & SCORM Compatible</td><td>Seguridad Familiar y Empatía</td><td>Enfoque más educativo que técnico [cite: 134]</td></tr>
-                        <tr><td><strong>Mimecast</strong></td><td>SAFE Score Conductual</td><td>Cloud-Nativa / Gateway</td><td>Cultura del Humor</td><td>Limitado a clientes Mimecast [cite: 137]</td></tr>
-                        <tr><td><strong>Infosec IQ</strong></td><td>Mapeo de NIST y brechas</td><td>Role-Based Segmentation</td><td>Transparencia Académica</td><td>Interfaz rígida comparada con IA [cite: 137]</td></tr>
+                        <tr><td><strong>Hoxhunt</strong></td><td>Dwell Time & Resiliencia</td><td>Nativa SaaS (O365/Google)</td><td>Refuerzo Positivo y Gamificación</td><td>Compromiso inicial del usuario</td></tr>
+                        <tr><td><strong>Proofpoint</strong></td><td>VAP Score (Personas Atacadas)</td><td>Ecosistema Cerrado / TAP</td><td>Protección del usuario vulnerable</td><td>Dependencia fuerte de su suite</td></tr>
+                        <tr><td><strong>KnowBe4</strong></td><td>PPP Benchmarking masivo</td><td>APIs abiertas / AD Sync</td><td>Transparencia y Anonimización</td><td>Alta carga administrativa manual</td></tr>
+                        <tr><td><strong>Cofense</strong></td><td>Tasa de Resiliencia / Triaje</td><td>SOC Pipeline (Vision)</td><td>Inteligencia Colectiva</td><td>Requiere equipo SOC interno</td></tr>
+                        <tr><td><strong>Phished</strong></td><td>Risk Score IA Predictivo</td><td>API-First / Zero-Touch</td><td>Privacidad por Diseño</td><td>Menor control manual detallado</td></tr>
+                        <tr><td><strong>NINJIO</strong></td><td>Retención Cognitiva</td><td>LMS & SCORM</td><td>Seguridad Familiar y Empatía</td><td>Enfoque educativo/teórico</td></tr>
+                        <tr><td><strong>Mimecast</strong></td><td>SAFE Score conductual</td><td>Cloud-Nativa / Gateway</td><td>Cultura del Humor</td><td>Limitado a clientes actuales</td></tr>
+                        <tr><td><strong>Infosec IQ</strong></td><td>Mapeo de NIST</td><td>Role-Based / Ingeniería</td><td>Transparencia Académica</td><td>Interfaz rígida vs opciones IA</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -98,42 +105,58 @@
             <h2>04. FICHAS DESCRIPTIVAS (ANÁLISIS INDIVIDUAL)</h2>
             <div class="fichas-grid">
                 <div class="ficha-card">
-                    <h4 style="color: var(--primary);">KnowBe4: Escala Masiva</h4>
-                    <p style="font-size: 0.85rem;">Utiliza la herramienta <strong>PhishFlip</strong> para convertir correos reales en simulaciones seguras instantáneamente[cite: 73].</p>
+                    <h4>1. KnowBe4</h4>
+                    <p>Referente por volumen con arquitectura KMSAT. Su herramienta <strong>PhishFlip</strong> permite convertir phishing real en simulaciones en minutos. Posee el <strong>ModStore</strong>, un catálogo masivo en múltiples idiomas.</p>
                 </div>
                 <div class="ficha-card">
-                    <h4 style="color: var(--primary);">Hoxhunt: Motor Adaptativo</h4>
-                    <p style="font-size: 0.85rem;">Utiliza IA Agéntica para ajustar la dificultad dinámicamente según el desempeño del usuario[cite: 81].</p>
+                    <h4>2. Hoxhunt</h4>
+                    <p>Usa <strong>IA Agéntica</strong> para entrenamiento individualizado. Se basa en una filosofía de refuerzo positivo sin castigos, premiando el reporte mediante un sistema de gamificación global.</p>
                 </div>
                 <div class="ficha-card">
-                    <h4 style="color: var(--primary);">Proofpoint: Targeted Attack</h4>
-                    <p style="font-size: 0.85rem;">Se alimenta de la inteligencia de amenazas de su gateway para priorizar el entrenamiento en VAPs[cite: 89, 90].</p>
+                    <h4>3. Proofpoint</h4>
+                    <p>Integración nativa con <strong>TAP</strong> para identificar a las Personas Muy Atacadas (VAPs). Entrena con señuelos basados en ataques reales bloqueados por su gateway.</p>
                 </div>
                 <div class="ficha-card">
-                    <h4 style="color: var(--primary);">Cofense: Integración SOC</h4>
-                    <p style="font-size: 0.85rem;">Conecta reportes de usuarios con análisis forense para eliminar amenazas en segundos[cite: 97, 98].</p>
+                    <h4>4. Cofense</h4>
+                    <p>Enfoque en detección temprana conectando el <strong>Reporter</strong> con sistemas de triaje y visión. Busca que el usuario alimente la defensa activa de la empresa.</p>
                 </div>
+                <div class="ficha-card">
+                    <h4>5. Phished</h4>
+                    <p>Automatización de "Cero Toque". El sistema <strong>Zero-Incident Mail</strong> crea y envía simulaciones de forma autónoma, minimizando la carga operativa y la recolección de datos personales.</p>
                 </div>
+                <div class="ficha-card">
+                    <h4>6. NINJIO</h4>
+                    <p>Utiliza perfiles de susceptibilidad emocional y episodios de 4 minutos escritos por guionistas de cine. Enseña a proteger tanto el entorno laboral como el familiar.</p>
+                </div>
+                <div class="ficha-card">
+                    <h4>7. Mimecast</h4>
+                    <p>Utiliza el humor (serie <strong>Sound Advice</strong>) para eliminar el estigma del error. Su métrica SAFE Score permite comparar el comportamiento contra datos globales.</p>
+                </div>
+                <div class="ficha-card">
+                    <h4>8. Infosec IQ</h4>
+                    <p>Evaluaciones adaptativas basadas en el nivel técnico. Alineado directamente con marcos como <strong>NIST</strong>, especializándose en roles técnicos específicos.</p>
+                </div>
+            </div>
 
             <div style="background: rgba(0, 255, 65, 0.05); padding: 25px; border: 1px solid var(--primary); margin-top: 40px;">
                 <h2>03. ANÁLISIS CRÍTICO Y CONCLUSIONES</h2>
-                <p>El mercado de HRM ha evolucionado hacia la <strong>defensa activa</strong>[cite: 141]. Para el sector industrial de San Luis Potosí, la efectividad reside en la capacidad de las herramientas para adaptarse al comportamiento individual sin comprometer la privacidad[cite: 157, 159].</p>
+                <p>El mercado de HRM ha evolucionado hacia la defensa activa. Plataformas como <strong>Proofpoint</strong> y <strong>Mimecast</strong> ofrecen precisión técnica al integrarse al flujo de correo, mientras que <strong>Hoxhunt</strong> y <strong>Phished</strong> optimizan la operación mediante IA. Para el éxito organizacional, lo fundamental es que el usuario aprenda a reportar con rapidez, tratando la simulación no como un engaño, sino como una preparación ética.</p>
             </div>
 
             <div style="margin-top: 40px; text-align: center;">
-                <a href="PR02-01.pdf" 
-                   download="PR02_Edgar_Hernandez.pdf" 
-                   class="btn-terminal" 
-                   style="text-decoration: none; display: inline-block; padding: 15px 30px; border: 2px solid var(--primary); background: transparent; color: var(--primary); font-weight: bold;">
+                <a href="PR02-01.pdf" download="PR02_Edgar_Hernandez.pdf" class="btn-terminal" style="text-decoration: none; display: inline-block; padding: 15px 30px; border: 2px solid var(--primary); background: transparent; color: var(--primary); font-weight: bold;">
                     EXPORTAR REPORTE (PDF)
                 </a>
             </div>
 
-            <h2 style="margin-top: 40px;">05. REFERENCIAS (APA 7)</h2>
-            <p style="font-size: 0.8rem; font-family: 'Courier New', monospace; color: #666;">
-                CyberPress. (2026). Best security awareness training platforms. https://cyberpress.org/ [cite: 162]<br>
-                Kumar, R. (2025). Security awareness training platforms comparison. https://www.rajeshkumar.xyz/ [cite: 164]
-            </p>
+            <h2>REFERENCIAS BIBLIOGRÁFICAS</h2>
+            <div class="ref-box">
+                CyberPress. (2026). Best security awareness training platforms. https://cyberpress.org/best-security-awareness-training-platforms/<br><br>
+                Hoxhunt. (2026). Best cybersecurity training solutions. https://hoxhunt.com/blog/best-cybersecurity-solutions/<br><br>
+                Kumar, R. (2025). Security awareness training platforms comparison. https://www.rajeshkumar.xyz/blog/security-awareness-training-platforms/<br><br>
+                Phished. (2026). Top 10 security awareness training platforms in 2026. https://phished.io/top-10-security-awareness-training-platforms-in-2026<br><br>
+                Wikipedia contributors. (2026). Hoxhunt. En Wikipedia. https://en.wikipedia.org/wiki/Hoxhunt
+            </div>
         </article>
     </main>
 
