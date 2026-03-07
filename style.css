@@ -260,13 +260,16 @@ footer {
     nav a[href="Parcial2.html"]::after { content: "P2"; }
     nav a[href="Parcial3.html"]::after { content: "P3"; }
     
-    /* Escondemos el texto largo */
-    nav a {
-        font-size: 0; /* Esconde el texto original */
+    /* Agregamos la abreviación para Proyectos */
+    nav a[href="Proyectos.html"]::after { content: "PR"; } 
+    
+    /* Si cambiaste el nombre de index.html a SeguridadInformatica.html, 
+       debes actualizar esta regla también para que el texto sea visible */
+    nav a[href="SeguridadInformatica.html"] { font-size: 0.8rem; }
+    
+    /* Mantenemos el tamaño para la abreviación de Proyectos */
+    nav a[href="Proyectos.html"]::after {
+        font-size: 0.8rem;
     }
-    nav a::after {
-        font-size: 0.8rem; /* Muestra solo la abreviación */
-    }
-    /* El de Inicio lo dejamos igual para que se entienda */
-    nav a[href="index.html"] { font-size: 0.8rem; } 
+
 }
