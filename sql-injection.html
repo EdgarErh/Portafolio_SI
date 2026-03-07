@@ -136,100 +136,80 @@
             </a>
         </div>
 
-        <div class="roadmap-container">
-            
-            <div class="lab-node">
-                <article class="lab-card glass-terminal">
-                    <div class="lab-badge">LAB 01 - APPRENTICE</div>
-                    <h3>Hidden Data Retrieval</h3>
-                    <p>Explotación de vulnerabilidad en el parámetro <code>category</code> para visualizar artículos no publicados.</p>
-                    <div class="payload-box">' OR 1=1--</div>
-                    <p style="font-size: 0.8rem; margin-top:10px; color: #888;">Técnica: In-band (Boolean-based logic).</p>
-                </article>
-                <div style="width: 45%;"></div>
-            </div>
+       <div class="roadmap-container">
 
-            <div class="lab-node">
-                <article class="lab-card glass-terminal">
-                    <div class="lab-badge">LAB 02 - APPRENTICE</div>
-                    <h3>Login Bypass</h3>
-                    <p>Evasión del mecanismo de validación de contraseñas mediante la truncación de la consulta SQL en el campo <code>username</code>.</p>
-                    <div class="payload-box">administrator'--</div>
-                </article>
-                <div style="width: 45%;"></div>
-            </div>
+    <div class="lab-node">
+        <article class="lab-card glass-terminal">
+            <div class="lab-badge">LAB 01 - APPRENTICE</div>
+            <h3>WHERE clause: Hidden Data Retrieval</h3>
+            <p><strong>Explicación Técnica:</strong> Se identificó que el parámetro <code>category</code> es vulnerable. El sistema captura el texto del usuario e inserta directamente la instrucción en la base de datos sin sanitización. Esto permite reescribir las reglas de negocio que dictan qué información es pública.</p>
+            <p><strong>Procedimiento:</strong> 1. Intercepción con Burp Suite. 2. Inyección del payload en el parámetro <code>category</code>. 3. Análisis de respuesta 200 OK con incremento de datos, confirmando que la base de datos ignoró los filtros de visibilidad programados.</p>
+            <div class="payload-box">' + OR 1=1 --</div>
+            <p style="font-size: 0.8rem; color: #888; margin-top: 5px;"><strong>Análisis del Payload:</strong> La comilla (') cierra el campo de texto. <code>OR 1=1</code> es una verdad universal que obliga al sistema a devolver todos los registros. El comentario (--) anula la restricción <code>AND released = 1</code>.</p>
+        </article>
+        <div style="width: 45%;"></div>
+    </div>
 
-            <div class="lab-node">
-                <article class="lab-card glass-terminal">
-                    <div class="lab-badge">LAB 03 - PRACTITIONER</div>
-                    <h3>Database Version (Oracle)</h3>
-                    <p>Uso de <code>UNION SELECT</code> y la tabla <code>v$version</code> para extraer metadatos de infraestructura.</p>
-                    <div class="payload-box">' UNION SELECT banner, NULL FROM v$version--</div>
-                </article>
-                <div style="width: 45%;"></div>
-            </div>
+    <div class="lab-node">
+        <article class="lab-card glass-terminal">
+            <div class="lab-badge">LAB 02 - APPRENTICE</div>
+            <h3>Authentication Login Bypass</h3>
+            <p><strong>Explicación Técnica:</strong> Vulnerabilidad de severidad crítica en la función de inicio de sesión. El parámetro <code>username</code> carece de validación, permitiendo que un agente externo altere la regla lógica para que el sistema compruebe solo la existencia del usuario, anulando el requisito de contraseña.</p>
+            <p><strong>Procedimiento:</strong> Se intercepta la petición POST, se sustituye el valor de <code>username</code> por el vector de ataque y se asigna un valor arbitrario a <code>password</code>. El servidor responde con un 302 Found y un token de sesión de administrador.</p>
+            <div class="payload-box">administrator'--</div>
+        </article>
+        <div style="width: 45%;"></div>
+    </div>
 
-            <div class="lab-node">
-                <article class="lab-card glass-terminal">
-                    <div class="lab-badge">LAB 04 - PRACTITIONER</div>
-                    <h3>Database Version (MySQL/MS)</h3>
-                    <p>Identificación del motor de base de datos mediante la variable de sistema <code>@@version</code>.</p>
-                    <div class="payload-box">'+UNION+SELECT+@@version,+NULL--</div>
-                </article>
-                <div style="width: 45%;"></div>
-            </div>
+    <div class="lab-node">
+        <article class="lab-card glass-terminal">
+            <div class="lab-badge">LAB 05 - PRACTITIONER</div>
+            <h3>Listing database contents (Non-Oracle)</h3>
+            <p><strong>Objetivo:</strong> Enumerar el esquema interno para comprometer la cuenta.</p>
+            <p><strong>Procedimiento Paso a Paso:</strong> 
+                1. Consulta a <code>information_schema.tables</code> para hallar la tabla <code>users_qbvywo</code>. 
+                2. Mapeo de columnas mediante <code>information_schema.columns</code> identificando <code>username_pqbuks</code> y <code>password_uqpynv</code>. 
+                3. Extracción final de credenciales en texto plano.</p>
+            <div class="payload-box">' UNION SELECT username_pqbuks, password_uqpynv FROM users_qbvywo--</div>
+            <p style="font-size: 0.8rem; color: #888;"><strong>Resultado:</strong> Extracción exitosa de <code>administrator:ioc7llbwatolit9w69bj</code>.</p>
+        </article>
+        <div style="width: 45%;"></div>
+    </div>
 
-            <div class="lab-node">
-                <article class="lab-card glass-terminal">
-                    <div class="lab-badge">LAB 05 - PRACTITIONER</div>
-                    <h3>Listing Contents (Non-Oracle)</h3>
-                    <p>Enumeración de esquemas mediante <code>information_schema.tables</code> y extracción de credenciales administrativas.</p>
-                    <div class="payload-box">UNION SELECT username_XXX, password_XXX FROM users_XXX--</div>
-                </article>
-                <div style="width: 45%;"></div>
-            </div>
+    <div class="lab-node">
+        <article class="lab-card glass-terminal">
+            <div class="lab-badge">LAB 11 - PRACTITIONER</div>
+            <h3>Blind SQLi with conditional responses</h3>
+            <p><strong>Explicación Técnica:</strong> La aplicación altera su comportamiento visual (mensaje "Welcome back") si la consulta es verdadera. Esto permite realizar preguntas lógicas (Verdadero/Falso) para extraer información letra por letra de forma indirecta.</p>
+            <p><strong>Procedimiento:</strong> Se usó un enfoque de búsqueda binaria automatizada mediante un script para iterar sobre las 20 posiciones de la contraseña.</p>
+            <div class="payload-box">TrackingId=... ' AND (SELECT SUBSTRING(password,1,1) FROM users WHERE username='administrator') > 'm</div>
+            <p style="font-size: 0.8rem; color: #888;"><strong>Credencial Extraída:</strong> zp5jy1l5taltb3wm7m9l.</p>
+        </article>
+        <div style="width: 45%;"></div>
+    </div>
 
-            <div class="lab-node">
-                <article class="lab-card glass-terminal">
-                    <div class="lab-badge">LAB 09 - PRACTITIONER</div>
-                    <h3>Data Exfiltration via UNION</h3>
-                    <p>Fusión de resultados legítimos con la tabla <code>users</code> para obtener la contraseña del administrador en texto plano.</p>
-                    <div class="payload-box">'+UNION+SELECT+username,+password+FROM+users--</div>
-                </article>
-                <div style="width: 45%;"></div>
-            </div>
+    <div class="lab-node">
+        <article class="lab-card glass-terminal">
+            <div class="lab-badge">LAB 13 - PRACTITIONER</div>
+            <h3>Visible error-based SQL injection</h3>
+            <p><strong>Explicación Técnica:</strong> Se aprovecha que el servidor muestra errores detallados. Al usar <code>CAST()</code> para intentar convertir la contraseña (texto) en entero, la base de datos genera un error de conversión que incluye el valor sensible (la contraseña) en el mensaje devuelto al cliente.</p>
+            <div class="payload-box">' AND 1=CAST((SELECT password FROM users LIMIT 1) AS int)--</div>
+        </article>
+        <div style="width: 45%;"></div>
+    </div>
 
-            <div class="lab-node">
-                <article class="lab-card glass-terminal">
-                    <div class="lab-badge">LAB 11 - PRACTITIONER</div>
-                    <h3>Blind SQLi (Conditional Responses)</h3>
-                    <p>Inferencia de caracteres mediante el análisis del mensaje "Welcome back" en la cookie <code>TrackingId</code>.</p>
-                    <div class="payload-box">' AND (SELECT SUBSTRING(password,1,1)...) > 'm</div>
-                </article>
-                <div style="width: 45%;"></div>
-            </div>
+    <div class="lab-node">
+        <article class="lab-card glass-terminal" style="border-left-color: #ff4141 !important;">
+            <div class="lab-badge" style="background: #ff4141;">LAB 16 - NO TERMINADO</div>
+            <h3>Out-of-band Interaction (OAST)</h3>
+            <p><strong>Motivos de interrupción:</strong> Requiere Burp Collaborator (versión Professional). Se intentó usar Interactsh, pero el firewall de salida (egress filtering) de la academia bloqueó la interacción con dominios no autorizados.</p>
+            <p><strong>Análisis Técnico:</strong> La falla reside en la capacidad de inyectar comandos de Oracle que permiten la resolución de entidades externas XML para exfiltrar datos.</p>
+            <div class="payload-box">' UNION SELECT EXTRACTVALUE(xmltype('...'),'/l') FROM dual--</div>
+        </article>
+        <div style="width: 45%;"></div>
+    </div>
 
-            <div class="lab-node">
-                <article class="lab-card glass-terminal">
-                    <div class="lab-badge">LAB 14 - PRACTITIONER</div>
-                    <h3>Blind SQLi (Time Delays)</h3>
-                    <p>Confirmación de vulnerabilidad mediante la suspensión del hilo de consulta en PostgreSQL durante 10 segundos.</p>
-                    <div class="payload-box">x'||pg_sleep(10)--</div>
-                </article>
-                <div style="width: 45%;"></div>
-            </div>
-
-            <div class="lab-node">
-                <article class="lab-card glass-terminal" style="border-left-color: #ff4141 !important;">
-                    <div class="lab-badge" style="background: #ff4141;">LAB 16 - INCOMPLETO</div>
-                    <h3>Out-of-band Interaction</h3>
-                    <p>Intento de exfiltración vía OAST. Actividad restringida por bloqueos perimetrales del firewall hacia dominios externos.</p>
-                    <div class="payload-box">UNION SELECT EXTRACTVALUE(xmltype(...)) FROM dual</div>
-                </article>
-                <div style="width: 45%;"></div>
-            </div>
-
-        </div>
+</div>
 
         <section class="section-container glass-terminal" style="margin-top: 50px;">
             <h2>CONCLUSIONES DEL ROADMAP</h2>
