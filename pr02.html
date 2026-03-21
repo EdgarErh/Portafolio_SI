@@ -240,52 +240,73 @@ function generarReporte() {
     let quizStartTime;
     let times = [];
 
-    window.iniciarQuiz = function() {
-        userAlias = prompt("Ingresa tu Alias (KortexBr3ach ID):");
-        if(!userAlias) return;
-
-        if(confirm("CONSENTIMIENTO INFORMADO:\n- No capturamos credenciales reales.\n- Los datos se usan para el ranking académico.\n- Se medirá tu tiempo de respuesta.\n\n¿Aceptas continuar?")) {
-            document.getElementById('quiz-intro').style.display = 'none';
-            document.getElementById('quiz-container').style.display = 'block';
-            quizStartTime = Date.now();
-            renderEscenario();
-        }
-    };
-
-    function renderEscenario() {
-        const esc = escenarios[current];
-        const stepStartTime = Date.now();
-        document.getElementById('quiz-container').innerHTML = `
-            <div class="ficha-card">
-                <span style="color:var(--primary)">[ESCENARIO ${current + 1}/10]</span>
-                <h3>${esc.t}</h3>
-                <p style="background:rgba(0,0,0,0.5); padding:15px; border-left:2px solid var(--primary)">${esc.m}</p>
-                <div style="margin-top:20px">
-                    <button onclick="responder(true, ${stepStartTime})" class="btn-terminal" style="padding:10px; margin-right:10px">ES PHISHING</button>
-                    <button onclick="responder(false, ${stepStartTime})" class="btn-terminal" style="padding:10px">ES SEGURO</button>
-                </div>
-            </div>`;
+   window.prepararQuiz = function() {
+    const alias = document.getElementById('user-alias').value;
+    if(!alias) { 
+        alert("ERROR: Se requiere un Agent ID para el registro."); // Única alerta de error
+        return; 
     }
+    userAlias = alias;
+    document.getElementById('quiz-intro').style.display = 'none';
+    document.getElementById('quiz-consent').style.display = 'block';
+};
 
-    window.responder = function(guess, stepStart) {
-        const esc = escenarios[current];
-        const timeTaken = (Date.now() - stepStart) / 1000;
-        times.push(timeTaken);
+window.iniciarQuizActualizado = function() {
+    document.getElementById('quiz-consent').style.display = 'none';
+    document.getElementById('quiz-container').style.display = 'block';
+    quizStartTime = Date.now();
+    renderEscenario();
+};
 
-        if(guess === esc.p) {
-            score += 10;
-            alert(`¡CORRECTO!\n${esc.f}`);
-        } else {
-            alert(`ERROR\n${esc.f}`);
-        }
+function renderEscenario() {
+    const esc = escenarios[current];
+    const stepStartTime = Date.now();
+    document.getElementById('quiz-container').innerHTML = `
+        <div class="ficha-card" id="current-esc">
+            <span style="color:var(--primary)">[MÓDULO ${current + 1}/10]</span>
+            <h3>${esc.t}</h3>
+            <p style="background:rgba(0,0,0,0.3); padding:15px; border-left:2px solid var(--primary)">${esc.m}</p>
+            <div id="actions-${current}" style="margin-top:20px">
+                <button onclick="responder(true, ${stepStartTime})" class="btn-terminal" style="padding:10px; margin-right:10px">ES PHISHING</button>
+                <button onclick="responder(false, ${stepStartTime})" class="btn-terminal" style="padding:10px">ES SEGURO</button>
+            </div>
+            <div id="feedback-${current}" style="margin-top:20px; display:none; padding:15px; border:1px dashed gray;">
+                <strong id="result-label-${current}"></strong><br>
+                <p>${esc.f}</p>
+                <button onclick="nextStep()" class="btn-terminal" style="margin-top:10px; border-color:cyan; color:cyan;">CONTINUAR >>></button>
+            </div>
+        </div>`;
+}
 
-        current++;
-        if(current < escenarios.length) {
-            renderEscenario();
-        } else {
-            finalizarQuiz();
-        }
-    };
+window.responder = function(guess, stepStart) {
+    const esc = escenarios[current];
+    const timeTaken = (Date.now() - stepStart) / 1000;
+    times.push(timeTaken);
+
+    // Ocultar botones de acción y mostrar feedback
+    document.getElementById(`actions-${current}`).style.display = 'none';
+    const fb = document.getElementById(`feedback-${current}`);
+    const label = document.getElementById(`result-label-${current}`);
+    fb.style.display = 'block';
+
+    if(guess === esc.p) {
+        score += 10;
+        label.innerText = "SISTEMA: DETECCIÓN CORRECTA";
+        label.style.color = "var(--primary)";
+    } else {
+        label.innerText = "SISTEMA: VULNERABILIDAD DETECTADA";
+        label.style.color = "red";
+    }
+};
+
+window.nextStep = function() {
+    current++;
+    if(current < escenarios.length) {
+        renderEscenario();
+    } else {
+        finalizarQuiz();
+    }
+};
 
     async function finalizarQuiz() {
         const totalTime = (Date.now() - quizStartTime) / 1000;
@@ -327,17 +348,29 @@ function generarReporte() {
 
     actualizarRanking();
 </script>
-
+    
 <section id="quiz-section" class="glass-deep" style="margin-top:40px;">
     <h2>05. SIMULADOR DE INTRUSIÓN (PHISHING QUIZ)</h2>
-    <div id="quiz-intro">
-        <p>Inicia el despliegue de escenarios de ingeniería social para medir tu resiliencia técnica.</p>
-        <button onclick="iniciarQuiz()" class="btn-terminal" style="padding:15px 30px; border:2px solid var(--primary); background:transparent; color:var(--primary); cursor:pointer;">
-            EJECUTAR DIAGNÓSTICO
-        </button>
-    </div>
     
-    <div id="quiz-container" style="display:none; margin-top:20px;"></div>
+    <div id="quiz-display">
+        <div id="quiz-intro" style="text-align: center;">
+            <p>Inicia el despliegue de escenarios para medir tu resiliencia técnica.</p>
+            <input type="text" id="user-alias" placeholder="INGRESAR AGENT ID..." 
+                   style="background:rgba(0,0,0,0.5); border:1px solid var(--primary); color:var(--primary); padding:10px; margin-bottom:20px; text-align:center; font-family:'Courier New';">
+            <br>
+            <button onclick="prepararQuiz()" class="btn-terminal" style="padding:15px 30px; border:2px solid var(--primary); background:transparent; color:var(--primary); cursor:pointer;">
+                AUTENTICAR Y EJECUTAR
+            </button>
+        </div>
+
+        <div id="quiz-consent" style="display:none; border:1px solid red; padding:20px;">
+            <h3 style="color:red;">[ ADVERTENCIA ÉTICA ]</h3>
+            <p>- No se capturan credenciales reales.<br>- Los datos se usarán para el ranking académico.<br>- Se medirá tiempo y precisión.</p>
+            <button onclick="iniciarQuizActualizado()" class="btn-terminal" style="color:var(--primary); border-color:var(--primary);">ACEPTO PROTOCOLOS</button>
+        </div>
+
+        <div id="quiz-container" style="display:none; margin-top:20px;"></div>
+    </div>
 
     <h3 style="margin-top:40px;">SCOREBOARD GLOBAL (LIVE DATA)</h3>
     <div id="ranking-box">Cargando protocolos de red...</div>
