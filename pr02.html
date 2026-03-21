@@ -222,17 +222,87 @@ function generarReporte() {
 
     // --- ESCENARIOS (Rúbrica 01 y 02: Calidad técnica y Variedad) ---
     const escenarios = [
-        { t: "Urgencia Bancaria", m: "Detectamos un cargo de $4,500 MXN en Amazon. Si no lo reconoce, cancele aquí.", p: true, v: "Ingeniería Social / Urgencia", f: "Usa miedo para forzar un clic rápido sin verificar el remitente." },
-        { t: "Actualización de Teams", m: "Microsoft Teams: Nueva política de seguridad obligatoria. Descargue 'Update_Security.exe'.", p: true, v: "Malware / Ejecutable", f: "Los servicios oficiales nunca envían ejecutables (.exe) por correo para actualizar." },
-        { t: "Aviso de Envío", m: "DHL: Su paquete está retenido en la aduana de SLP. Falta pagar $20 MXN de impuestos.", p: true, v: "Smishing/Phishing de Marca", f: "Ataques 'low-cost' buscan capturar tarjetas con montos pequeños." },
-        { t: "Acceso de Terceros", m: "Google: Se ha concedido acceso a 'PhotoViewerApp' a tu cuenta de Drive.", p: false, v: "Seguridad Real", f: "Es una alerta legítima de Google. Siempre revisa los permisos de apps de terceros." },
-        { t: "Nómina Interna", m: "RRHH: El archivo 'Bonos_Marzo_2026.xlsx' está disponible en el servidor interno.", p: false, v: "Comunicación Interna", f: "Uso de canales oficiales y archivos de oficina estándar en red local." },
-        { t: "Soporte TI", m: "TI: Su contraseña expirará en 24h. Cámbiela en: https://portal.u-slp-it.edu.mx/reset", p: true, v: "Subdominios / Typosquatting", f: "El dominio 'u-slp-it' es un engaño visual que imita a la universidad." },
-        { t: "MFA Push", m: "Solicitud de inicio de sesión: ¿Eres tú intentando entrar desde Dubái? (Presiona SI para bloquear)", p: true, v: "MFA Fatigue", f: "Engaño donde el atacante invierte el significado de los botones para que aceptes." },
-        { t: "Factura Pendiente", m: "Factura_9928.pdf.gz adjunta. Pago vencido hace 3 días.", p: true, v: "Adjunto Comprimido", f: "Extensiones dobles o poco comunes (.gz) ocultan scripts maliciosos." },
-        { t: "Invitación LinkedIn", m: "Edgar Rodriguez quiere conectar contigo en LinkedIn.", p: false, v: "Redes Sociales Real", f: "Notificación estándar con enlaces que dirigen al dominio oficial linkedin.com." },
-        { t: "Sorteo Continental", m: "Continental SLP: ¡Felicidades! Ganaste un bono por desempeño. Registra tu CLABE aquí.", p: true, v: "Spear Phishing", f: "Ataque dirigido a empleados de una empresa específica usando beneficios falsos." }
-    ];
+    { 
+        t: "Urgencia Bancaria", 
+        remitente: "alertas@bancomer-seguridad.net", 
+        m: "Detectamos un cargo de $4,500 MXN en Amazon. Si no lo reconoce, cancele el cargo aquí para evitar el cobro.", 
+        p: true, 
+        v: "Ingeniería Social / Urgencia", 
+        f: "ANALISIS: El dominio 'bancomer-seguridad.net' no es oficial. Los bancos usan dominios .com o .mx simples sin palabras extra como 'seguridad'." 
+    },
+    { 
+        t: "Actualización de Teams", 
+        remitente: "it-support@microsoft-updates.com", 
+        m: "Microsoft Teams: Nueva política de seguridad obligatoria. Descargue el ejecutable 'Update_Security.exe' para sincronizar su cuenta.", 
+        p: true, 
+        v: "Malware / Ejecutable", 
+        f: "ANALISIS: Los servicios oficiales nunca envían archivos .exe por correo. Microsoft actualiza sus apps de forma transparente o vía Windows Update." 
+    },
+    { 
+        t: "Aviso de Envío DHL", 
+        remitente: "entrega.paquetes@dhl-info.mx", 
+        m: "DHL: Su paquete está retenido en la aduana de San Luis Potosí por falta de pago de impuestos ($25 MXN). Pague aquí para liberar.", 
+        p: true, 
+        v: "Smishing/Phishing de Marca", 
+        f: "ANALISIS: El monto bajo ($25 MXN) busca que la víctima no lo piense dos veces. DHL siempre usa dhl.com o dhl.mx sin guiones extra." 
+    },
+    { 
+        t: "Acceso de Terceros Google", 
+        remitente: "no-reply@accounts.google.com", 
+        m: "Google: Se ha concedido acceso a 'PhotoViewerApp' a tu cuenta de Drive desde un dispositivo Linux. ¿Fuiste tú?", 
+        p: false, 
+        v: "Seguridad Real", 
+        f: "ANALISIS: Este es un remitente legítimo de Google. Es una alerta real de seguridad que ayuda al usuario a monitorear su cuenta." 
+    },
+    { 
+        t: "Bono de trabajo", 
+        remitente: "hr-portal@continental.com", 
+        m: "Aviso: El archivo de 'Bonos por Desempeño Marzo 2026' ya está disponible en el servidor interno de la compañía.", 
+        p: false, 
+        v: "Comunicación Interna", 
+        f: "ANALISIS: Utiliza el dominio corporativo real y hace referencia a procesos internos estándar sin pedir clics a sitios externos." 
+    },
+    { 
+        t: "Soporte TI Universitario", 
+        remitente: "soporte.it@u-slp-it.edu.mx", 
+        m: "TI: Su contraseña de red expirará en 24 horas por políticas de seguridad. Cámbiela ahora en: https://portal.u-slp-it.edu.mx/reset", 
+        p: true, 
+        v: "Subdominios / Typosquatting", 
+        f: "ANALISIS: El dominio 'u-slp-it' es un engaño visual. Un dominio universitario real suele ser 'uaslp.mx'. Nota los guiones extra." 
+    },
+    { 
+        t: "MFA Push Alert", 
+        remitente: "security-verify@outlook.com", 
+        m: "Solicitud de inicio de sesión detectada desde Dubái. Si no es usted, presione 'SÍ' en su aplicación para bloquear el acceso.", 
+        p: true, 
+        v: "MFA Fatigue / Inversión de Lógica", 
+        f: "ANALISIS: Los atacantes a veces invierten el significado de los botones. Si presionas 'SÍ' en una notificación de autenticador, das acceso al hacker." 
+    },
+    { 
+        t: "Factura Pendiente Proveedor", 
+        remitente: "contabilidad@servicios-industriales.gz", 
+        m: "Adjuntamos la Factura_9928_Potosi.pdf.gz correspondiente al pago vencido hace 3 días. Favor de revisar el detalle.", 
+        p: true, 
+        v: "Adjunto Comprimido Malicioso", 
+        f: "ANALISIS: La extensión '.gz' es un archivo comprimido que oculta scripts. Además, el dominio termina en '.gz', lo cual es sospechoso." 
+    },
+    { 
+        t: "Invitación LinkedIn", 
+        remitente: "messages-noreply@linkedin.com", 
+        m: "Un reclutador de Data Science ha visto tu perfil y quiere conectar contigo en LinkedIn. Mira quién es.", 
+        p: false, 
+        v: "Redes Sociales Real", 
+        f: "ANALISIS: Notificación estándar con remitente verificado de LinkedIn. Los enlaces dirigen correctamente a la red social profesional." 
+    },
+    { 
+        t: "Sorteo Gubernamental", 
+        remitente: "marketing-rewards@continental-mexico.net", 
+        m: "¡Felicidades! Has sido seleccionado para el bono trimestral del Gobierno SLP. Registra tu CLABE interbancaria aquí para el depósito.", 
+        p: true, 
+        v: "Spear Phishing / Fraude", 
+        f: "ANALISIS: Usa información personalizada (ubicación) para ganar confianza. El gobierno no usa dominios '.net' para RH." 
+    }
+];
 
     let current = 0;
     let score = 0;
@@ -261,19 +331,39 @@ window.iniciarQuizActualizado = function() {
 function renderEscenario() {
     const esc = escenarios[current];
     const stepStartTime = Date.now();
+    
     document.getElementById('quiz-container').innerHTML = `
-        <div class="ficha-card" id="current-esc">
-            <span style="color:var(--primary)">[MÓDULO ${current + 1}/10]</span>
-            <h3>${esc.t}</h3>
-            <p style="background:rgba(0,0,0,0.3); padding:15px; border-left:2px solid var(--primary)">${esc.m}</p>
-            <div id="actions-${current}" style="margin-top:20px">
-                <button onclick="responder(true, ${stepStartTime})" class="btn-terminal" style="padding:10px; margin-right:10px">ES PHISHING</button>
-                <button onclick="responder(false, ${stepStartTime})" class="btn-terminal" style="padding:10px">ES SEGURO</button>
+        <div class="mail-client" style="background: rgba(0,0,0,0.4); border: 1px solid var(--primary); font-family: sans-serif;">
+            <div style="background: var(--primary); color: #000; padding: 5px 15px; font-weight: bold; font-family: 'Courier New'; display: flex; justify-content: space-between;">
+                <span>INBOX_SIMULATOR_V1.0</span>
+                <span>ESCENARIO ${current + 1}/10</span>
             </div>
-            <div id="feedback-${current}" style="margin-top:20px; display:none; padding:15px; border:1px dashed gray;">
-                <strong id="result-label-${current}"></strong><br>
-                <p>${esc.f}</p>
-                <button onclick="nextStep()" class="btn-terminal" style="margin-top:10px; border-color:cyan; color:cyan;">CONTINUAR >>></button>
+
+            <div style="padding: 15px; border-bottom: 1px solid rgba(0,255,65,0.2); background: rgba(0,255,65,0.05);">
+                <div style="margin-bottom: 5px;"><strong>De:</strong> <span style="color: #00ff41;">${esc.remitente || 'sistema@seguridad.mx'}</span></div>
+                <div style="margin-bottom: 5px;"><strong>Asunto:</strong> <span style="font-weight: bold;">${esc.t}</span></div>
+                <div style="font-size: 0.8rem; color: #888;">Para: ${userAlias}@kortexbr3ach.com</div>
+            </div>
+
+            <div style="padding: 30px; min-height: 150px; line-height: 1.6; color: #eee; font-size: 1.1rem;">
+                ${esc.m}
+                <br><br>
+                <div style="color: #888; font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px;">
+                    -- <br>
+                    Este es un mensaje generado automáticamente.
+                </div>
+            </div>
+
+            <div id="actions-${current}" style="padding: 20px; background: rgba(0,0,0,0.6); border-top: 1px solid var(--primary); text-align: center;">
+                <p style="font-family: 'Courier New'; font-size: 0.9rem; margin-bottom: 15px; color: var(--primary);">[ SELECCIONE RESPUESTA DE SEGURIDAD ]</p>
+                <button onclick="responder(true, ${stepStartTime})" class="btn-terminal" style="padding: 10px 25px; margin: 5px; border: 1px solid red; color: red;">REPORTAR PHISHING</button>
+                <button onclick="responder(false, ${stepStartTime})" class="btn-terminal" style="padding: 10px 25px; margin: 5px; border: 1px solid var(--primary); color: var(--primary);">MARCAR COMO SEGURO</button>
+            </div>
+
+            <div id="feedback-${current}" style="display:none; padding: 25px; background: #111; border-top: 2px solid #555;">
+                <h4 id="result-label-${current}" style="margin-top:0; text-transform: uppercase; letter-spacing: 2px;"></h4>
+                <p style="color: #ccc; font-style: italic;">"${esc.f}"</p>
+                <button onclick="nextStep()" class="btn-terminal" style="margin-top:15px; border-color:cyan; color:cyan;">SIGUIENTE MENSAJE >>></button>
             </div>
         </div>`;
 }
