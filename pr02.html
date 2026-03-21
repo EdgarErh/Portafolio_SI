@@ -201,5 +201,146 @@ function generarReporte() {
     }, 1000);
 }
 </script>
+    <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, query, orderBy, limit } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    // Configuración oficial de tu proyecto KortexBr3ach-Quiz
+    const firebaseConfig = {
+      apiKey: "AIzaSyAAfP2UeKM6NlbvmXVTmDbaiPzedRAh8rI",
+      authDomain: "kortexbr3ach-quiz.firebaseapp.com",
+      projectId: "kortexbr3ach-quiz",
+      storageBucket: "kortexbr3ach-quiz.firebasestorage.app",
+      messagingSenderId: "932170540521",
+      appId: "1:932170540521:web:a5104cafb59ce0ead6d778",
+      measurementId: "G-3RW8927YZX"
+    };
+    
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // --- ESCENARIOS (Rúbrica 01 y 02: Calidad técnica y Variedad) ---
+    const escenarios = [
+        { t: "Urgencia Bancaria", m: "Detectamos un cargo de $4,500 MXN en Amazon. Si no lo reconoce, cancele aquí.", p: true, v: "Ingeniería Social / Urgencia", f: "Usa miedo para forzar un clic rápido sin verificar el remitente." },
+        { t: "Actualización de Teams", m: "Microsoft Teams: Nueva política de seguridad obligatoria. Descargue 'Update_Security.exe'.", p: true, v: "Malware / Ejecutable", f: "Los servicios oficiales nunca envían ejecutables (.exe) por correo para actualizar." },
+        { t: "Aviso de Envío", m: "DHL: Su paquete está retenido en la aduana de SLP. Falta pagar $20 MXN de impuestos.", p: true, v: "Smishing/Phishing de Marca", f: "Ataques 'low-cost' buscan capturar tarjetas con montos pequeños." },
+        { t: "Acceso de Terceros", m: "Google: Se ha concedido acceso a 'PhotoViewerApp' a tu cuenta de Drive.", p: false, v: "Seguridad Real", f: "Es una alerta legítima de Google. Siempre revisa los permisos de apps de terceros." },
+        { t: "Nómina Interna", m: "RRHH: El archivo 'Bonos_Marzo_2026.xlsx' está disponible en el servidor interno.", p: false, v: "Comunicación Interna", f: "Uso de canales oficiales y archivos de oficina estándar en red local." },
+        { t: "Soporte TI", m: "TI: Su contraseña expirará en 24h. Cámbiela en: https://portal.u-slp-it.edu.mx/reset", p: true, v: "Subdominios / Typosquatting", f: "El dominio 'u-slp-it' es un engaño visual que imita a la universidad." },
+        { t: "MFA Push", m: "Solicitud de inicio de sesión: ¿Eres tú intentando entrar desde Dubái? (Presiona SI para bloquear)", p: true, v: "MFA Fatigue", f: "Engaño donde el atacante invierte el significado de los botones para que aceptes." },
+        { t: "Factura Pendiente", m: "Factura_9928.pdf.gz adjunta. Pago vencido hace 3 días.", p: true, v: "Adjunto Comprimido", f: "Extensiones dobles o poco comunes (.gz) ocultan scripts maliciosos." },
+        { t: "Invitación LinkedIn", m: "Edgar Rodriguez quiere conectar contigo en LinkedIn.", p: false, v: "Redes Sociales Real", f: "Notificación estándar con enlaces que dirigen al dominio oficial linkedin.com." },
+        { t: "Sorteo Continental", m: "Continental SLP: ¡Felicidades! Ganaste un bono por desempeño. Registra tu CLABE aquí.", p: true, v: "Spear Phishing", f: "Ataque dirigido a empleados de una empresa específica usando beneficios falsos." }
+    ];
+
+    let current = 0;
+    let score = 0;
+    let userAlias = "";
+    let quizStartTime;
+    let times = [];
+
+    window.iniciarQuiz = function() {
+        userAlias = prompt("Ingresa tu Alias (KortexBr3ach ID):");
+        if(!userAlias) return;
+
+        if(confirm("CONSENTIMIENTO INFORMADO:\n- No capturamos credenciales reales.\n- Los datos se usan para el ranking académico.\n- Se medirá tu tiempo de respuesta.\n\n¿Aceptas continuar?")) {
+            document.getElementById('quiz-intro').style.display = 'none';
+            document.getElementById('quiz-container').style.display = 'block';
+            quizStartTime = Date.now();
+            renderEscenario();
+        }
+    };
+
+    function renderEscenario() {
+        const esc = escenarios[current];
+        const stepStartTime = Date.now();
+        document.getElementById('quiz-container').innerHTML = `
+            <div class="ficha-card">
+                <span style="color:var(--primary)">[ESCENARIO ${current + 1}/10]</span>
+                <h3>${esc.t}</h3>
+                <p style="background:rgba(0,0,0,0.5); padding:15px; border-left:2px solid var(--primary)">${esc.m}</p>
+                <div style="margin-top:20px">
+                    <button onclick="responder(true, ${stepStartTime})" class="btn-terminal" style="padding:10px; margin-right:10px">ES PHISHING</button>
+                    <button onclick="responder(false, ${stepStartTime})" class="btn-terminal" style="padding:10px">ES SEGURO</button>
+                </div>
+            </div>`;
+    }
+
+    window.responder = function(guess, stepStart) {
+        const esc = escenarios[current];
+        const timeTaken = (Date.now() - stepStart) / 1000;
+        times.push(timeTaken);
+
+        if(guess === esc.p) {
+            score += 10;
+            alert(`¡CORRECTO!\n${esc.f}`);
+        } else {
+            alert(`ERROR\n${esc.f}`);
+        }
+
+        current++;
+        if(current < escenarios.length) {
+            renderEscenario();
+        } else {
+            finalizarQuiz();
+        }
+    };
+
+    async function finalizarQuiz() {
+        const totalTime = (Date.now() - quizStartTime) / 1000;
+        const maxTime = Math.max(...times);
+        const avgTime = (totalTime / 10).toFixed(2);
+        
+        document.getElementById('quiz-container').innerHTML = `
+            <div class="ficha-card" style="text-align:center">
+                <h2 style="color:var(--primary)">ANÁLISIS COMPLETADO</h2>
+                <p>Score Final: ${score}/100</p>
+                <p>Tiempo Promedio: ${avgTime}s</p>
+                <p>Escenario más lento: ${maxTime.toFixed(2)}s</p>
+                <button onclick="location.reload()" class="btn-terminal">REINICIAR SISTEMA</button>
+            </div>`;
+        
+        try {
+            await addDoc(collection(db, "resultados"), {
+                usuario: userAlias,
+                puntos: score,
+                tiempoAvg: avgTime,
+                lento: maxTime,
+                fecha: new Date()
+            });
+            actualizarRanking();
+        } catch (e) { console.error(e); }
+    }
+
+    async function actualizarRanking() {
+        const q = query(collection(db, "resultados"), orderBy("puntos", "desc"), limit(5));
+        const snap = await getDocs(q);
+        let html = `<table class="tech-table"><thead><tr><th>AGENT</th><th>SCORE</th><th>AVG TIME</th></tr></thead><tbody>`;
+        snap.forEach(doc => {
+            const d = doc.data();
+            html += `<tr><td>${d.usuario}</td><td>${d.puntos}</td><td>${d.tiempoAvg}s</td></tr>`;
+        });
+        html += "</tbody></table>";
+        document.getElementById('ranking-box').innerHTML = html;
+    }
+
+    actualizarRanking();
+</script>
+
+<section id="quiz-section" class="glass-deep" style="margin-top:40px;">
+    <h2>05. SIMULADOR DE INTRUSIÓN (PHISHING QUIZ)</h2>
+    <div id="quiz-intro">
+        <p>Inicia el despliegue de escenarios de ingeniería social para medir tu resiliencia técnica.</p>
+        <button onclick="iniciarQuiz()" class="btn-terminal" style="padding:15px 30px; border:2px solid var(--primary); background:transparent; color:var(--primary); cursor:pointer;">
+            EJECUTAR DIAGNÓSTICO
+        </button>
+    </div>
+    
+    <div id="quiz-container" style="display:none; margin-top:20px;"></div>
+
+    <h3 style="margin-top:40px;">SCOREBOARD GLOBAL (LIVE DATA)</h3>
+    <div id="ranking-box">Cargando protocolos de red...</div>
+</section>
 </body>
 </html>
