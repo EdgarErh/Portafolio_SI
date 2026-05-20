@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificaciones Cisco | KortexBr3ach</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="KB.png">
+    <style>
+        .glass-deep {
+            background: rgba(26, 26, 26, 0.3) !important;
+            backdrop-filter: blur(15px);
+            border-left: 4px solid var(--primary);
+            padding: 40px;
+            margin: 40px auto;
+            max-width: 1100px;
+        }
+        h2 { font-family: 'Courier New', monospace; color: var(--primary); margin-top: 40px; border-bottom: 1px solid rgba(0, 255, 65, 0.2); padding-bottom: 10px; }
+        .cert-grid { display: grid; grid-template-columns: 1fr; gap: 30px; margin-top: 30px; }
+        .cert-card { 
+            border: 1px solid rgba(0, 255, 65, 0.3); 
+            padding: 25px; 
+            background: rgba(0,0,0,0.4); 
+            display: flex; 
+            gap: 20px;
+            transition: 0.3s;
+        }
+        .cert-card:hover { border-color: var(--primary); background: rgba(0, 255, 65, 0.05); }
+        .badge-img { width: 120px; height: 120px; object-fit: contain; border: 1px solid var(--primary); padding: 5px; background: #000; }
+        .cert-info { flex-grow: 1; }
+        .reflection-text { font-size: 0.9rem; color: #ccc; line-height: 1.6; margin-top: 15px; font-style: italic; text-align: justify; }
+        .meta-data { font-family: 'Courier New', monospace; font-size: 0.8rem; color: var(--primary); margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <div class="dynamic-background"></div>
+
+    <header>
+        <div class="header-container">
+            <div class="branding">
+                <h1>CREDENCIONALES ACADÉMICAS</h1>
+                <p class="alias"><span>Cisco Networking Academy Portfolio</span></p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Regresar al Inicio</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <article class="glass-deep">
+            <h2>REFLEXIÓN CRÍTICA PROFESIONAL</h2>
+            <p style="color: #fff; margin-bottom: 20px;">
+                La formación continua en ciberseguridad a través de plataformas líderes como Cisco ha transformado mi visión técnica, permitiéndome integrar metodologías defensivas y ofensivas con una base sólida en redes...
+            </p>
+
+            <div class="cert-grid">
+                
+                <div class="cert-card">
+                    <img src="badge_intro_cyber.png" alt="Badge" class="badge-img">
+                    <div class="cert-info">
+                        <div class="meta-data">ID: CISCO-01 | HORAS: 15 | FECHA: 2026</div>
+                        <h3 style="color: var(--primary); margin: 0;">1. Introducción a la Ciberseguridad</h3>
+                        <div class="reflection-text">
+                            <strong>Reseña y Reflexión:</strong><br>
+                            Este curso fue el pilar fundamental para comprender la tríada de la seguridad (CIA). El mayor reto fue entender cómo las amenazas evolucionan de simples scripts a ataques de ingeniería social complejos. Me permitió visualizar la ciberseguridad no solo como un campo técnico, sino como una responsabilidad ética...
+                        </div>
+                        <br>
+                        <a href="evidencia_01.pdf" target="_blank" class="btn-terminal" style="font-size: 0.7rem; padding: 5px 10px; border: 1px solid cyan; color: cyan;">DESCARGAR CERTIFICADO (PDF)</a>
+                    </div>
+                </div>
+
+                <div class="cert-card">
+                    <img src="badge_networking.png" alt="Badge" class="badge-img">
+                    <div class="cert-info">
+                        <div class="meta-data">ID: CISCO-02 | HORAS: 20 | FECHA: 2026</div>
+                        <h3 style="color: var(--primary); margin: 0;">2. Conceptos Básicos de Redes</h3>
+                        <div class="reflection-text">
+                            <strong>Reseña y Reflexión:</strong><br>
+                            Comprender el modelo OSI y TCP/IP fue fundamental. Aprendí que la seguridad comienza en la capa física y se fortalece en el enrutamiento...
+                        </div>
+                        <br>
+                        <a href="evidencia_02.pdf" target="_blank" class="btn-terminal" style="font-size: 0.7rem; padding: 5px 10px; border: 1px solid cyan; color: cyan;">DESCARGAR CERTIFICADO (PDF)</a>
+                    </div>
+                </div>
+
+                </div>
+        </article>
+    </main>
+
+    <script src="dynamic-bg.js"></script>
+</body>
+</html>
