@@ -257,18 +257,36 @@
 
                 <div class="score-sidebar">
                     <h3>Severidad Global</h3>
-                    <div class="score-box">
+                    <div class="score-box" style="height: calc(100% - 42px); display: flex; flex-direction: column; justify-content: center;">
                         <h4 style="margin: 0; font-size: 0.9rem; color: #ccc;">VULNERABILITY SCORE</h4>
-                        <div class="score-number">4.7 (Media)</div>
-                        <div class="vector-string">CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:L/I:L/A:L</div>
-                    </div>
-
-                    <div class="graph-box">
-                        <h4 style="margin: 0; font-size: 0.9rem; color: #ccc;">Visualización Gráfica de Métricas CVSS v3.1</h4>
-                        <img src="CVSS_3.PNG" alt="Gráfica de Vector CVSS_3" class="graph-img">
+                        <div class="score-number" style="font-size: 2.8rem; margin: 15px 0;">4.7 (Media)</div>
+                        <div class="vector-string" style="font-size: 0.9rem; padding: 12px;">CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:L/I:L/A:L</div>
                     </div>
                 </div>
 
+            </div>
+
+            <h3>Métricas Visuales de la Calculadora CVSS v3.1</h3>
+            <div class="graph-box" style="margin-bottom: 30px; padding: 25px;">
+                <p style="color: #aaa; font-size: 0.9rem; margin-top: 0; margin-bottom: 15px; font-family: 'Courier New', monospace; text-align: left;">
+                    > BASE_METRICS_GRAPH_RENDER_OK [IMAGE_ID: CVSS_3]
+                </p>
+                <img src="CVSS_3.PNG" alt="Gráfica de Vector CVSS_3" class="graph-img" style="max-width: 750px; width: 100%; border: 1px solid rgba(0, 255, 65, 0.3); box-shadow: 0 0 15px rgba(0,255,65,0.1);">
+                <h4 style="margin-top: 15px; margin-bottom: 0; font-size: 0.85rem; color: #888; font-weight: normal;">Figura 2.1: Mapeo concéntrico de las propiedades del vector base analizado para el Equipo 2.</h4>
+            </div>
+
+            <h3>Análisis Crítico & Propuestas de Mitigación</h3>
+            <div class="content-box">
+                <strong>Evaluación de Amenazas Asociadas:</strong><br>
+                A pesar de que un score de 4.7 se clasifica en una severidad moderada debido a la restricción de privilegios requeridos altos (PR:H), ignorar el fallo representa un riesgo latente para la gobernanza interna. Los actores de amenazas suelen explotar vulnerabilidades de severidad media como eslabones intermedios dentro de una cadena de intrusión compleja, combinándolas con vectores iniciales de compromiso (como la reutilización de credenciales o elevación local de privilegios).
+                <br><br>
+                <strong>Mitigación & sugerencias de control técnico:</strong>
+                <ul class="mitigation-list">
+                    <li><strong>Auditoría de Credenciales y Roles:</strong> Implementar políticas robustas de contraseñas y reducir el número de cuentas con privilegios administrativos altos.</li>
+                    <li><strong>Mecanismos de Autenticación Fuerte:</strong> Imponer de manera obligatoria esquemas de autenticación multifactor (MFA) para mitigar el riesgo de secuestro de sesiones.</li>
+                    <li><strong>Monitoreo y Control de Logs:</strong> Configurar alertas perimetrales ante comportamientos anómalos o peticiones de red inusuales provenientes de usuarios con roles elevados.</li>
+                    <li><strong>Revisión Continua de Código:</strong> Ejecutar pruebas estáticas (SAST) y parches constantes en el software para eliminar fallas de inyección lógicas.</li>
+                </ul>
             </div>
 
             <h3>Análisis Crítico & Propuestas de Mitigación</h3>
