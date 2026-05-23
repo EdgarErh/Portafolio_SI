@@ -3,128 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyecto Integrador: SGSI Telegram | KortexBr3ach</title>
+    <title>SGSI Telegram | KortexBr3ach</title>
     <link rel="stylesheet" href="style.css"> 
     <link rel="icon" type="image/png" href="KB.png">
     <style>
-        .project-container {
-            background: rgba(15, 23, 42, 0.4) !important;
-            backdrop-filter: blur(20px);
-            border-top: 4px solid #007bff;
+        /* --- ESTILOS NATIVOS DEL PROYECTO SGSI --- */
+        .sgsi-wrapper {
+            background: rgba(10, 15, 25, 0.75) !important;
+            backdrop-filter: blur(12px);
+            border-top: 4px solid #00ffff;
             padding: 40px;
             margin: 40px auto;
             max-width: 1250px;
             font-family: Arial, sans-serif;
-            color: #f8fafc;
+            color: #e2e8f0;
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.05);
         }
-        h2, h3, h4 {
+        
+        .sgsi-header-title {
+            color: #00ffff;
             font-family: 'Courier New', monospace;
-        }
-        h2 {
-            color: #007bff;
-            border-bottom: 2px solid rgba(0, 123, 255, 0.2);
+            border-bottom: 1px dashed rgba(0, 255, 255, 0.3);
             padding-bottom: 15px;
             margin-top: 0;
             text-align: center;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            font-size: 1.8rem;
+            text-transform: uppercase;
         }
-        .meta-panel {
-            border: 1px solid rgba(0, 123, 255, 0.2);
-            background: rgba(15, 23, 42, 0.8);
-            padding: 20px;
-            margin-bottom: 30px;
-            font-family: 'Courier New', monospace;
+
+        /* METADATA PANEL */
+        .audit-meta-panel {
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.6);
+            padding: 25px;
+            margin-bottom: 35px;
+            border-left: 4px solid var(--primary);
         }
         .meta-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            font-size: 0.85rem;
-            color: #cbd5e1;
-        }
-        .meta-item span {
-            color: #00ffd8;
-            font-weight: bold;
-        }
-        .team-list {
-            margin: 5px 0 0 0;
-            padding-left: 20px;
-            color: #94a3b8;
-            font-size: 0.85rem;
-        }
-        
-        /* --- EXECUTIVE KPI DASHBOARD --- */
-        .kpi-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 20px;
-            margin: 30px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+        }
+        .meta-grid span { color: #00ffff; font-weight: bold; }
+        .team-list { margin: 10px 0 0 0; padding-left: 20px; color: #94a3b8; line-height: 1.4; }
+
+        /* KPI DASHBOARD */
+        .kpi-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
         }
         .kpi-card {
-            background: rgba(30, 41, 59, 0.7);
-            border: 1px solid rgba(0, 123, 255, 0.2);
-            padding: 20px;
-            border-radius: 6px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(0, 255, 255, 0.15);
+            padding: 25px 20px;
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
-        .kpi-val {
-            font-size: 2rem;
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, #00ffff, transparent);
+        }
+        .kpi-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.1);
+            border-color: #00ffff;
+        }
+        .kpi-value {
+            font-size: 2.2rem;
             font-weight: bold;
-            color: #00ffd8;
+            color: var(--primary);
             font-family: 'Courier New', monospace;
-            margin: 5px 0;
+            margin: 10px 0;
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
         }
-        .kpi-lbl {
-            font-size: 0.8rem;
+        .kpi-label {
+            font-size: 0.75rem;
             color: #94a3b8;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .content-box {
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid rgba(255,255,255,0.08);
-            padding: 25px;
-            margin-bottom: 30px;
-            border-left: 4px solid #00ffd8;
-            text-align: justify;
-            line-height: 1.25;
-            font-size: 0.95rem;
-        }
-        .section-header-accent {
-            border-left: 4px solid #007bff;
-            padding-left: 12px;
-            color: #fff;
-            margin-top: 35px;
-            margin-bottom: 15px;
-        }
-        .sub-clausula {
-            color: #00ffd8;
-            font-size: 1.1rem;
-            margin-top: 20px;
-            margin-bottom: 10px;
-        }
-        
-        .matrix-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            font-size: 0.85rem;
-        }
-        .matrix-table th {
-            background: #0f172a;
-            color: #00ffd8;
+            letter-spacing: 1px;
             font-family: 'Courier New', monospace;
-            text-align: left;
-            padding: 12px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        .matrix-table td {
-            padding: 12px;
-            border: 1px solid rgba(255,255,255,0.05);
-            background: rgba(30, 41, 59, 0.3);
-            line-height: 1.25;
         }
     </style>
 </head>
@@ -145,375 +112,54 @@
     </header>
 
     <main>
-        <article class="project-container">
-            <h2>SISTEMA DE GESTIÓN DE SEGURIDAD DE LA INFORMACIÓN (SGSI) - TELEGRAM FZ-LLC</h2>
+        <article class="sgsi-wrapper">
+            <h1 class="sgsi-header-title">ISO/IEC 27001:2022 SGSI Framework - Telegram FZ-LLC</h1>
             
-            <div class="meta-panel">
+            <div class="audit-meta-panel">
                 <div class="meta-grid">
-                    <div class="meta-item"><span>Materia:</span> Seguridad Informática II</div>
-                    <div class="meta-item"><span>Profesor:</span> Servando López Contreras</div>
-                    <div class="meta-item"><span>Fecha de Entrega:</span> Mayo de 2026</div>
+                    <div><span>Materia:</span> Seguridad Informática II</div>
+                    <div><span>Auditor Líder (Profesor):</span> Servando López Contreras</div>
+                    <div><span>Fase de Despliegue:</span> Parcial 3 / Mayo 2026</div>
                 </div>
-                <div style="margin-top: 15px;">
-                    <span>Desarrolladores del Sistema (Equipo 2):</span>
+                <div style="margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px;">
+                    <span style="font-family: 'Courier New', monospace; font-size: 0.9rem;">Comité de Implementación SGSI (Equipo 2):</span>
                     <ul class="team-list">
-                        <li>Rodríguez Hernández Edgar Omar (177888)</li>
-                        <li>López López Josué Emmanuel (182078)</li>
-                        <li>Mata Martínez Aaron Efraim (179419)</li>
-                        <li>Rodriguez Morin Estefano Alessandro (178584)</li>
-                        <li>Ros Padilla Iván (177573)</li>
-                        <li>Salinas Carrillo Mauricio Josafat (177406)</li>
+                        <li>Edgar Omar Rodríguez Hernández (177888) - Arquitecto de Seguridad</li>
+                        <li>Josué Emmanuel López López (182078)</li>
+                        <li>Aaron Efraim Mata Martínez (179419)</li>
+                        <li>Estefano Alessandro Rodriguez Morin (178584)</li>
+                        <li>Iván Ros Padilla (177573)</li>
+                        <li>Mauricio Josafat Salinas Carrillo (177406)</li>
                     </ul>
                 </div>
             </div>
 
-            <div class="kpi-grid">
+            <div class="kpi-container">
                 <div class="kpi-card">
-                    <div class="kpi-lbl">Estándar Central</div>
-                    <div class="kpi-val" style="color: #007bff; font-size: 1.5rem;">ISO/IEC 27001:2022</div>
-                    <div class="kpi-lbl">Marco de Auditoría</div>
-                </div>
-                <div class="kpi-card">
-                    <div class="kpi-lbl">Estructura Core</div>
-                    <div class="kpi-val">~30 Engineers</div>
-                    <div class="kpi-lbl">Personal de Élite</div>
+                    <div class="kpi-label">Normativa Base</div>
+                    <div class="kpi-value" style="font-size: 1.6rem; color: #00ffff; padding: 7px 0;">ISO 27001:2022</div>
+                    <div class="kpi-label">Compliance Status</div>
                 </div>
                 <div class="kpi-card">
-                    <div class="kpi-lbl">Controles Declarados</div>
-                    <div class="kpi-val">93 Objetivos</div>
-                    <div class="kpi-lbl">Eficacia SoA</div>
+                    <div class="kpi-label">Volumen Operativo</div>
+                    <div class="kpi-value">900M+</div>
+                    <div class="kpi-label">Usuarios Activos</div>
                 </div>
                 <div class="kpi-card">
-                    <div class="kpi-lbl">Volumen Protegido</div>
-                    <div class="kpi-val">Exabytes (EB)</div>
-                    <div class="kpi-lbl">Data Distribuida</div>
+                    <div class="kpi-label">Implementación SoA</div>
+                    <div class="kpi-value">93/93</div>
+                    <div class="kpi-label">Controles Anexo A</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Superficie de Ataque</div>
+                    <div class="kpi-value" style="color: #ff3333;">MTProto</div>
+                    <div class="kpi-label">Core Criptográfico</div>
                 </div>
             </div>
 
-            <h3 class="section-header-accent">4. CONTEXTO DE LA ORGANIZACIÓN (ISO 27001 Cláusula 4)</h3>
-            
-            <h4 class="sub-clausula">4.1 Comprensión de la Organización y su Contexto</h4>
-            <div class="content-box">
-                Telegram FZ-LLC presenta un modelo de negocio disruptivo en el sector de la mensajería instantánea masiva, dando soporte operativo a más de 900 millones de usuarios activos mensuales globales. El factor crítico diferenciador radica en su organigrama estructural: la corporación es controlada por un equipo compacto de aproximadamente 30 ingenieros de sistemas de élite, eliminando burocracias intermedias. Esta centralización maximiza la agilidad de desarrollo, pero expone un riesgo severo de "Single Point of Failure" (Punto Único de Falla) en el factor humano. Geográficamente descentralizada y con sede operativa principal en Dubái, Emiratos Árabes Unidos, Telegram utiliza esta localización como un escudo jurisdiccional estratégico para mitigar presiones políticas externas. La infraestructura lógica rechaza las nubes comerciales tradicionales, optando por una red compleja de servidores Bare Metal distribuidos en múltiples clústeres internacionales.
-            </div>
-
-            <h4 class="sub-clausula">4.2 Comprensión de las Necesidades y Expectativas de las Partes Interesadas</h4>
-            <div class="content-box">
-                El ecosistema de Telegram interactúa con tres frentes normativos cuyas demandas entran en conflicto directo, requiriendo un balance milimétrico dentro del SGSI:
-                <ul style="padding-left: 20px; margin: 10px 0 0 0; color: #cbd5e1; line-height: 1.35;">
-                    <li style="margin-bottom: 8px;"><strong>Usuarios Globales:</strong> Exigen privacidad absoluta, el funcionamiento ininterrumpido del protocolo de cifrado MTProto, anonimato en canales de difusión masiva y protección total contra filtraciones de metadatos ante agencias de inteligencia.</li>
-                    <li style="margin-bottom: 8px;"><strong>Organismos Reguladores Internacionales (UE / GDPR):</strong> Demandan mecanismos estrictos de moderación para mitigar la proliferación de mercados clandestinos, cooperación judicial legítima bajo mandatos formales y la gobernanza estricta en la retención de datos personales.</li>
-                    <li style="margin-bottom: 8px;"><strong>Infraestructura y Proveedores de Red:</strong> Requieren el cumplimiento estricto de los acuerdos de nivel de servicio (SLA) y la mitigación activa de tráfico malicioso (DDoS) originado desde nodos comprometidos.</li>
-                </ul>
-            </div>
-
-            <h4 class="sub-clausula">4.3 Determinación del Alcance del SGSI</h4>
-            <div class="content-box">
-                El alcance de este Sistema de Gestión se define de manera formal y restrictiva sobre las fronteras lógicas de sus dos activos más críticos:
-                <br><br>
-                <strong>A. Repositorio Maestro del Código Fuente y SDLC:</strong> Protección de los pipelines de integración y despliegue continuo (CI/CD) que compilan las aplicaciones cliente y el núcleo del protocolo de comunicación propietario MTProto.
-                <br><br>
-                <strong>B. Infraestructura Logística de Datos Distribuidos:</strong> Cobertura de la base de datos de identidades distribuidas y los sistemas de almacenamiento perimetral (Buckets y Servidores Bare Metal) que custodian el tráfico de mensajes, previniendo el movimiento lateral de un atacante en caso de compromiso de un nodo regional.
-            </div>
-
-            <h3 class="section-header-accent">5. LIDERAZGO Y COMPROMISO (ISO 27001 Cláusula 5)</h3>
-            <div class="content-box">
-                Dada la estructura horizontal extrema de Telegram, el compromiso de la Alta Dirección es directo y recae de forma unánime en el Director Ejecutivo (CEO), Pável Dúrov. El liderazgo se manifiesta mediante la asignación directa de recursos financieros independientes de fondos de inversión externos, blindando las decisiones de seguridad de presiones comerciales. La Política de Seguridad de la Información (PSI) institucional establece que la privacidad del usuario es un activo no negociable, subordinando la cooperación gubernamental ordinaria al cumplimiento estricto de las directrices del Comité de Seguridad interno. Las responsabilidades lógicas y de administración se dividen de forma segregada entre el núcleo selecto de ingenieros, asegurando que ningún desarrollador de manera unilateral posea el control absoluto sobre las llaves criptográficas maestras de producción.
-            </div>
-
-            <h3 class="section-header-accent">6. PLANIFICACIÓN Y ANÁLISIS DE RIESGOS (ISO 27001 Cláusula 6)</h3>
-            
-            <h4 class="sub-clausula">6.1 Metodología de Identificación y Evaluación Cuantitativa de Riesgos</h4>
-            <div class="content-box">
-                Para garantizar la objetividad en la toma de decisiones estratégicas, el equipo implementó una metodología basada en el estándar de gestión de riesgos <strong>ISO/IEC 27005</strong>. La severidad del riesgo se determina mediante el cálculo cuantitativo del impacto operacional y la probabilidad de ocurrencia del vector de amenaza, utilizando escalas discretas del 1 al 5. La fórmula fundamental que gobierna el análisis es:
-                <br><br>
-                <div style="text-align: center; font-family: 'Courier New', monospace; background: #0f172a; padding: 15px; border: 1px dashed rgba(0, 123, 255, 0.4); color: #00ffd8; font-size: 1.1rem; margin: 15px 0;">
-                    Nivel de Riesgo (R) = Probabilidad (P) × Impacto (I)
-                </div>
-            </div>
-
-            <h4 class="sub-clausula">6.1.1 Criterios para la Asignación de Niveles de Probabilidad</h4>
-            <table class="matrix-table">
-                <thead>
-                    <tr>
-                        <th style="width: 10%;">Valor</th>
-                        <th style="width: 20%;">Nivel</th>
-                        <th>Descripción Técnica Operacional</th>
-                        <th>Frecuencia Estimada</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>1</strong></td>
-                        <td>Muy Baja</td>
-                        <td>El vector de ataque requiere condiciones extremadamente complejas, exploits teóricos o hardware inaccesible.</td>
-                        <td>Menos de una vez cada 5 años</td>
-                    </tr>
-                    <tr>
-                        <td><strong>2</strong></td>
-                        <td>Baja</td>
-                        <td>Amenaza teóricamente viable pero requiere un alto nivel de especialización y recursos por parte del atacante.</td>
-                        <td>Una vez cada 2 a 5 años</td>
-                    </tr>
-                    <tr>
-                        <td><strong>3</strong></td>
-                        <td>Media</td>
-                        <td>Existen antecedentes en la industria o el activo presenta una superficie de exposición moderada en la red.</td>
-                        <td>Una vez al año</td>
-                    </tr>
-                    <tr>
-                        <td><strong>4</strong></td>
-                        <td>Alta</td>
-                        <td>La vulnerabilidad es conocida públicamente, se cuenta con scripts automatizados y la motivación del atacante es constante.</td>
-                        <td>Varias veces al año</td>
-                    </tr>
-                    <tr>
-                        <td><strong>5</strong></td>
-                        <td>Muy Alta</td>
-                        <td>El ataque ocurre de manera automatizada de forma diaria mediante bots o el activo carece de controles perimetrales.</td>
-                        <td>De forma continua / Diaria</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <h4 class="sub-clausula">6.1.2 Criterios para la Evaluación del Impacto Organizacional</h4>
-            <table class="matrix-table">
-                <thead>
-                    <tr>
-                        <th style="width: 10%;">Valor</th>
-                        <th style="width: 20%;">Impacto</th>
-                        <th>Daño Reputacional y de Privacidad</th>
-                        <th>Impacto Financiero y Legal Administrativo</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>1</strong></td>
-                        <td>Insignificante</td>
-                        <td>No afecta la percepción pública ni interrumpe el flujo normal de las operaciones de mensajería.</td>
-                        <td>Sin pérdidas financieras ni sanciones regulatorias asociadas.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>2</strong></td>
-                        <td>Menor</td>
-                        <td>Afecta a un grupo reducido de usuarios de forma local; remediación rápida sin comunicados públicos.</td>
-                        <td>Multas menores subsanables de inmediato por el área jurídica corporativa.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>3</strong></td>
-                        <td>Moderado</td>
-                        <td>Filtración de metadatos no críticos; requiere aclaraciones públicas y cobertura mediática moderada.</td>
-                        <td>Pérdidas económicas por interrupción temporal de servicios de pago o APIs de desarrollo.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>4</strong></td>
-                        <td>Mayor</td>
-                        <td>Compromiso de chats secretos o bases de datos regionales; pérdida masiva de la confianza del usuario.</td>
-                        <td>Litigios internacionales mayores, demandas colectivas y multas severas bajo regulaciones como GDPR.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>5</strong></td>
-                        <td>Catastrófico</td>
-                        <td>Filtración del código fuente maestro del protocolo MTProto o de las llaves criptográficas de descifrado global.</td>
-                        <td>Sanciones gubernamentales que impiden la operación de la empresa o disolución de la entidad legal.</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <h4 class="sub-clausula">6.1.3 Matriz de Riesgos Expandida de Infraestructura Corporativa</h4>
-            <div class="content-box" style="padding: 10px; background: transparent; border: none;">
-                <table class="matrix-table">
-                    <thead>
-                        <tr>
-                            <th style="width: 12%;">ID Riesgo</th>
-                            <th style="width: 18%;">Activo Crítico</th>
-                            <th style="width: 25%;">Escenario de Amenaza Identificado</th>
-                            <th style="width: 6%; text-align: center;">P</th>
-                            <th style="width: 6%; text-align: center;">I</th>
-                            <th style="width: 10%; text-align: center;">Criticidad</th>
-                            <th>Estrategia de Tratamiento Formalizada</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>R-01</strong></td>
-                            <td>Repositorio Código Fuente</td>
-                            <td>Inyección de backdoors o scripts espías maliciosos a través de una cuenta de desarrollador core comprometida.</td>
-                            <td style="text-align: center;">3</td>
-                            <td style="text-align: center;">5</td>
-                            <td style="text-align: center;"><span class="risk-badge badge-high">15 (ALTO)</span></td>
-                            <td><strong>Mitigar:</strong> Despliegue de revisiones pareadas estricta, firmas criptográficas obligatorias por commit e inmutabilidad de la rama principal.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>R-02</strong></td>
-                            <td>Buckets de Datos S3</td>
-                            <td>Fuga masiva de registros históricos y metadatos por configuraciones erróneas o permisos laxos en el rol de IAM.</td>
-                            <td style="text-align: center;">4</td>
-                            <td style="text-align: center;">4</td>
-                            <td style="text-align: center;"><span class="risk-badge badge-high">16 (ALTO)</span></td>
-                            <td><strong>Mitigar:</strong> Bloqueo estricto por política perimetral de accesos públicos en AWS, auditorías de configuración automáticas diarias con AWS Config.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>R-03</strong></td>
-                            <td>Llaves de Cifrado MTProto</td>
-                            <td>Exfiltración o intercepción de las llaves de sesión durante el proceso de intercambio dinámico del protocolo de comunicación.</td>
-                            <td style="text-align: center;">2</td>
-                            <td style="text-align: center;">5</td>
-                            <td style="text-align: center;"><span class="risk-badge badge-high">10 (ALTO)</span></td>
-                            <td><strong>Aceptar:</strong> El diseño matemático del protocolo destruye de forma inmediata las llaves de sesión temporales tras el cierre de la conexión activa.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>R-04</strong></td>
-                            <td>Mesa de Ingenieros</td>
-                            <td>Campañas dirigidas de Spear Phishing o coacción física/legal por agencias de inteligencia extranjeras contra el staff clave.</td>
-                            <td style="text-align: center;">4</td>
-                            <td style="text-align: center;">4</td>
-                            <td style="text-align: center;"><span class="risk-badge badge-high">16 (ALTO)</span></td>
-                            <td><strong>Mitigar:</strong> Implementación de anonimato interno en cuentas de trabajo, uso obligatorio de llaves de seguridad de hardware físicas (Yubikeys) y dispersión geográfica.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>R-05</strong></td>
-                            <td>Servidores Bare Metal</td>
-                            <td>Denegación de servicio distribuida (DDoS) volumétrica masiva saturando las interfaces lógicas de los nodos perimetrales.</td>
-                            <td style="text-align: center;">5</td>
-                            <td style="text-align: center;">3</td>
-                            <td style="text-align: center;"><span class="risk-badge badge-med" style="border: 1px solid #f59e0b; color: #f59e0b; background: rgba(245,158,11,0.15);">15 (MEDIO)</span></td>
-                            <td><strong>Mitigar:</strong> Implementación de enrutamiento Anycast dinámico y balanceadores de carga propietarios distribuidos geográficamente con capacidad de absorción volumétrica.</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <h3 class="section-header-accent">7. SOPORTE, OPERACIÓN Y EVALUACIÓN (ISO 27001 Cláusulas 7 a 10)</h3>
-            
-            <h4 class="sub-clausula">7.1 Soporte y Competencias Corporativas</h4>
-            <div class="content-box">
-                Debido a la ausencia de mandos intermedios y al tamaño ultra-reducido del staff de ingeniería, la competencia del personal se evalúa bajo estándares de alto rendimiento técnico. El SGSI de Telegram estipula que cada uno de los 30 ingenieros core debe mantener certificaciones vigentes en auditoría de código seguro y administración avanzada de arquitecturas Cloud. Los recursos documentales y las políticas de control se gestionan de forma centralizada bajo repositorios criptográficamente protegidos y firmados, asegurando que la concienciación y los flujos normativos internos se actualicen de manera síncrona.
-            </div>
-
-            <h4 class="sub-clausula">8.1 Planificación y Control Operacional</h4>
-            <div class="content-box">
-                La operación diaria del sistema exige la ejecución controlada de los planes de mitigación de riesgos formalizados en la Cláusula 6. Telegram implementa un control de cambios estricto en el código fuente mediante pipelines automatizados. Cada parche o actualización pasa por entornos aislados de pre-producción (Staging) donde se aplican auditorías automáticas de vulnerabilidades antes de liberarse a las aplicaciones que consumen los usuarios finales. Los incidentes de seguridad perimetral se gestionan bajo un esquema de alertas de criticidad automatizadas, escalando de forma inmediata al equipo de guardia ante cualquier anomalía volumétrica en los nodos perimetrales.
-            </div>
-
-            <h4 class="sub-clausula">9.1 Evaluación del Desempeño y Auditorías Internas</h4>
-            <div class="content-box">
-                El monitoreo del desempeño del SGSI se ejecuta de forma continua mediante tableros lógicos de control (SIEM) que analizan las bitácoras de los buckets lógicos y el estado de salud del protocolo criptográfico. De forma semestral, Telegram planifica auditorías internas cruzadas donde los ingenieros revisan configuraciones de infraestructura ajenas a su control diario, garantizando la imparcialidad del proceso. Los hallazgos y métricas de efectividad de los controles se presentan directamente en las sesiones de revisión de la Dirección Ejecutiva para validar la alineación del sistema con los objetivos de privacidad institucionales.
-            </div>
-
-            <h4 class="sub-clausula">10.1 Mejora Continua y Tratamiento de No Conformidades</h4>
-            <div class="content-box">
-                Ante la identificación de una brecha de seguridad, una mala configuración de red o una falla detectada en las auditorías internas, Telegram activa su protocolo de acciones correctivas. El proceso exige la identificación de la causa raíz de la No Conformidad, la documentación técnica del impacto lúdico y el despliegue inmediato de parches lógicos permanentes para evitar la recurrencia del fallo. La mejora continua se fomenta mediante la integración constante de retroalimentación de la comunidad global a través de sus programas de recompensas por hallazgo de errores (Bug Bounty), robusteciendo el perímetro corporativo frente a amenazas emergentes.
-            </div>
-
-            <h3 class="section-header-accent">8. DECLARACIÓN DE APLICABILIDAD (SoA - Statement of Applicability)</h3>
-            <div class="content-box">
-                Con base en los resultados arrojados por el análisis cuantitativo de riesgos, se estructuró la Declaración de Aplicabilidad institucional. De los 93 controles normativos divididos en los 4 nuevos dominios de la versión <strong>ISO/IEC 27001:2022</strong>, Telegram aplica el 100% de los objetivos defensivos técnicos y organizacionales, justificando su implementación de la siguiente manera:
-            </div>
-
-            <h4 class="sub-clausula">8.1 Desglose Masivo de Controles del Anexo A Aplicados al Entorno Corporativo</h4>
-            <table class="matrix-table">
-                <thead>
-                    <tr>
-                        <th style="width: 10%;">Control</th>
-                        <th style="width: 20%;">Nombre del Control</th>
-                        <th style="width: 12%;">Estatus</th>
-                        <th style="width: 25%;">Justificación de Inclusión Técnica</th>
-                        <th>Mecanismo de Implementación Operativo</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>A.5.15</strong></td>
-                        <td>Control de Acceso</td>
-                        <td><span style="color: #00ffd8; font-weight: bold;">[APLICA]</span></td>
-                        <td>Crítico para restringir privilegios en la asignación de llaves criptográficas y roles en AWS.</td>
-                        <td>Implementación del principio de privilegios mínimos basado en roles (RBAC) con tokens de hardware eficientes.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>A.5.7</strong></td>
-                        <td>Inteligencia de Amenazas</td>
-                        <td><span style="color: #00ffd8; font-weight: bold;">[APLICA]</span></td>
-                        <td>Necesario para anticipar vectores de explotación de Día Cero y tácticas de grupos APT.</td>
-                        <td>Consumo automatizado de feeds de IOCs e integración con plataformas globales de ciberinteligencia.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>A.6.3</strong></td>
-                        <td>Concienciación en Seguridad</td>
-                        <td><span style="color: #00ffd8; font-weight: bold;">[APLICA]</span></td>
-                        <td>Obligatorio para mitigar el Spear Phishing dirigido al núcleo de 30 ingenieros de la mesa directiva.</td>
-                        <td>Simulaciones de ingeniería social semestrales controladas y talleres de resiliencia operativa ante extorsión.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>A.7.14</strong></td>
-                        <td>Borrado Seguro de Activos</td>
-                        <td><span style="color: #00ffd8; font-weight: bold;">[APLICA]</span></td>
-                        <td>Previene la recuperación de chats residuales o fragmentos de código de discos de servidores dados de baja.</td>
-                        <td>Aplicación de algoritmos de desmagnetización industrial y destrucción física certificada de soportes de almacenamiento.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>A.8.20</strong></td>
-                        <td>Seguridad en Redes</td>
-                        <td><span style="color: #00ffd8; font-weight: bold;">[APLICA]</span></td>
-                        <td>Evita la intercepción de tráfico de red y detiene ataques volumétricos distribuidos (DDoS).</td>
-                        <td>Uso de túneles TLS restrictivos en capas de transporte e infraestructura de enrutamiento Anycast propietario.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>A.8.24</strong></td>
-                        <td>Uso de Criptografía</td>
-                        <td><span style="color: #00ffd8; font-weight: bold;">[APLICA]</span></td>
-                        <td>Es el pilar fundamental que resguarda la privacidad y confidencialidad del tráfico de mensajes del usuario.</td>
-                        <td>Implementación obligatoria del protocolo simétrico/asimétrico MTProto con algoritmos SHA-256 y AES-256.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>A.8.25</strong></td>
-                        <td>Ciclo de Vida de Desarrollo Seguro</td>
-                        <td><span style="color: #00ffd8; font-weight: bold;">[APLICA]</span></td>
-                        <td>Garantiza que el código liberado en producción carezca de backdoors o vulnerabilidades lógicas.</td>
-                        <td>Inyección obligatoria de escaneos estáticos (SAST) y análisis dinámicos (DAST) en los pipelines de Git antes de producción.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>A.8.12</strong></td>
-                        <td>Gestión de Privilegios Especiales</td>
-                        <td><span style="color: #00ffd8; font-weight: bold;">[APLICA]</span></td>
-                        <td>Evita que un único desarrollador de forma unilateral modifique la arquitectura lógica global.</td>
-                        <td>Políticas estrictas de doble autorización (M de N firmas criptográficas) para la ejecución de cambios mayores.</td>
-                    </tr>
-                </tbody>
-            </table>
-            <h3 class="section-header-accent">9. CONCLUSIONES Y RECOMENDACIONES ESTRATÉGICAS</h3>
-            <div class="content-box">
-                La estructuración e implementación de este Sistema de Gestión de Seguridad de la Información (SGSI) bajo la norma ISO/IEC 27001:2022 demuestra que es totalmente viable fusionar el modelo operativo ultra-flexible de Telegram con un marco de gobierno de ciberseguridad corporativo de clase mundial. Al mitigar de manera proactiva los riesgos críticos identificados (inyección de vulnerabilidades en el protocolo de comunicación y fugas de datos en arquitecturas distribuidas), la empresa no solo blinda su infraestructura tecnológica frente a amenazas emergentes como la comunicación "bot-to-bot", sino que eleva de forma contundente la confianza depositada por sus más de 900 millones de usuarios a nivel mundial.
-                <br><br>
-                <strong>Recomendaciones Clave para la Mesa Directiva:</strong>
-                <ul style="padding-left: 20px; margin: 10px 0 0 0; color: #cbd5e1; line-height: 1.35;">
-                    <li style="margin-bottom: 6px;">Mantener la automatización rigurosa de los escaneos SAST/DAST dentro de los pipelines lógicos de integración continua para no burocratizar el ritmo de desarrollo del equipo central.</li>
-                    <li style="margin-bottom: 6px;">Ejecutar anualmente la matriz de riesgos cuantitativa para actualizar el mapa de calor corporativo ante nuevas presiones geopolíticas y regulatorias globales.</li>
-                    <li>Garantizar que el uso obligatorio de los tokens físicos Yubikeys se mantenga como el único canal de acceso a las interfaces administrativas y consolas de producción distribuidas.</li>
-                </ul>
-            </div>
-
-            <h4 class="sub-clausula" style="text-align: center; margin-top: 40px;">PANEL DE ACCIONES Y SOPORTE DOCUMENTAL</h4>
-            <div style="display: flex; gap: 20px; justify-content: center; margin-top: 15px; margin-bottom: 20px;">
-                <a href="Parcial3.html" target="_self" style="background: #007bff; color: #fff; padding: 12px 24px; text-decoration: none; border-radius: 4px; font-weight: bold; font-family: 'Courier New', monospace; font-size: 0.9rem; transition: background 0.3s;">
-                    &lt; Volver al Parcial 3
-                </a>
-                <a href="index.html" target="_self" style="background: rgba(30, 41, 59, 0.8); color: #00ffd8; padding: 12px 24px; text-decoration: none; border-radius: 4px; font-weight: bold; font-family: 'Courier New', monospace; font-size: 0.9rem; border: 1px solid rgba(0, 255, 216, 0.3); transition: background 0.3s;">
-                    Regresar al Inicio
-                </a>
-            </div>
-            
-            <p style="text-align: center; font-size: 0.75rem; color: #64748b; font-family: 'Courier New', monospace; margin-top: 30px;">
-                Telegram SGSI Framework v1.0.4 • Compilado bajo Reglas de Cumplimiento de Seguridad Informática II • UPSLP 2026
-            </p>
-        </article>
+            </article>
     </main>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            console.log("[SGSI LOG]: Portal de Ciberseguridad Inicializado con Éxito.");
-            console.log("[SGSI LOG]: Cargando Cláusulas de Auditoría 4 a 10...");
-            console.log("[SGSI LOG]: Datos de Alumnos Sincronizados Correctamente.");
-        });
-    </script>
+    <script src="dynamic-bg.js"></script> 
 </body>
 </html>
