@@ -8,11 +8,9 @@
     <link rel="icon" type="image/png" href="KB.png">
     
     <style>
-        /* --- CONTENEDOR PRINCIPAL DE CRISTAL OSCURO --- */
         .sgsi-audit-container {
             background: rgba(5, 8, 15, 0.85) !important;
             backdrop-filter: blur(12px) !important;
-            -webkit-backdrop-filter: blur(12px) !important;
             border: 1px solid rgba(0, 255, 65, 0.2) !important;
             border-top: 4px solid #00ffff !important;
             padding: 40px;
@@ -24,7 +22,6 @@
             z-index: 5;
         }
 
-        /* --- TIPOGRAFÍAS Y ENCABEZADOS --- */
         .sgsi-title-main {
             color: #00ffff !important;
             font-family: 'Courier New', monospace !important;
@@ -35,6 +32,7 @@
             margin-bottom: 25px;
             border-bottom: 1px dashed rgba(0, 255, 255, 0.3) !important;
             padding-bottom: 15px;
+            text-align: center;
         }
         
         .sgsi-section-title {
@@ -42,37 +40,23 @@
             font-family: 'Courier New', monospace !important;
             font-size: 1.35rem !important;
             text-transform: uppercase !important;
-            letter-spacing: 1px !important;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 15px;
+            border-left: 4px solid #00ffff;
             margin-top: 45px;
             margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .sgsi-sub-clausula {
-            color: #00ff41 !important;
-            font-family: 'Courier New', monospace !important;
-            font-size: 1.05rem !important;
-            margin-top: 25px;
-            margin-bottom: 12px;
-        }
-
-        /* --- BLOQUES DE CONTENIDO TEXTUAL --- */
-        .sgsi-content-box {
-            background: rgba(0, 0, 0, 0.6) !important;
-            border: 1px solid rgba(0, 255, 65, 0.15) !important;
-            border-left: 4px solid #00ff41 !important;
-            padding: 25px;
-            margin-bottom: 25px;
             border-radius: 4px;
-            font-family: Arial, sans-serif !important;
-            font-size: 0.95rem !important;
-            line-height: 1.25 !important;
-            text-align: justify;
         }
 
-        /* --- PANEL DE METADATOS (EQUIPO) --- */
+        .sgsi-sub-title {
+            color: #00ff41;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            margin-top: 30px;
+        }
+
+        /* PANEL METADATOS */
         .audit-meta-panel {
             border: 1px solid rgba(0, 255, 65, 0.25) !important;
             background: rgba(0, 0, 0, 0.7) !important;
@@ -90,93 +74,62 @@
         .meta-grid span { color: #00ff41; font-weight: bold; }
         .team-list { margin: 12px 0 0 0; padding-left: 20px; color: #94a3b8; font-size: 0.85rem; line-height: 1.4; }
 
-        /* --- GRID DE DASHBOARD EJECUTIVO (KPIs) --- */
-        .kpi-grid {
+        /* GRIDS & CARDS VISUALES */
+        .visual-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 20px;
-            margin-bottom: 40px;
+            margin-bottom: 25px;
         }
-        .kpi-card {
-            background: rgba(10, 15, 30, 0.85) !important;
-            border: 1px solid rgba(0, 255, 255, 0.2) !important;
-            padding: 22px 15px;
-            text-align: center;
-            border-radius: 4px;
-            transition: 0.3s ease;
-        }
-        .kpi-card:hover {
-            border-color: #00ff41 !important;
-            box-shadow: 0 0 15px rgba(0, 255, 65, 0.15) !important;
-            transform: translateY(-3px);
-        }
-        .kpi-value {
-            font-size: 1.9rem;
-            font-weight: bold;
-            color: var(--primary);
-            font-family: 'Courier New', monospace !important;
-            margin: 8px 0;
-            text-shadow: 0 0 8px rgba(0, 255, 65, 0.3);
-        }
-        .kpi-label {
-            font-size: 0.75rem;
-            color: #94a3b8;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-family: 'Courier New', monospace !important;
-        }
-
-        /* --- DISEÑO DE TARJETAS DE ACTIVOS (GRID) --- */
-        .asset-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 20px;
-            margin-top: 15px;
-        }
-        .asset-card {
-            background: rgba(10, 10, 15, 0.75) !important;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-top: 3px solid #007bff;
+        .v-card {
+            background: rgba(10, 15, 30, 0.85);
+            border: 1px solid rgba(0, 255, 255, 0.15);
             padding: 20px;
             border-radius: 4px;
             transition: 0.3s ease;
+            position: relative;
         }
-        .asset-card:hover {
-            border-color: #00ffff !important;
-            transform: translateY(-2px);
+        .v-card:hover {
+            border-color: #00ff41;
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.15);
+            transform: translateY(-3px);
         }
-        .asset-card.external { border-top-color: #ff9900; }
-        .asset-title { font-family: 'Courier New', monospace; font-size: 1.1rem; color: #fff; margin: 0 0 10px 0; }
-        .asset-policy { background: rgba(0, 255, 65, 0.03); border-left: 3px solid #00ff41; padding: 10px; margin-top: 15px; font-size: 0.85rem; line-height: 1.3; }
-        .asset-policy.ext-policy { background: rgba(255, 153, 0, 0.03); border-left-color: #ff9900; }
-        .policy-label { font-weight: bold; color: #00ff41; display: block; margin-bottom: 4px; }
-        .policy-label.ext-label { color: #ff9900; }
-
-        /* --- MATRICES Y TABLAS DE AUDITORÍA --- */
-        .audit-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
+        .v-card.highlight {
+            border-top: 3px solid #00ffff;
+        }
+        .v-icon {
+            font-size: 1.8rem;
+            color: #00ff41;
+            margin-bottom: 10px;
+            font-family: 'Courier New', monospace;
+        }
+        .v-title {
+            font-family: 'Courier New', monospace;
+            color: #fff;
+            font-size: 1rem;
+            margin: 0 0 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 5px;
+        }
+        .v-text {
             font-size: 0.85rem;
-            background: rgba(5, 5, 5, 0.5);
+            color: #cbd5e1;
+            line-height: 1.4;
+            margin: 0;
         }
-        .audit-table th, .audit-table td {
-            border: 1px solid rgba(0, 255, 65, 0.15) !important;
-            padding: 10px 12px;
-            text-align: left;
-            line-height: 1.25;
+
+        /* TEXTO BASE */
+        .content-box {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(0, 255, 65, 0.15);
+            border-left: 4px solid #00ff41;
+            padding: 20px;
+            border-radius: 4px;
+            font-family: Arial, sans-serif;
+            font-size: 0.95rem;
+            line-height: 1.3;
+            color: #cbd5e1;
         }
-        .audit-table th {
-            background: rgba(0, 255, 65, 0.05) !important;
-            color: #00ffff !important;
-            font-family: 'Courier New', monospace !important;
-        }
-        .audit-table td strong { color: #fff; }
-        .risk-badge { font-family: 'Courier New', monospace; font-weight: bold; padding: 2px 6px; border-radius: 3px; font-size: 0.8rem; }
-        .badge-extreme { background: rgba(239, 68, 68, 0.15); color: #ef4444; border: 1px solid #ef4444; }
-        .badge-high { background: rgba(249, 115, 22, 0.15); color: #f97316; border: 1px solid #f97316; }
-        .badge-med { background: rgba(245, 158, 11, 0.15); color: #f59e0b; border: 1px solid #f59e0b; }
-        .badge-low { background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid #10b981; }
     </style>
 </head>
 <body>
@@ -202,61 +155,102 @@
             <div class="audit-meta-panel">
                 <div class="meta-grid">
                     <div><span>Materia:</span> Seguridad Informática II</div>
-                    <div><span>Auditor Líder (Prof):</span> Mtro. Servando López Contreras</div>
-                    <div><span>Fecha Oficial:</span> 15 de mayo de 2026</div>
+                    <div> Mtro. Servando López Contreras</div>
+                    <div><span>Fase:</span> Parcial 3 / Mayo 2026</div>
                 </div>
                 <div style="margin-top: 15px; border-top: 1px solid rgba(0,255,65,0.1); padding-top: 12px;">
-                    <span style="font-family: 'Courier New', monospace; font-size: 0.9rem; color: #fff;">Comité de Implementación (Equipo 2):</span>
-                    <ul class="team-list">
-                        <li>Rodríguez Hernández Edgar Omar (177888) - Arquitecto de Seguridad</li>
-                        <li>López López Josué Emmanuel (182078)</li>
-                        <li>Mata Martínez Aaron Efraim (179419)</li>
-                        <li>Rodriguez Morin Estefano Alessandro (178584)</li>
-                        <li>Ros Padilla Iván (177573)</li>
-                        <li>Salinas Carrillo Mauricio Josafat (177406)</li>
+                    <span style="font-family: 'Courier New', monospace; font-size: 0.9rem; color: #fff;">Comité de Implementación SGSI (Equipo 2):</span>
+                    <ul class="team-list" style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px;">
+                        <li>Edgar Omar Rodríguez Hernández (177888)</li>
+                        <li>Josué Emmanuel López López (182078)</li>
+                        <li>Aaron Efraim Mata Martínez (179419)</li>
+                        <li>Estefano Alessandro Rodriguez Morin (178584)</li>
+                        <li>Iván Ros Padilla (177573)</li>
+                        <li>Mauricio Josafat Salinas Carrillo (177406)</li>
                     </ul>
                 </div>
             </div>
 
-            <div class="kpi-grid">
-                <div class="kpi-card">
-                    <div class="kpi-label">Normativa Seleccionada</div>
-                    <div class="kpi-value" style="font-size: 1.5rem; color: #00ffff;">ISO/IEC 27001:2022</div>
-                    <div class="kpi-label">Marco Estratégico</div>
+            <div class="visual-grid">
+                <div class="v-card" style="text-align: center;">
+                    <div class="v-text" style="text-transform: uppercase;">Normativa</div>
+                    <div class="v-icon" style="color: #00ffff; font-size: 1.6rem; margin: 5px 0;">ISO 27001:2022</div>
                 </div>
-                <div class="kpi-card">
-                    <div class="kpi-label">Volumen de Activos</div>
-                    <div class="kpi-value">+1,000 M</div>
-                    <div class="kpi-label">Usuarios Globales</div>
+                <div class="v-card" style="text-align: center;">
+                    <div class="v-text" style="text-transform: uppercase;">Superficie de Ataque</div>
+                    <div class="v-icon" style="color: #ff3333; font-size: 1.6rem; margin: 5px 0;">MTProto 2.0</div>
                 </div>
-                <div class="kpi-card">
-                    <div class="kpi-label">Estructura Interna</div>
-                    <div class="kpi-value">30 Ing.</div>
-                    <div class="kpi-label">Núcleo Técnico Flat</div>
-                </div>
-                <div class="kpi-card">
-                    <div class="kpi-label">Core Criptográfico</div>
-                    <div class="kpi-value" style="color: #ff3333;">MTProto 2.0</div>
-                    <div class="kpi-label">Superficie de Ataque</div>
+                <div class="v-card" style="text-align: center;">
+                    <div class="v-text" style="text-transform: uppercase;">Implementación</div>
+                    <div class="v-icon" style="font-size: 1.6rem; margin: 5px 0;">93/93 Controles</div>
                 </div>
             </div>
 
-            <h2 class="sgsi-section-title">1. Contexto Organizacional y Estructura (Cláusula 4)</h2>
+            <h2 class="sgsi-section-title">1. Contexto de la Organización</h2>
             
-            <div class="sgsi-content-box">
-                <strong>Historia y Descripción de la Empresa:</strong> Telegram es una aplicación de mensajería enfocada en la velocidad y la seguridad, caracterizada por ser rápida, simple y gratuita, permitiendo la sincronización multi-dispositivo en tiempo real. Fundada originalmente en 2013 por los hermanos Pável y Nikolái Dúrov, la plataforma experimentó hitos de migración masiva globales (como en enero de 2021), consolidándose en la actualidad como una de las cinco aplicaciones más descargadas del mundo, superando la barrera de los 1000 millones de usuarios activos globales que buscan políticas legítimas de protección de datos y esquemas de privacidad robustos.
-                <br><br>
-                <strong>Organigrama y Estructura Horizontal (Flat Structure):</strong> Telegram opera bajo una filosofía de minimalismo radical, funcionando como una startup tecnológica de élite y evadiendo las burocracias de las corporaciones multinacionales tradicionales. Su organigrama carece por completo de mandos intermedios o directores de producto ordinarios, distribuyéndose formalmente en:
-                <ul style="padding-left: 20px; margin-top: 10px;">
-                    <li style="margin-bottom: 6px;"><strong>Nivel Estratégico:</strong> Comandado directamente por los hermanos Dúrov, donde Pável define de forma unánime la visión ideológica y el diseño del producto, mientras Nikolái lidera la arquitectura técnica y el cifrado maestro.</li>
-                    <li style="margin-bottom: 6px;"><strong>Nivel Operativo Especializado:</strong> Bajo la conducción de Ilia Perekopsky en la Vicepresidencia de Operaciones, controlando la monetización (Telegram Premium) y la administración financiera mínima.</li>
-                    <li style="margin-bottom: 6px;"><strong>Nivel de Ejecución Técnica:</strong> Un grupo compacto denominado "Núcleo de Ingeniería", conformado por aproximadamente 30 desarrolladores Senior seleccionados mediante rigurosos concursos globales, encargados de la base de código, la seguridad del protocolo y con acceso total al despliegue.</li>
-                    <li><strong>Nivel de Soporte Externo:</strong> Sostenido por una red global de moderadores distribuidos y la Fuerza de Soporte de Telegram (TSF), un cuerpo de voluntarios descentralizados que absorbe la atención al usuario, permitiendo que la empresa mantenga una nómina oficial sumamente reducida y cerrada.</li>
-                </ul>
-                El modelo económico de la organización refuerza este diseño compacto al rechazar el capital de riesgo tradicional. Al financiarse exclusivamente mediante la fortuna personal de su fundador y la emisión de bonos de deuda, Telegram no rinde cuentas a juntas directivas externas o accionistas públicos, asegurando que su estructura organizativa permanezca completamente blindada, inalterable y orientada de forma obsesiva a la privacidad de la información.
+            <div class="content-box" style="margin-bottom: 20px;">
+                Telegram FZ-LLC, fundada en 2013, es una plataforma de mensajería con sede en Dubái orientada a la privacidad extrema. Se financia exclusivamente de capital privado (rechazando inversionistas externos) para asegurar autonomía frente a presiones geopolíticas.
             </div>
 
-            </article>
+            <h3 class="sgsi-sub-title">> Organigrama de Estructura Plana (Flat Structure)</h3>
+            <div class="visual-grid">
+                <div class="v-card highlight">
+                    <h4 class="v-title">1. Nivel Estratégico</h4>
+                    <p class="v-text"><span style="color:#00ffff;">Pável Dúrov (CEO) & Nikolái Dúrov (CTO).</span><br>Toma de decisiones unánime, diseño de producto y arquitectura del cifrado maestro.</p>
+                </div>
+                <div class="v-card highlight">
+                    <h4 class="v-title">2. Nivel Operativo</h4>
+                    <p class="v-text"><span style="color:#00ffff;">Ilia Perekopsky (VP Operaciones).</span><br>Gestión de infraestructura global, monetización (Premium) y administración financiera mínima.</p>
+                </div>
+                <div class="v-card highlight">
+                    <h4 class="v-title">3. Núcleo Técnico</h4>
+                    <p class="v-text"><span style="color:#00ffff;">~30 Ingenieros de Élite.</span><br>Desarrollo base, mantenimiento del protocolo y despliegue. Sin mandos intermedios ni burocracia.</p>
+                </div>
+                <div class="v-card highlight">
+                    <h4 class="v-title">4. Soporte Descentralizado</h4>
+                    <p class="v-text"><span style="color:#00ffff;">Red TSF & Moderadores.</span><br>Voluntarios globales y sistemas automatizados que gestionan peticiones y contenido de usuarios.</p>
+                </div>
+            </div>
+
+            <h2 class="sgsi-section-title">2. Justificación Estratégica y Procesos Críticos</h2>
+            
+            <h3 class="sgsi-sub-title">> ¿Por qué adoptar ISO/IEC 27001:2022?</h3>
+            <div class="visual-grid" style="grid-template-columns: 1fr 1fr;">
+                <div class="v-card">
+                    <h4 class="v-title">[+] Agilidad sin Burocracia</h4>
+                    <p class="v-text">La norma es proporcional. Permite a los 30 ingenieros operar rápido sin el peso corporativo de marcos como ITIL, enfocándose solo en controles de seguridad.</p>
+                </div>
+                <div class="v-card">
+                    <h4 class="v-title">[+] Blindaje Interno</h4>
+                    <p class="v-text">Limita el "Single Point of Failure". Si un ingeniero es comprometido, el principio de mínimo privilegio restringe su impacto en la red global.</p>
+                </div>
+                <div class="v-card">
+                    <h4 class="v-title">[+] Armonización Legal</h4>
+                    <p class="v-text">Otorga cumplimiento internacional ante regulaciones estrictas como el GDPR europeo y la Ley Federal de los Emiratos Árabes Unidos.</p>
+                </div>
+                <div class="v-card">
+                    <h4 class="v-title">[+] Gobernanza Matemática</h4>
+                    <p class="v-text">Obliga a la dirección a justificar decisiones con análisis de riesgos cuantitativos ($R=P \times I$), eliminando la subjetividad.</p>
+                </div>
+            </div>
+
+            <h3 class="sgsi-sub-title">> Alcance: Los 3 Procesos a Proteger</h3>
+            <div class="visual-grid" style="grid-template-columns: repeat(3, 1fr);">
+                <div class="v-card" style="border-top: 3px solid #ff9900;">
+                    <h4 class="v-title">A. SDLC Seguro</h4>
+                    <p class="v-text">Protección del código fuente mediante análisis SAST/DAST automatizado antes de cualquier despliegue.</p>
+                </div>
+                <div class="v-card" style="border-top: 3px solid #ff9900;">
+                    <h4 class="v-title">B. Infraestructura S3</h4>
+                    <p class="v-text">Gestión de servidores bare-metal distribuidos en múltiples jurisdicciones para evitar incautaciones globales.</p>
+                </div>
+                <div class="v-card" style="border-top: 3px solid #ff9900;">
+                    <h4 class="v-title">C. Criptografía</h4>
+                    <p class="v-text">Gobernanza sobre generación, uso y fragmentación de las llaves maestras del protocolo MTProto.</p>
+                </div>
+            </div>
+
+        </article>
     </main>
 
     <script src="dynamic-bg.js"></script> 
