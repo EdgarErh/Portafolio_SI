@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 18: Modelo Diamante de Intrusión | KortexBr3ach</title>
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="icon" type="image/png" href="KB.png">
+    <style>
+        .activity-container {
+            background: rgba(26, 26, 26, 0.3) !important;
+            backdrop-filter: blur(15px);
+            border-left: 4px solid var(--primary);
+            padding: 40px;
+            margin: 40px auto;
+            max-width: 1200px;
+            font-family: Arial, sans-serif;
+        }
+        h2, h3, h4 {
+            font-family: 'Courier New', monospace;
+            color: var(--primary);
+        }
+        h2 {
+            border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+            padding-bottom: 10px;
+            margin-top: 0;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+        .meta-panel {
+            border: 1px solid rgba(0, 255, 65, 0.2);
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            margin-bottom: 30px;
+            font-family: 'Courier New', monospace;
+        }
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            font-size: 0.85rem;
+            color: #ccc;
+        }
+        .meta-item span {
+            color: var(--primary);
+            font-weight: bold;
+        }
+        .team-list {
+            margin: 5px 0 0 0;
+            padding-left: 20px;
+            color: #aaa;
+            font-size: 0.8rem;
+        }
+        .content-box {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(0, 255, 65, 0.1);
+            padding: 20px;
+            margin-bottom: 25px;
+            border-left: 3px solid var(--primary);
+            text-align: justify;
+            line-height: 1.25;
+            color: #eee;
+            font-size: 0.95rem;
+        }
+
+        /* --- RECURSO VISUAL 1: TABLERO CUADRANTE DIAMANTE INTERACTIVO --- */
+        .diamond-board {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            position: relative;
+            margin: 30px 0;
+        }
+        @media (min-width: 768px) {
+            .diamond-board {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .diamond-card {
+            background: rgba(10, 10, 10, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 4px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .diamond-card:hover {
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.15);
+            background: rgba(0, 0, 0, 0.9);
+        }
+        .card-adversario { border-top: 4px solid var(--primary); }
+        .card-capacidad { border-top: 4px solid #00ffff; }
+        .card-infraestructura { border-top: 4px solid #ff9900; }
+        .card-victima { border-top: 4px solid #ff3333; }
+        
+        .card-tag {
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 2px;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+        .tag-adv { background: rgba(0,255,65,0.1); color: var(--primary); border: 1px solid var(--primary); }
+        .tag-cap { background: rgba(0,255,255,0.1); color: #00ffff; border: 1px solid #00ffff; }
+        .tag-inf { background: rgba(255,153,0,0.1); color: #ff9900; border: 1px solid #ff9900; }
+        .tag-vic { background: rgba(255,51,51,0.1); color: #ff3333; border: 1px solid #ff3333; }
+
+        /* --- RECURSO VISUAL 2: LÍNEA DE TIEMPO (CYBER KILL CHAIN) --- */
+        .kill-chain-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 25px 0;
+            padding-left: 10px;
+            border-left: 2px dashed rgba(0, 255, 65, 0.3);
+        }
+        .kill-chain-step {
+            position: relative;
+            padding-left: 25px;
+        }
+        .kill-chain-step::before {
+            content: ">>";
+            font-family: 'Courier New', monospace;
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+        .step-title {
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+        .step-desc {
+            font-size: 0.88rem;
+            color: #aaa;
+            line-height: 1.25;
+            text-align: justify;
+        }
+
+        /* --- RECURSO VISUAL 3: CONTENEDOR ANCHO PARA MAPAS DE RED --- */
+        .big-diagram-box {
+            border: 1px solid rgba(0, 255, 65, 0.2);
+            background: rgba(0, 0, 0, 0.6);
+            padding: 25px;
+            text-align: center;
+            margin: 35px 0;
+        }
+        .diagram-img {
+            max-width: 900px;
+            width: 100%;
+            height: auto;
+            border: 1px solid rgba(0, 255, 65, 0.3);
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
+            background: #000;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="dynamic-background"></div> 
+    
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="Parcial1.html">Parcial 1</a></li>
+                <li><a href="Parcial2.html">Parcial 2</a></li>
+                <li><a href="Parcial3.html" class="active">Parcial 3</a></li>
+                <li><a href="Final.html">Final</a></li>
+                <li><a href="Proyectos.html">Proyectos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <article class="activity-container">
+            <h2>07. EVIDENCIA TÉCNICA: DIAMOND MODEL OF INTRUSION ANALYSIS</h2>
+            <br>
+            
+            <div class="meta-panel">
+                <div class="meta-grid">
+                    <div class="meta-item"><span>Materia:</span> Seguridad Informática II</div>
+                    <div class="meta-item"><span>Profesor:</span> Servando López Contreras</div>
+                    <div class="meta-item"><span>Fecha:</span> 15 de marzo de 2026</div>
+                </div>
+                <div style="margin-top: 15px;">
+                    <span>Equipo 2:</span>
+                    <ul class="team-list">
+                        <li>Rodríguez Hernández Edgar Omar (177888)</li>
+                        <li>López López Josué Emmanuel (182078)</li>
+                        <li>Mata Martínez Aaron Efraim (179419)</li>
+                        <li>Rodriguez Morin Estefano Alessandro (178584)</li>
+                        <li>Ros Padilla Iván (177573)</li>
+                        <li>Salinas Carrillo Mauricio Josafat (177406)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Introducción al Modelado Científico</h3>
+            <div class="content-box">
+                El Modelo Diamante es una metodología de inteligencia de ciberamenazas diseñada para analizar intrusiones informáticas mediante el establecimiento de relaciones lógicas y matemáticas entre sus cuatro componentes clave básicos. Al estructurar estos elementos de forma relacional, el equipo de analistas de incidentes puede rastrear de manera ágil los movimientos horizontales y predecir los próximos vectores lógicos de ataque. Este análisis documenta de forma exhaustiva el ataque real a la infraestructura en la nube de Canvas LMS ocurrido en mayo de 2026.
+            </div>
+            <h3>Estructura Operativa: Los Cuatro Vértices del Diamante</h3>
+            <div class="diamond-board">
+                
+                <div class="diamond-card card-adversario">
+                    <span class="card-tag tag-adv">CORE_ADV</span>
+                    <h4 style="margin: 0 0 10px 0; font-size: 1.1rem; color: #fff;">1. Adversario: Nexo Criminal</h4>
+                    <p class="step-desc" style="color: #ccc;">
+                        <strong>Operador Táctico:</strong> El grupo delictivo transnacional <strong>ShinyHunters</strong>[cite: 249].<br>
+                        <strong>Motivación Primaria:</strong> Lucro financiero masivo mediante extorsión y venta de bases de datos sensibles en foros clandestinos (BreachForums). Se identificó una firma operativa caracterizada por el despliegue rápido de exploits y demandas de rescate agresivas en canales digitales automatizados.
+                    </p>
+                </div>
+
+                <div class="diamond-card card-capacidad">
+                    <span class="card-tag tag-cap">CORE_CAP</span>
+                    <h4 style="margin: 0 0 10px 0; font-size: 1.1rem; color: #fff;">2. Capacidad: Arsenal Lógico</h4>
+                    <p class="step-desc" style="color: #ccc;">
+                        <strong>Vectores de Ataque:</strong> Uso de vulnerabilidades de Día Cero (Zero-Day) de evasión de autenticación y scripts avanzados de automatización para el barrido de tokens criptográficos. Implementaron herramientas de interceptación lógica capaces de evadir firmas de auditoría convencionales y eludir los perímetros de inspección básicos de la API.
+                    </p>
+                </div>
+
+                <div class="diamond-card card-infraestructura">
+                    <span class="card-tag tag-inf">CORE_INF</span>
+                    <h4 style="margin: 0 0 10px 0; font-size: 1.1rem; color: #fff;">3. Infraestructura: Nube Híbrida</h4>
+                    <p class="step-desc" style="color: #ccc;">
+                        <strong>Entorno Afectado:</strong> Servidores centralizados de almacenamiento en la nube (Buckets de Amazon S3) de AWS asociados a la plataforma Canvas LMS[cite: 249]. El ataque utilizó nodos proxy distribuidos globalmente (Fast-Flux DNS) y servidores de comando y control (C2) para enmascarar los túneles de exfiltración de tráfico.
+                    </p>
+                </div>
+
+                <div class="diamond-card card-victima">
+                    <span class="card-tag tag-vic">CORE_VIC</span>
+                    <h4 style="margin: 0 0 10px 0; font-size: 1.1rem; color: #fff;">4. Víctima: Perfil Institucional</h4>
+                    <p class="step-desc" style="color: #ccc;">
+                        <strong>Objetivo Central:</strong> Instancias lógicas y bases de datos de la plataforma educativa virtual <strong>Canvas LMS</strong>[cite: 249]. El impacto operativo directo incluyó el compromiso absoluto y exfiltración de un volumen crítico equivalente a <strong>3.65 Terabytes (TB)</strong> de información personal, registros académicos e identidades institucionales de usuarios.
+                    </p>
+                </div>
+
+            </div>
+
+            <h3>Línea de Tiempo Táctica: Fases del Ataque (Cyber Kill Chain)</h3>
+            <div class="content-box" style="border-left-color: #00ffff;">
+                <div class="kill-chain-container">
+                    
+                    <div class="kill-chain-step">
+                        <div class="step-title">Fase 1: Reconocimiento (Reconnaissance)</div>
+                        <div class="step-desc">Mapeo automatizado de los endpoints públicos de la API de Canvas LMS. Identificación de configuraciones débiles en las políticas de llaves de acceso del servidor en la nube de producción.</div>
+                    </div>
+
+                    <div class="kill-chain-step">
+                        <div class="step-title">Fase 2: Preparación de Armas (Weaponization)</div>
+                        <div class="step-desc">Desarrollo de un exploit modular de Día Cero personalizado por ShinyHunters, acoplado a scripts automatizados capaces de realizar consultas a altas velocidades sin detonar las firmas de los Firewalls.</div>
+                    </div>
+
+                    <div class="kill-chain-step">
+                        <div class="step-title">Fase 3: Entrega (Delivery)</div>
+                        <div class="step-desc">Inyección de peticiones lógicas malformadas orientadas a los servicios perimetrales de AWS, evadiendo las solicitudes de autorización normales del servidor.</div>
+                    </div>
+
+                    <div class="kill-chain-step">
+                        <div class="step-title">Fase 4: Explotación y Control (Exploitation & C2)</div>
+                        <div class="step-desc">Evasión del control de accesos e inyección de tokens de administración. Establecimiento de túneles TLS cifrados hacia los servidores C2 del adversario para ocultar la sesión maliciosa.</div>
+                    </div>
+
+                    <div class="kill-chain-step">
+                        <div class="step-title">Fase 5: Acciones sobre el Objetivo (Exfiltración Masiva)</div>
+                        <div class="step-desc">Ejecución del volcado masivo y transferencia automatizada de 3.65 TB de datos académicos desde los buckets de Amazon S3 hacia la infraestructura externa controlada por el grupo criminal[cite: 249].</div>
+                    </div>
+
+                </div>
+            </div>
+
+            <h3>Modelado Gráfico: Vector de Exfiltración de Infraestructura</h3>
+            <div class="big-diagram-box">
+                <p style="color: #aaa; font-size: 0.9rem; margin-top: 0; margin-bottom: 15px; font-family: 'Courier New', monospace; text-align: left;">
+                    > SYSTEM_NETWORK_MAP_RENDER_OK [IMAGE_ID: infraestructura_canvas]
+                </p>
+                <img src="infraestructura_canvas.png" alt="Diagrama Técnico del Vector de Ataque AWS Canvas" class="diagram-img">
+                <h4 style="margin-top: 15px; margin-bottom: 0; font-size: 0.85rem; color: #888; font-weight: normal;">Figura 3.1: Diagrama de pivoteo lógico desde la API perimetral comprometida hacia los almacenes centrales de datos de la organización (Buckets S3).</h4>
+            </div>
+
+            <h3>Análisis Técnico-Analítico y Remediación</h3>
+            <div class="content-box">
+                <strong>Lecciones Aprendidas del Incidente:</strong><br>
+                El compromiso de Canvas LMS demuestra que la seguridad perimetral tradicional resulta obsoleta ante actores con capacidades avanzadas de Día Cero[cite: 249]. La exfiltración masiva de 3.65 TB de datos ocurrió debido a la centralización de privilegios y la ausencia de inspecciones analíticas profundas sobre los flujos de salida de la red corporativa[cite: 249]. 
+                <br><br>
+                <strong>Estrategias Defensivas de Mitigación Organizada:</strong>
+                <ul style="padding-left: 20px; margin: 10px 0 0 0; color: #ccc; line-height: 1.25;">
+                    <li style="margin-bottom: 6px;"><strong style="color: var(--primary);">Implementación estricta de Zero Trust:</strong> Validar de forma continua cada petición, sin importar el nivel jerárquico aparente de la llave de API.</li>
+                    <li style="margin-bottom: 6px;"><strong style="color: var(--primary);">Cifrado de Datos en Reposo y Tránsito:</strong> Aplicar algoritmos robustos con rotación automatizada de llaves para mitigar el impacto en caso de sufrir una exfiltración exitosa.</li>
+                    <li style="margin-bottom: 6px;"><strong style="color: var(--primary);">Sistemas DLP (Data Loss Prevention):</strong> Configurar bloqueos automáticos en el perímetro perimetral ante la detección de descargas volumétricas sospechosas de información.</li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 40px; display: flex; gap: 20px; justify-content: space-between; flex-wrap: wrap;">
+                <a href="Parcial3.html" target="_self" class="btn-terminal" style="border: 1px solid var(--primary); padding: 10px 20px; text-decoration: none; color: var(--primary); font-family: 'Courier New', monospace; font-weight: bold;">
+                    Regresar al Parcial 3
+                </a>
+                <a href="act18-Equipo2.pdf" download="act18-Equipo2.pdf" class="btn-terminal" style="border: 1px solid #00ffff; padding: 10px 20px; text-decoration: none; color: #00ffff; font-family: 'Courier New', monospace; font-weight: bold; background: transparent;">
+                    DESCARGAR DOCUMENTACIÓN PDF
+                </a>
+            </div>
+        </article>
+    </main>
+
+    <script src="dynamic-bg.js"></script> 
+</body>
+</html>
