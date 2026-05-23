@@ -249,6 +249,192 @@
                     <p class="v-text">Gobernanza sobre generación, uso y fragmentación de las llaves maestras del protocolo MTProto.</p>
                 </div>
             </div>
+            <h2 class="sgsi-section-title">3. Inventario de Activos Críticos (Anexo A 5.9)</h2>
+            <div class="content-box">
+                <p>Para cumplir con los requisitos de la Cláusula 6 (Planificación) y el control 5.9 del Anexo A, se ha establecido un inventario exhaustivo que divide la superficie operativa de Telegram en activos internos (bajo control directo) y externos (infraestructura de terceros).</p>
+                
+                <h3 class="sgsi-sub-title" style="color: #007bff; border-bottom: 1px solid rgba(0,123,255,0.3); padding-bottom: 5px;">> 3.1 Activos Internos (Core Infrastructure)</h3>
+                <div class="asset-grid">
+                    
+                    <div class="asset-card">
+                        <h4 class="asset-title">Código Fuente (MTProto)</h4>
+                        <p style="font-size: 0.9rem; color: #cbd5e1; margin: 0;">Núcleo criptográfico propietario.</p>
+                        <div class="asset-policy" style="border-left-color: #007bff; background: rgba(0,123,255,0.05);">
+                            <span class="policy-label" style="color: #007bff;">Política: Control y Auditoría</span>
+                            Revisión por pares (Peer Review) obligatoria antes de cualquier despliegue.
+                        </div>
+                    </div>
+
+                    <div class="asset-card">
+                        <h4 class="asset-title">Claves Criptográficas</h4>
+                        <p style="font-size: 0.9rem; color: #cbd5e1; margin: 0;">Llaves maestras de descifrado global.</p>
+                        <div class="asset-policy" style="border-left-color: #007bff; background: rgba(0,123,255,0.05);">
+                            <span class="policy-label" style="color: #007bff;">Política: Fragmentación</span>
+                            Ninguna clave se almacena íntegra en un solo país. Reconstrucción multi-nodo.
+                        </div>
+                    </div>
+
+                    <div class="asset-card">
+                        <h4 class="asset-title">Bases de Metadatos</h4>
+                        <p style="font-size: 0.9rem; color: #cbd5e1; margin: 0;">Grafos sociales y contactos de usuarios.</p>
+                        <div class="asset-policy" style="border-left-color: #007bff; background: rgba(0,123,255,0.05);">
+                            <span class="policy-label" style="color: #007bff;">Política: Minimización</span>
+                            Registros efímeros purgados tras 24 horas para reducir la huella forense.
+                        </div>
+                    </div>
+
+                    <div class="asset-card">
+                        <h4 class="asset-title">Talento Humano (Core)</h4>
+                        <p style="font-size: 0.9rem; color: #cbd5e1; margin: 0;">Conocimiento de los ~30 ingenieros.</p>
+                        <div class="asset-policy" style="border-left-color: #007bff; background: rgba(0,123,255,0.05);">
+                            <span class="policy-label" style="color: #007bff;">Política: Redundancia Operativa</span>
+                            Mínimo 3 ingenieros dominan cada módulo crítico para mitigar el "Bus Factor".
+                        </div>
+                    </div>
+
+                    <div class="asset-card">
+                        <h4 class="asset-title">Redes de Administración</h4>
+                        <p style="font-size: 0.9rem; color: #cbd5e1; margin: 0;">VPNs para gestión de infraestructura.</p>
+                        <div class="asset-policy" style="border-left-color: #007bff; background: rgba(0,123,255,0.05);">
+                            <span class="policy-label" style="color: #007bff;">Política: MFA Hardware</span>
+                            Acceso condicionado a llaves físicas (YubiKey), sin contraseñas estáticas.
+                        </div>
+                    </div>
+
+                    <div class="asset-card">
+                        <h4 class="asset-title">Registros de Auditoría</h4>
+                        <p style="font-size: 0.9rem; color: #cbd5e1; margin: 0;">Historiales de acceso y alertas (Logs).</p>
+                        <div class="asset-policy" style="border-left-color: #007bff; background: rgba(0,123,255,0.05);">
+                            <span class="policy-label" style="color: #007bff;">Política: Write-Once</span>
+                            Envío en tiempo real a servidor central; ningún admin puede borrar sus huellas.
+                        </div>
+                    </div>
+
+                </div>
+
+                <h3 class="sgsi-sub-title" style="color: #ff9900; border-bottom: 1px solid rgba(255,153,0,0.3); padding-bottom: 5px; margin-top: 40px;">> 3.2 Activos Externos y Terceros</h3>
+                <div class="asset-grid">
+
+                    <div class="asset-card external">
+                        <h4 class="asset-title">Infraestructura Física</h4>
+                        <p style="font-size: 0.9rem; color: #cbd5e1; margin: 0;">Proveedores de Data Centers.</p>
+                        <div class="asset-policy ext-policy">
+                            <span class="policy-label ext-label">Política: Bare Metal & SED</span>
+                            Discos con cifrado de hardware total; ilegibles si el disco es extraído físicamente.
+                        </div>
+                    </div>
+
+                    <div class="asset-card external">
+                        <h4 class="asset-title">Distribución (App Stores)</h4>
+                        <p style="font-size: 0.9rem; color: #cbd5e1; margin: 0;">Tiendas de Apple, Google y Microsoft.</p>
+                        <div class="asset-policy ext-policy">
+                            <span class="policy-label ext-label">Política: Canales Alternativos</span>
+                            APKs directos y Web independientes para evadir censura o retiros de tiendas.
+                        </div>
+                    </div>
+
+                    <div class="asset-card external">
+                        <h4 class="asset-title">Redes de ISPs (Internet)</h4>
+                        <p style="font-size: 0.9rem; color: #cbd5e1; margin: 0;">Rutas globales de telecomunicaciones.</p>
+                        <div class="asset-policy ext-policy">
+                            <span class="policy-label ext-label">Política: Domain Fronting</span>
+                            Uso de MTProto Proxy para evadir la inspección profunda de paquetes.
+                        </div>
+                    </div>
+
+                    <div class="asset-card external">
+                        <h4 class="asset-title">Pasarelas de Pago</h4>
+                        <p style="font-size: 0.9rem; color: #cbd5e1; margin: 0;">Procesadores para Premium (Stripe).</p>
+                        <div class="asset-policy ext-policy">
+                            <span class="policy-label ext-label">Política: Tokenización</span>
+                            Toda transacción opera mediante tokens, aislando la identidad financiera.
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <h2 class="sgsi-section-title">4. Planificación y Evaluación de Riesgos (Cláusula 6)</h2>
+            <div class="content-box">
+                <p>La toma de decisiones estratégicas en Telegram se rige por el estándar <strong>ISO/IEC 27005</strong>. La criticidad operativa se determina mediante una fórmula cuantitativa que justifica las inversiones técnicas ante la dirección:</p>
+                
+                <div style="text-align: center; background: rgba(0, 255, 65, 0.05); padding: 15px; border: 1px dashed rgba(0, 255, 65, 0.4); margin: 20px auto; max-width: 600px; font-family: 'Courier New', monospace; font-size: 1.2rem; color: #00ff41; border-radius: 4px;">
+                    Riesgo (R) = Probabilidad (P) × Impacto (I)
+                </div>
+
+                <h3 class="sgsi-sub-title">> Matriz de Riesgos Consolidada</h3>
+                <div style="overflow-x: auto;">
+                    <table class="audit-table" style="min-width: 800px;">
+                        <thead>
+                            <tr>
+                                <th style="width: 8%;">ID</th>
+                                <th style="width: 22%;">Activo Afectado</th>
+                                <th>Escenario de Amenaza</th>
+                                <th style="text-align: center; width: 8%;">Criticidad</th>
+                                <th style="width: 30%;">Control de Tratamiento Propuesto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>R-01</strong></td>
+                                <td>Infraestructura Servidores</td>
+                                <td>DDoS volumétrico masivo saturando interfaces lógicas perimetrales.</td>
+                                <td style="text-align: center;"><span class="risk-badge badge-extreme">25 (EXT)</span></td>
+                                <td>Filtrado Capa 4 y redundancia Anycast distribuida.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>R-02</strong></td>
+                                <td>Claves Criptográficas</td>
+                                <td>Pérdida de confidencialidad total de datos por sustracción de llave.</td>
+                                <td style="text-align: center;"><span class="risk-badge badge-extreme">20 (EXT)</span></td>
+                                <td>Fragmentación jurisdiccional y almacenamiento exclusivo en HSM.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>R-03</strong></td>
+                                <td>Redes Administrativas</td>
+                                <td>Movimiento lateral hacia el núcleo evadiendo firewalls perimetrales.</td>
+                                <td style="text-align: center;"><span class="risk-badge badge-extreme">20 (EXT)</span></td>
+                                <td>Acceso Zero Trust con llaves físicas de hardware (MFA).</td>
+                            </tr>
+                            <tr>
+                                <td><strong>R-04</strong></td>
+                                <td>Talento Humano Core</td>
+                                <td>Fuga de conocimiento crítico o coacción física ("Bus Factor").</td>
+                                <td style="text-align: center;"><span class="risk-badge badge-extreme">16 (EXT)</span></td>
+                                <td>Dispersión geográfica extrema de los 30 ingenieros núcleo.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>R-05</strong></td>
+                                <td>Código Fuente MTProto</td>
+                                <td>Descubrimiento de vulnerabilidades críticas por ingeniería inversa.</td>
+                                <td style="text-align: center;"><span class="risk-badge badge-high">15 (ALTO)</span></td>
+                                <td>Auditorías criptográficas constantes y control estricto en repositorios.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>R-06</strong></td>
+                                <td>Pasarelas SMS (OTP)</td>
+                                <td>Interceptación de códigos (SS7) para secuestro de cuentas.</td>
+                                <td style="text-align: center;"><span class="risk-badge badge-high">15 (ALTO)</span></td>
+                                <td>Priorizar verificación de sesión interna activa sobre SMS tradicional.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>R-07</strong></td>
+                                <td>Entornos CI/CD</td>
+                                <td>Inyección de malware en actualizaciones oficiales desde compilación.</td>
+                                <td style="text-align: center;"><span class="risk-badge badge-high">15 (ALTO)</span></td>
+                                <td>Firma de código multi-etapa y aislamiento de red en compilación.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>R-08</strong></td>
+                                <td>Bases de Metadatos</td>
+                                <td>Perfilamiento de usuarios por filtración de grafos sociales masivos.</td>
+                                <td style="text-align: center;"><span class="risk-badge badge-med">12 (MED)</span></td>
+                                <td>Cifrado en reposo y purga automatizada de logs efímeros.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
         </article>
     </main>
