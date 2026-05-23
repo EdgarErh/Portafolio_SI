@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 17 | KortexBr3ach</title>
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="icon" type="image/png" href="KB.png">
+    <style>
+        .activity-container {
+            background: rgba(26, 26, 26, 0.3) !important;
+            backdrop-filter: blur(15px);
+            border-left: 4px solid var(--primary);
+            padding: 40px;
+            margin: 40px auto;
+            max-width: 1000px;
+            font-family: Arial, sans-serif;
+        }
+        .meta-panel {
+            border: 1px solid rgba(0, 255, 65, 0.2);
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            margin-bottom: 35px;
+            font-family: 'Courier New', monospace;
+        }
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            font-size: 0.85rem;
+            color: #ccc;
+        }
+        .meta-item span {
+            color: var(--primary);
+            font-weight: bold;
+        }
+        .team-list {
+            margin: 5px 0 0 0;
+            padding-left: 20px;
+            color: #aaa;
+            font-size: 0.8rem;
+        }
+        h2, h3 {
+            font-family: 'Courier New', monospace;
+            color: var(--primary);
+        }
+        h2 {
+            border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+            padding-bottom: 10px;
+            margin-top: 0;
+            letter-spacing: 1px;
+        }
+        h3 {
+            margin-top: 30px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .badge-score {
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+            border: 1px solid #ff9900;
+            background: rgba(255, 153, 0, 0.1);
+            color: #ff9900;
+        }
+        .content-box {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(0, 255, 65, 0.1);
+            padding: 20px;
+            margin: 15px 0 25px 0;
+            border-left: 3px solid var(--primary);
+            text-align: justify;
+            line-height: 1.25;
+            color: #eee;
+            font-size: 0.95rem;
+        }
+        .metric-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+        .metric-table th, .metric-table td {
+            border: 1px solid rgba(0, 255, 65, 0.2);
+            padding: 10px;
+            text-align: left;
+        }
+        .metric-table th {
+            background: rgba(0, 255, 65, 0.05);
+            color: var(--primary);
+            font-family: 'Courier New', monospace;
+        }
+        .metric-table td strong {
+            color: #00ffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="dynamic-background"></div> 
+    
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="Parcial1.html">Parcial 1</a></li>
+                <li><a href="Parcial2.html">Parcial 2</a></li>
+                <li><a href="Parcial3.html" class="active">Parcial 3</a></li>
+                <li><a href="Final.html">Final</a></li>
+                <li><a href="Proyectos.html">Proyectos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <article class="activity-container">
+            <h2>ACTIVIDAD 17: EVALUACIÓN DE VULNERABILIDADES CON CVSS v3.1</h2>
+            
+            <div class="meta-panel">
+                <div class="meta-grid">
+                    <div class="meta-item"><span>Materia:</span> Seguridad Informática II</div>
+                    <div class="meta-item"><span>Profesor:</span> Servando López Contreras</div>
+                    <div class="meta-item"><span>Fecha:</span> 15 de marzo de 2026</div>
+                </div>
+                <div style="margin-top: 15px;">
+                    <span>Integrantes del Equipo:</span>
+                    <ul class="team-list">
+                        <li>Rodríguez Hernández Edgar Omar (177888)</li>
+                        <li>López López Josué Emmanuel (182078)</li>
+                        <li>Mata Martínez Aaron Efraim (179419)</li>
+                        <li>Rodriguez Morin Estefano Alessandro (178584)</li>
+                        <li>Ros Padilla Iván (177573)</li>
+                        <li>Salinas Carrillo Mauricio Josafat (177406)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Contextualización del Escenario</h3>
+            <div class="content-box">
+                Una organización detectó una vulnerabilidad crítica latente dentro de uno de sus sistemas web internos de producción. Con el propósito de categorizar y priorizar las acciones operativas de remediación de parches de seguridad, el equipo realizó el modelado técnico utilizando el estándar global de la calculadora Common Vulnerability Scoring System (CVSS v3.1).
+            </div>
+
+            <h3>Desglose de Métricas Base e Inyección del Vector</h3>
+            <div class="content-box">
+                A continuación, se detalla la configuración analítica implementada para cada una de las variables que componen el puntaje base:
+                <table class="metric-table">
+                    <thead>
+                        <tr>
+                            <th>Métrica Base</th>
+                            <th>Valor Seleccionado</th>
+                            <th>Interpretación e Impacto Técnico</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Attack Vector (AV)</strong></td>
+                            <td>Network (N)</td>
+                            <td>La vulnerabilidad es remotamente explotable de forma directa a través de la infraestructura de red.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Attack Complexity (AC)</strong></td>
+                            <td>Low (L)</td>
+                            <td>No se requieren condiciones operativas complejas; el ataque es altamente reproducible y predecible.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Privileges Required (PR)</strong></td>
+                            <td>High (H)</td>
+                            <td>El atacante requiere credenciales legítimas de administración o permisos elevados para realizar la inyección.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>User Interaction (UI)</strong></td>
+                            <td>None (N)</td>
+                            <td>La ejecución es autónoma; no requiere que un usuario caiga en engaños o enlaces externos.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Scope (S)</strong></td>
+                            <td>Unchanged (U)</td>
+                            <td>El impacto queda completamente confinado al sistema web interno atacado y no se expande a otros entornos.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Confidencialidad (C)</strong></td>
+                            <td>Low (L)</td>
+                            <td>Filtración o lectura no autorizada limitada de ciertos parámetros informativos del aplicativo web.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Integridad (I)</strong></td>
+                            <td>Low (L)</td>
+                            <td>Modificación parcial de datos no críticos sin llegar a comprometer de manera definitiva el sistema.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Disponibilidad (A)</strong></td>
+                            <td>Low (L)</td>
+                            <td>Degradación parcial del rendimiento del software o breves interrupciones temporales del servicio web.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Interpretación del Vector Técnico <span class="badge-score">Score: 4.7 (Medio)</span></h3>
+            <div class="content-box">
+                <strong>Cadena Completa del Vector:</strong><br>
+                <code style="color: #00ff41; font-family: 'Courier New', monospace; font-size: 1rem;">CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:L/I:L/A:L</code>
+                <br><br>
+                <strong>Análisis de Explotación y Amenazas Asociadas:</strong><br>
+                Aunque la vulnerabilidad requiere privilegios elevados para ser detonada, su existencia sigue constituyendo un riesgo operacional relevante para la infraestructura porque puede explotarse directamente a través de la red y con baja complejidad de ejecución. 
+                <br><br>
+                Los perfiles de amenaza más probables corresponden a un usuario interno malicioso con privilegios altos, un administrador comprometido, o bien, un vector de ataque externo que consiga previamente la elevación de privilegios mediante tácticas complejas de *phishing* dirigido, secuestro de sesiones corporativas activas o malas configuraciones del servidor de contraseñas. Un impacto bajo en la tríada CID (Confidencialidad, Integridad y Disponibilidad) implica que, si bien el fallo no compromete en su totalidad el host o la base de datos central, sí debe mitigarse proactivamente dado que representa un eslabón ideal para que los atacantes estructuren cadenas de explotación complejas de mayor escala.
+            </div>
+
+            <div style="margin-top: 40px; display: flex; gap: 20px; justify-content: space-between; flex-wrap: wrap;">
+                <a href="Parcial3.html" target="_self" class="btn-terminal" style="border: 1px solid var(--primary); padding: 10px 20px; text-decoration: none; color: var(--primary); font-family: 'Courier New', monospace; font-weight: bold;">
+                    VOLVER AL PARCIAL 3
+                </a>
+                <a href="act17-Equipo2.pdf" download="act17-Equipo2.pdf" class="btn-terminal" style="border: 1px solid #00ffff; padding: 10px 20px; text-decoration: none; color: #00ffff; font-family: 'Courier New', monospace; font-weight: bold; background: transparent;">
+                    DESCARGAR REPORTE EN PDF
+                </a>
+            </div>
+        </article>
+    </main>
+
+    <script src="dynamic-bg.js"></script> 
+</body>
+</html>
