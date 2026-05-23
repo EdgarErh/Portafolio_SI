@@ -5,36 +5,192 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parcial 3 | Seguridad Informática</title>
     <link rel="stylesheet" href="style.css"> 
-     <link rel="icon" type="image/png" href="KB.png">
+    <link rel="icon" type="image/png" href="KB.png">
+    <style>
+        .section-container {
+            background: rgba(26, 26, 26, 0.3) !important;
+            backdrop-filter: blur(15px);
+            border-left: 4px solid var(--primary);
+            padding: 40px;
+            margin: 40px auto;
+            max-width: 1100px;
+        }
+        .activity-menu {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .activity-card {
+            border: 1px solid rgba(0, 255, 65, 0.3);
+            background: rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            transition: 0.3s ease-in-out;
+        }
+        .activity-card:hover {
+            border-color: var(--primary);
+            background: rgba(0, 255, 65, 0.03);
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.1);
+        }
+        .activity-header {
+            border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .activity-title {
+            color: var(--primary);
+            font-family: 'Courier New', monospace;
+            font-size: 1.4rem;
+            margin: 0;
+        }
+        .scenario-box {
+            background: rgba(0, 0, 0, 0.4);
+            border-left: 2px solid #00ffff;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+        .badge-delito {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-family: 'Courier New', monospace;
+            padding: 3px 8px;
+            background: rgba(255, 0, 0, 0.15);
+            border: 1px solid #ff3333;
+            color: #ff3333;
+            margin-top: 5px;
+        }
+        .btn-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        .btn-action {
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.2s;
+            text-align: center;
+        }
+        .btn-view {
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            background: transparent;
+        }
+        .btn-view:hover {
+            background: var(--primary);
+            color: #000;
+        }
+        .btn-download {
+            border: 1px solid #00ffff;
+            color: #00ffff;
+            background: transparent;
+        }
+        .btn-download:hover {
+            background: #00ffff;
+            color: #000;
+        }
+        .placeholder-card {
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.2);
+            opacity: 0.6;
+        }
+    </style>
 </head>
 <body>
     <div class="dynamic-background"></div> 
-        <header>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="Parcial1.html">Parcial 1</a></li>
-                    <li><a href="Parcial2.html">Parcial 2</a></li>
-                    <li><a href="Parcial3.html" class="active">Parcial 3</a></li>
-                    <li><a href="Final.html">Final</a></li>
-                    <li><a href="Proyectos.html">Proyectos</a></li>
-                    <li class="dropdown">
+    
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="Parcial1.html">Parcial 1</a></li>
+                <li><a href="Parcial2.html">Parcial 2</a></li>
+                <li><a href="Parcial3.html" class="active">Parcial 3</a></li>
+                <li><a href="Final.html">Final</a></li>
+                <li><a href="Proyectos.html">Proyectos</a></li>
+                <li class="dropdown">
                     <a href="#">ROAD TO HALL OF FAME</a>
                     <ul class="submenu">
                         <li><a href="sql-injection.html">SQL Injection</a></li>
-                </ul>
-            </nav>
-        </header>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
 
     <main>
         <section class="section-container">
-            <h2>EVIDENCIAS PARCIAL 3</h2>
-            <p>Contenido en construcción para la siguiente entrega ...</p>
-            </section>
+            <h2 style="font-family: 'Courier New', monospace; color: var(--primary); letter-spacing: 2px;">EVIDENCIAS PARCIAL 3</h2>
+            <p style="color: #ccc; font-size: 1rem; margin-bottom: 30px;">Registro de actividades, análisis de casos y entregas del tercer módulo académico.</p>
+            
+            <div class="activity-menu">
+                
+                <div class="activity-card">
+                    <div class="activity-header">
+                        <div style="font-family: 'Courier New', monospace; font-size: 0.8rem; color: #888;">EVIDENCIA TÉCNICA 01</div>
+                        <h3 class="activity-title">Actividad 16: Dilemas Éticos en Ciberseguridad</h3>
+                    </div>
+                    
+                    <p style="color: #eee; font-size: 0.95rem; text-align: justify; line-height: 1.5;">
+                        Análisis crítico y ético-normativo de escenarios de seguridad de la información. Evaluación realizada bajo los principios de los 10 Mandamientos de la Informática y las clasificaciones de delitos de la materia, dictando la postura técnica e institucional idónea ante conflictos de privacidad, contratos y uso de herramientas ofensivas.
+                    </p>
+
+                    <div class="scenario-box">
+                        <strong>Escenario 1: Acceso No Autorizado Interno</strong><br>
+                        Auditoría a la intrusión de cuentas del Director General por un analista interno. Postura técnica enfocada en la preservación de logs y escalación formal.
+                        <br><span class="badge-delito">Clasificación: Delito Informático</span>
+                    </div>
+
+                    <div class="scenario-box">
+                        <strong>Escenario 2: Vulnerabilidad Financiera No Reportada</strong><br>
+                        Hallazgo crítico de extracción de capital durante un pentest sin contrato firmado. Aplicación de la divulgación responsable y códigos éticos internacionales.
+                        <br><span class="badge-delito">Clasificación: Delito Asistido por Computadora</span>
+                    </div>
+
+                    <div class="scenario-box">
+                        <strong>Escenario 3: Límites de Herramientas OSINT</strong><br>
+                        Orden de coacción psicológica utilizando técnicas de inteligencia de fuentes abiertas. Postura basada en la negativa asertiva frente a prácticas de doxxing o extorsión.
+                        <br><span class="badge-delito">Clasificación: Delito Asistido por Computadora</span>
+                    </div>
+
+                    <div class="btn-container">
+                        <a href="act16-Equipo2.pdf" target="_blank" class="btn-action btn-view">[👁️] VISUALIZAR REPORTE</a>
+                        <a href="act16-Equipo2.pdf" download="act16-Equipo2.pdf" class="btn-action btn-download">[📥] DESCARGAR PDF</a>
+                    </div>
+                </div>
+
+                <div class="activity-card placeholder-card">
+                    <div class="activity-header">
+                        <div style="font-family: 'Courier New', monospace; font-size: 0.8rem; color: #666;">EVIDENCIA TÉCNICA 02</div>
+                        <h3 class="activity-title" style="color: #666;">Actividad 17: [Módulo en Desarrollo]</h3>
+                    </div>
+                    <p style="color: #888; font-style: italic;">Esperando asignación y contenido del Parcial 3...</p>
+                    <div class="btn-container">
+                        <a href="#" class="btn-action" style="border: 1px dashed #444; color: #444; pointer-events: none;">[BLOQUEADO]</a>
+                    </div>
+                </div>
+
+                <div class="activity-card placeholder-card">
+                    <div class="activity-header">
+                        <div style="font-family: 'Courier New', monospace; font-size: 0.8rem; color: #666;">EVIDENCIA TÉCNICA 03</div>
+                        <h3 class="activity-title" style="color: #666;">Actividad 18: [Módulo en Desarrollo]</h3>
+                    </div>
+                    <p style="color: #888; font-style: italic;">Esperando asignación y contenido del Parcial 3...</p>
+                    <div class="btn-container">
+                        <a href="#" class="btn-action" style="border: 1px dashed #444; color: #444; pointer-events: none;">[BLOQUEADO]</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
     </main>
 
-    <script src="dynamic-bg.js"></script> </body>
-
+    <script src="dynamic-bg.js"></script> 
+</body>
 </html>
 
 
