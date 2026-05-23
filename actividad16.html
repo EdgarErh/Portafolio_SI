@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 16 | KortexBr3ach</title>
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="icon" type="image/png" href="KB.png">
+    <style>
+        .activity-container {
+            background: rgba(26, 26, 26, 0.3) !important;
+            backdrop-filter: blur(15px);
+            border-left: 4px solid var(--primary);
+            padding: 40px;
+            margin: 40px auto;
+            max-width: 1000px;
+        }
+        .meta-panel {
+            border: 1px solid rgba(0, 255, 65, 0.2);
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            margin-bottom: 35px;
+            font-family: 'Courier New', monospace;
+        }
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            font-size: 0.85rem;
+            color: #ccc;
+        }
+        .meta-item span {
+            color: var(--primary);
+            font-weight: bold;
+        }
+        .team-list {
+            margin: 5px 0 0 0;
+            padding-left: 20px;
+            color: #aaa;
+            font-size: 0.8rem;
+        }
+        h2, h3 {
+            font-family: 'Courier New', monospace;
+            color: var(--primary);
+        }
+        h2 {
+            border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+            padding-bottom: 10px;
+            margin-top: 0;
+            letter-spacing: 1px;
+        }
+        h3 {
+            margin-top: 30px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .badge-type {
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: normal;
+        }
+        .badge-delito {
+            border: 1px solid #ff3333;
+            background: rgba(255, 51, 51, 0.1);
+            color: #ff3333;
+        }
+        .badge-asistido {
+            border: 1px solid #ff9900;
+            background: rgba(255, 153, 0, 0.1);
+            color: #ff9900;
+        }
+        .content-box {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(0, 255, 65, 0.1);
+            padding: 20px;
+            margin: 15px 0 25px 0;
+            border-left: 3px solid var(--primary);
+            text-align: justify;
+            line-height: 1.6;
+            color: #eee;
+            font-size: 0.95rem;
+        }
+        .mandamientos-list {
+            padding-left: 20px;
+            margin: 10px 0;
+            color: #ff4444;
+        }
+        .mandamientos-list li {
+            margin-bottom: 8px;
+        }
+        .mandamientos-list strong {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="dynamic-background"></div> 
+    
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="Parcial1.html">Parcial 1</a></li>
+                <li><a href="Parcial2.html">Parcial 2</a></li>
+                <li><a href="Parcial3.html" class="active">Parcial 3</a></li>
+                <li><a href="Final.html">Final</a></li>
+                <li><a href="Proyectos.html">Proyectos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <article class="activity-container">
+            <h2>ACTIVIDAD 16: DILEMAS ÉTICOS EN CIBERSEGURIDAD</h2>
+            
+            <div class="meta-panel">
+                <div class="meta-grid">
+                    <div class="meta-item"><span>Materia:</span> Seguridad Informática II</div>
+                    <div class="meta-item"><span>Profesor:</span> Servando López Contreras</div>
+                    <div class="meta-item"><span>Fecha:</span> 15 de marzo de 2026</div>
+                </div>
+                <div style="margin-top: 15px;">
+                    <span>Integrantes del Equipo:</span>
+                    <ul class="team-list">
+                        <li>Rodríguez Hernández Edgar Omar (177888)</li>
+                        <li>López López Josué Emmanuel (182078)</li>
+                        <li>Mata Martínez Aaron Efraim (179419)</li>
+                        <li>Rodriguez Morin Estefano Alessandro (178584)</li>
+                        <li>Ros Padilla Iván (177573)</li>
+                        <li>Salinas Carrillo Mauricio Josafat (177406)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Introducción</h3>
+            <div class="content-box">
+                En el entorno actual, la ciberseguridad va más allá del dominio técnico; requiere un marco ético y legal sólido que guíe la toma de decisiones. Los profesionales de la información se enfrentan constantemente a dilemas complejos donde la protección de los activos, el cumplimiento de la ley y el respeto a la privacidad entran en conflicto, exigiendo un criterio profesional íntegro y normativo. Este análisis evalúa tres escenarios críticos bajo enfoques éticos fundamentales y los mandamientos de la informática.
+            </div>
+
+            <h3>Escenario 1: Acceso no autorizado interno <span class="badge-type badge-delito">Delito Informático</span></h3>
+            <div class="content-box">
+                <strong>Descripción del caso:</strong><br>
+                Durante una revisión rutinaria de logs en el área de ciberseguridad, se detecta que un analista interno accedió de forma deliberada a las cuentas de correo privado del Director General sin contar con un documento de alcance o autorización explícita, argumentando de manera informal que realizaba una búsqueda de posibles fugas de información institucional.
+                <br><br>
+                <strong>Análisis ético y normativo:</strong><br>
+                El fin no justifica la implementación de medios ilícitos. Al romper la cadena de mando y el principio de privilegios mínimos, las acciones degradan el estado de derecho corporativo. Se vulneran directamente los siguientes estatutos:
+                <ul class="mandamientos-list">
+                    <li><strong>Mandamiento 3:</strong> "No espiarás en los archivos informáticos de otras personas." (Violación directa al husmear el correo del Director).</li>
+                    <li><strong>Mandamiento 10:</strong> "Utilizarás las computadoras respetando y considerando a tus semejantes."</li>
+                </ul>
+                <strong>Postura Técnica Institucional:</strong><br>
+                La acción correcta e inmediata exige congelar y preservar los logs de acceso de forma estricta para asegurar la cadena de custodia. No se debe encubrir al compañero; la situación tiene que ser escalada formalmente mediante los canales del Plan de Respuesta a Incidentes de la organización para que el equipo legal y administrativo determine las sanciones correspondientes por acceso ilícito a sistemas.
+            </div>
+
+            <h3>Escenario 2: Vulnerabilidad crítica no reportada <span class="badge-type badge-asistido">Delito Asistido por Computadora</span></h3>
+            <div class="content-box">
+                <strong>Descripción del caso:</strong><br>
+                Durante la ejecución de una prueba de penetración orientada a una entidad financiera, se descubre una vulnerabilidad crítica de inyección que permite la extracción directa de capital de las cuentas. Sin embargo, el equipo técnico se percata de que el contrato legal de prestación de servicios aún no ha sido firmado formalmente por la mesa directiva.
+                <br><br>
+                <strong>Análisis ético y normativo:</strong><br>
+                La ausencia temporal de un contrato físico firmado no exime al analista del acuerdo de confidencialidad (NDA) ni del principio ético de buena fe establecido durante las negociaciones iniciales. Explotar la vulnerabilidad o extraer fondos se tipifica penalmente como fraude. Se vulneran los códigos éticos internacionales (CEH, CISSP) y los mandamientos:
+                <ul class="mandamientos-list">
+                    <li><strong>Mandamiento 2:</strong> "No interferirás con el trabajo informático de otras personas."</li>
+                    <li><strong>Mandamiento 4:</strong> "No usarás una computadora para robar." (Intentar sustraer capital aprovechando el fallo de seguridad).</li>
+                </ul>
+                <strong>Postura Técnica Institucional:</strong><br>
+                Se debe detener de manera inmediata cualquier interacción ofensiva o script de explotación sobre el entorno. La actividad del fallo debe ser documentada internamente con capturas detalladas y hashes de control, procediendo a realizar una Divulgación Responsable (*Responsible Disclosure*) hacia los encargados de TI de la entidad financiera para mitigar el riesgo de que un atacante real explote la vulnerabilidad mientras se formaliza el contrato.
+            </div>
+
+            <h3>Escenario 3: Límites de herramientas OSINT <span class="badge-type badge-asistido">Delito Asistido por Computadora</span></h3>
+            <div class="content-box">
+                <strong>Descripción del caso:</strong><br>
+                Un superior jerárquico dentro de la organización instruye directamente al analista de seguridad para emplear técnicas de inteligencia de fuentes abiertas (OSINT) con el objetivo de recolectar datos personales íntimos (domicilios particulares, registros familiares, pasatiempos y hábitos) de un empleado sospechoso de fraude interno, con la finalidad de presionarlo y coaccionarlo psicológicamente para que confiese.
+                <br><br>
+                <strong>Análisis ético y normativo:</strong><br>
+                Las metodologías de OSINT tienen como límite infranqueable la legalidad vigente. El hecho de que cierta información resulte accesible al público en la red no otorga el derecho legal ni ético de utilizarla con fines delictivos como el hostigamiento, doxxing o extorsión. Actuar al margen de la ley contamina todo el proceso probatorio, aplicando la doctrina legal del "fruto del árbol envenenado". Se violan:
+                <ul class="mandamientos-list">
+                    <li><strong>Mandamiento 1:</strong> "No usarás una computadora para dañar a otras personas." (Emplear datos digitales para infligir coacción o daño psicológico).</li>
+                    <li><strong>Mandamiento 10:</strong> "Utilizarás las computadoras respetando y considerando a tus semejantes."</li>
+                </ul>
+                <strong>Postura Técnica Institucional:</strong><br>
+                El profesional debe manifestar una negativa asertiva fundamentada ante la orden directa del superior. La obligación técnica radica en confeccionar un reporte de evidencias formal y objetivo limitado a los hallazgos del fraude financiero, delegando las acciones pertinentes al departamento jurídico. En caso de recibir represalias por parte del superior, se debe activar la escalación inmediata mediante el protocolo de denuncia interna (*Whistleblowing*).
+            </div>
+
+            <div style="margin-top: 40px; display: flex; gap: 20px; justify-content: space-between; flex-wrap: wrap;">
+                <a href="Parcial3.html" class="btn-terminal" style="border: 1px solid var(--primary); padding: 10px 20px; text-decoration: none; color: var(--primary); font-family: 'Courier New', monospace; font-weight: bold;">
+                     VOLVER AL PARCIAL 3
+                </a>
+                <a href="act16-Equipo2.pdf" download="act16-Equipo2.pdf" class="btn-terminal" style="border: 1px solid #00ffff; padding: 10px 20px; text-decoration: none; color: #00ffff; font-family: 'Courier New', monospace; font-weight: bold; background: transparent;">
+                    DESCARGAR REPORTE EN PDF
+                </a>
+            </div>
+        </article>
+    </main>
+
+    <script src="dynamic-bg.js"></script> 
+</body>
+</html>
