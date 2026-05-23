@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Integrador SGSI: Telegram | KortexBr3ach</title>
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="icon" type="image/png" href="KB.png">
+    <style>
+        .project-container {
+            background: rgba(15, 23, 42, 0.4) !important;
+            backdrop-filter: blur(20px);
+            border-top: 4px solid #007bff;
+            padding: 40px;
+            margin: 40px auto;
+            max-width: 1200px;
+            font-family: Arial, sans-serif;
+            color: #f8fafc;
+        }
+        h2, h3, h4 {
+            font-family: 'Courier New', monospace;
+        }
+        h2 {
+            color: #007bff;
+            border-bottom: 2px solid rgba(0, 123, 255, 0.2);
+            padding-bottom: 15px;
+            margin-top: 0;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+        /* --- RECURSO VISUAL 1: TABLERO DE REAL-TIME METRICS --- */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .kpi-card {
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(0, 123, 255, 0.2);
+            padding: 20px;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .kpi-val {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #00ffd8;
+            font-family: 'Courier New', monospace;
+            margin: 5px 0;
+        }
+        .kpi-lbl {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .content-box {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 25px;
+            margin-bottom: 30px;
+            border-left: 4px solid #00ffd8;
+            text-align: justify;
+            line-height: 1.4;
+        }
+        .section-header-accent {
+            border-left: 4px solid #007bff;
+            padding-left: 12px;
+            color: #fff;
+            margin-top: 35px;
+            margin-bottom: 15px;
+        }
+        
+        /* --- RECURSO VISUAL 2: TABLA DE RIESGOS MATRICIAL --- */
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.9rem;
+        }
+        .matrix-table th {
+            background: #0f172a;
+            color: #00ffd8;
+            font-family: 'Courier New', monospace;
+            text-align: left;
+            padding: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .matrix-table td {
+            padding: 12px;
+            border: 1px solid rgba(255,255,255,0.05);
+            background: rgba(30, 41, 59, 0.3);
+        }
+        .risk-badge {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+        }
+        .badge-high { background: rgba(239, 68, 68, 0.15); color: #ef4444; border: 1px solid #ef4444; }
+        .badge-med { background: rgba(245, 158, 11, 0.15); color: #f59e0b; border: 1px solid #f59e0b; }
+        .badge-low { background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid #10b981; }
+    </style>
+</head>
+<body>
+    <div class="dynamic-background"></div> 
+    
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="Parcial1.html">Parcial 1</a></li>
+                <li><a href="Parcial2.html">Parcial 2</a></li>
+                <li><a href="Parcial3.html" class="active">Parcial 3</a></li>
+                <li><a href="Final.html">Final</a></li>
+                <li><a href="Proyectos.html">Proyectos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <article class="project-container">
+            <h2>SISTEMA DE GESTIÓN DE SEGURIDAD DE LA INFORMACIÓN (SGSI) - TELEGRAM FZ-LLC</h2>
+            
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-lbl">Estándar Regulador</div>
+                    <div class="kpi-val" style="color: #007bff; font-size: 1.6rem; padding: 5px 0;">ISO 27001:2022</div>
+                    <div class="kpi-lbl">Marco Normativo</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-lbl">Usuarios Protegidos</div>
+                    <div class="kpi-val">+1,000 M</div>
+                    <div class="kpi-lbl">Activos Globales</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-lbl">Controles Anexo A</div>
+                    <div class="kpi-val">93 / 93</div>
+                    <div class="kpi-lbl">Declaratoria SoA</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-lbl">Eficacia Correctiva</div>
+                    <div class="kpi-val">100%</div>
+                    <div class="kpi-lbl">Auditoría 30 Días</div>
+                </div>
+            </div>
+
+            <h3 class="section-header-accent">1. Introducción y Contexto Organizacional</h3>
+            <div class="content-box">
+                Telegram FZ-LLC, fundada en 2013 por los hermanos Pável y Nikolái Dúrov, destaca en la industria por su arquitectura operativa única: cuenta con una estructura plana altamente eficiente de aproximadamente 30 ingenieros de élite que controlan la infraestructura de mensajería masiva. No obstante, al procesar volúmenes masivos de datos bajo un ecosistema geopolítico complejo y servidores distribuidos a nivel internacional, se volvió crítico formalizar sus operaciones bajo el estándar <strong>ISO/IEC 27001:2022</strong>. Este proyecto diseña los pilares del SGSI para blindar sus dos activos más valiosos: el Código Fuente del protocolo <strong>MTProto</strong> y la Base de Datos distribuida de los usuarios.
+            </div>
+
+            <h3 class="section-header-accent">2. Determinación del Alcance del SGSI</h3>
+            <div class="content-box" style="border-left-color: #007bff;">
+                El alcance del Sistema de Gestión abarca de forma estricta los límites lógicos y perimetrales que resguardan la soberanía de los datos:
+                <ul style="padding-left: 20px; margin: 10px 0 0 0; color: #cbd5e1; line-height: 1.4;">
+                    <li><strong>Proceso de Desarrollo Seguro (SDLC):</strong> Protección absoluta de los repositorios de código primario del ecosistema de aplicaciones y del núcleo del protocolo criptográfico.</li>
+                    <li><strong>Infraestructura de Servidores Distribuidos:</strong> Cobertura operacional de los clústeres de servidores descentralizados en múltiples jurisdicciones internacionales, garantizando que el compromiso físico de un nodo no permita la escalabilidad horizontal o lateral del atacante.</li>
+                </ul>
+            </div>
+            <h3 class="section-header-accent">3. Matriz de Análisis y Evaluación de Riesgos</h3>
+            <div class="content-box">
+                La metodología implementada aplica la fórmula matemática de criticidad <code style="color: #00ffd8; font-weight: bold;">Riesgo = Probabilidad × Impacto</code> (Escala 1 a 5), priorizando las amenazas de acuerdo a los criterios normativos de la organización:
+                
+                <table class="matrix-table">
+                    <thead>
+                        <tr>
+                            <th>ID Activo</th>
+                            <th>Amenaza Identificada</th>
+                            <th>Probabilidad (P)</th>
+                            <th>Impacto (I)</th>
+                            <th>Nivel de Riesgo</th>
+                            <th>Tratamiento & Control Propuesto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>ACT-01 (Código)</strong></td>
+                            <td>Infiltración de código malicioso o backdoors en producción.</td>
+                            <td>2</td>
+                            <td>5</td>
+                            <td><span class="risk-badge badge-high">10 (ALTO)</span></td>
+                            <td><strong>Control A.8.25:</strong> Implementar revisiones SAST/DAST pareadas obligatorias e inmutabilidad de ramas primarias.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ACT-02 (Datos)</strong></td>
+                            <td>Acceso no autorizado a bases de datos de usuarios (Buckets centralizados).</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td><span class="risk-badge badge-high">12 (ALTO)</span></td>
+                            <td><strong>Control A.8.24:</strong> Uso estricto de llaves de cifrado asimétricas con rotación automática en AWS KMS.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ACT-03 (Personal)</strong></td>
+                            <td>Ingeniería social o Spear Phishing orientado a los ingenieros de la mesa directiva.</td>
+                            <td>4</td>
+                            <td>3</td>
+                            <td><span class="risk-badge badge-med">12 (MEDIO)</span></td>
+                            <td><strong>Control A.6.3:</strong> Talleres formativos semestrales de resiliencia técnica ante técnicas avanzadas de spoofing perimetral.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ACT-04 (Físico)</strong></td>
+                            <td>Compromiso o secuestro de un nodo o clúster de servidores local.</td>
+                            <td>1</td>
+                            <td>4</td>
+                            <td><span class="risk-badge badge-low">4 (BAJO)</span></td>
+                            <td><strong>Control A.7.4:</strong> Arquitectura descentralizada MTProto; un nodo interceptado físicamente no posee llaves de descifrado maestras.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 class="section-header-accent">4. Declaración de Aplicabilidad (SoA) - Controles Críticos del Anexo A</h3>
+            <div class="content-box" style="border-left-color: #007bff;">
+                De los 93 controles distribuidos en los 4 dominios de la norma ISO 27001:2022, se definieron como pilares de acción inmediata los siguientes:
+                <ul style="padding-left: 20px; margin: 10px 0 0 0; color: #cbd5e1; line-height: 1.45;">
+                    <li style="margin-bottom: 8px;"><strong>A.5 Controles Organizacionales (A.5.15):</strong> Gestión de identidades y accesos robusta; revocación inmediata de privilegios ante desvinculación laboral.</li>
+                    <li style="margin-bottom: 8px;"><strong>A.6 Controles de Personas (A.6.3):</strong> Concienciación profunda en seguridad perimetral para blindar al factor humano contra ataques dirigidos.</li>
+                    <li style="margin-bottom: 8px;"><strong>A.7 Controles Físicos (A.7.14):</strong> Seguridad en el ciclo de vida de los activos, asegurando el borrado seguro y certificado de discos duros de servidores en desuso.</li>
+                    <li style="margin-bottom: 8px;"><strong>A.8 Controles Técnicos (A.8.20):</strong> Seguridad en redes mediante el filtrado dinámico de tráfico y monitoreo constante de logs perimetrales para detener fugas de información.</li>
+                </ul>
+            </div>
+
+            <h3 class="section-header-accent">5. Estructura de la Defensa del Proyecto (Diapositivas)</h3>
+            <div class="content-box" style="border-left-color: #00ffd8;">
+                Para la presentación ejecutiva ante el sínodo académico liderado por el profesor Servando López Contreras, se estructuró un plan de exposición sintetizado en las láminas del archivo de soporte técnico adjunto:
+                <ul style="padding-left: 20px; margin: 10px 0 0 0; color: #cbd5e1; line-height: 1.45;">
+                    <li style="margin-bottom: 6px;"><strong>Láminas 01 - 03:</strong> Pitch de Introducción, Filosofía Operativa de Telegram y Justificación de la adopción del estándar ISO 27001:2022.</li>
+                    <li style="margin-bottom: 6px;"><strong>Láminas 04 - 06:</strong> Desglose del Alcance Crítico (Código y Datos) y modelado de la Matriz de Riesgos mediante la fórmula matemática cuantitativa.</li>
+                    <li style="margin-bottom: 6px;"><strong>Láminas 07 - 09:</strong> Despliegue de los Controles del Anexo A seleccionados, Plan de Remediación Aplicado e Indicadores Clave de Desempeño (KPIs) de Auditoría Continua.</li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 50px; display: flex; gap: 20px; justify-content: space-between; flex-wrap: wrap; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px;">
+                <a href="Parcial3.html" target="_self" class="btn-terminal" style="border: 1px solid var(--primary); padding: 12px 24px; text-decoration: none; color: var(--primary); font-family: 'Courier New', monospace; font-weight: bold; background: transparent; transition: 0.2s;">
+                    VOLVER AL PARCIAL 3
+                </a>
+                <div style="display: flex; gap: 15px;">
+                    <a href="Proyecto tercer parcial ISO 2701 Seguridad informática.pdf" download class="btn-terminal" style="border: 1px solid #007bff; padding: 12px 24px; text-decoration: none; color: #fff; background: #007bff; font-family: 'Courier New', monospace; font-weight: bold; transition: 0.2s;">
+                        BAJAR REPORTE (PDF)
+                    </a>
+                    <a href="Telegram_SGSI_ISO27001.pptx" download class="btn-terminal" style="border: 1px solid #00ffd8; padding: 12px 24px; text-decoration: none; color: #00ffd8; background: transparent; font-family: 'Courier New', monospace; font-weight: bold; transition: 0.2s;">
+                        Presentación punto 9 (PPTX)
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <script src="dynamic-bg.js"></script> 
+</body>
+</html>
