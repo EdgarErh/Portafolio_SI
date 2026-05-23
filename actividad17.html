@@ -289,20 +289,6 @@
                 </ul>
             </div>
 
-            <h3>Análisis Crítico & Propuestas de Mitigación</h3>
-            <div class="content-box">
-                <strong>Evaluación de Amenazas Asociadas:</strong><br>
-                A pesar de que un score de 4.7 se clasifica en una severidad moderada debido a la restricción de privilegios requeridos altos (PR:H), ignorar el fallo representa un riesgo latente para la gobernanza interna. Los actores de amenazas suelen explotar vulnerabilidades de severidad media como eslabones intermedios dentro de una cadena de intrusión compleja, combinándolas con vectores iniciales de compromiso (como la reutilización de credenciales o elevación local de privilegios).
-                <br><br>
-                <strong>Mitigación & sugerencias de control técnico:</strong>
-                <ul class="mitigation-list">
-                    <li><strong>Auditoría de Credenciales y Roles:</strong> Implementar políticas robustas de contraseñas y reducir el número de cuentas con privilegios administrativos altos.</li>
-                    <li><strong>Mecanismos de Autenticación Fuerte:</strong> Imponer de manera obligatoria esquemas de autenticación multifactor (MFA) para mitigar el riesgo de secuestro de sesiones.</li>
-                    <li><strong>Monitoreo y Control de Logs:</strong> Configurar alertas perimetrales ante comportamientos anómalos o peticiones de red inusuales provenientes de usuarios con roles elevados[cite: 169].</li>
-                    <li><strong>Revisión Continua de Código:</strong> Ejecutar pruebas estáticas (SAST) y parches constantes en el software para eliminar fallas de inyección lógicas.</li>
-                </ul>
-            </div>
-
             <div style="margin-top: 40px; display: flex; gap: 20px; justify-content: space-between; flex-wrap: wrap;">
                 <a href="Parcial3.html" target="_self" class="btn-terminal" style="border: 1px solid var(--primary); padding: 10px 20px; text-decoration: none; color: var(--primary); font-family: 'Courier New', monospace; font-weight: bold;">
                     Regresar al Parcial 3
